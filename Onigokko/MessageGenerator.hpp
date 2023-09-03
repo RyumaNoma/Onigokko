@@ -9,17 +9,18 @@ public:
 	MessageGenerator();
 	std::string generate() const;
 
-	void setDestination(std::string destination, int id);
-	void setDestinationBroadCast(std::string destination);
-	void setSignature(std::string signature);
+	void setDestination(const std::string& destination, int id);
+	void setDestinationBroadcast(const std::string& destination);
+	void setSignature(const std::string& signature);
 	template<class ArgType>
 	void addArgument(const ArgType& argument);
 	template<class ArgType>
-	void updateArgument(const ArgType& newArgument);
+	void updateArgument(int id, const ArgType& newArgument);
 
-	bool isBroadCast() const;
+	bool isBroadcast() const;
 	int getDestinationId() const { return _destRange; }
 	const std::string& getSignature() const { return _signature; }
+	const std::string& getArgument(int index) const { return _arguments.at(index); }
 	const std::vector<std::string>& getArguments() const { return _arguments; }
 private:
 	std::string _destTag;
