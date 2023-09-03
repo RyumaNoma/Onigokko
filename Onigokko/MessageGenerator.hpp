@@ -11,6 +11,11 @@ public:
 
 	void setDestination(std::string destination, int id);
 	void setDestinationBroadCast(std::string destination);
+	void setSignature(std::string signature);
+	template<class ArgType>
+	void addArgument(const ArgType& argument);
+	template<class ArgType>
+	void updateArgument(const ArgType& newArgument);
 
 	bool isBroadCast() const;
 	int getDestinationId() const { return _destRange; }
