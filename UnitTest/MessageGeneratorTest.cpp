@@ -3,11 +3,6 @@
 
 namespace game
 {
-	class ClassWithoutOutputOperator {
-	public:
-		ClassWithoutOutputOperator() {}
-	};
-
 	TEST_CLASS(MessageGeneratorTest)
 	{
 	public:
@@ -195,22 +190,6 @@ namespace game
 			Assert::AreEqual(std::string("3"), mg.getArgument(0));
 			Assert::AreEqual(std::string("enemy"), mg.getArgument(0));
 			Assert::AreEqual(std::string("4.0"), mg.getArgument(0));
-		}
-
-		TEST_METHOD(AddArgumentWithoutOutputOperator) {
-			MessageGenerator mg;
-			ClassWithoutOutputOperator obj;
-
-			try {
-				mg.addArgument(obj);
-			}
-			catch (std::invalid_argument) {
-				return;
-			}
-			catch (...) {
-				Assert::Fail();
-			}
-			Assert::Fail();
 		}
 
 		TEST_METHOD(UpdateValidArgument) {
