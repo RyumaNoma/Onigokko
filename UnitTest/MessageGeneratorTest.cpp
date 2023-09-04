@@ -136,7 +136,7 @@ namespace game
 			}
 		}
 
-		TEST_METHOD(setSignatureIncludingExcapeCharactor) {
+		TEST_METHOD(setSignatureIncludingExcapeCharacter) {
 			MessageGenerator mg;
 			// êÊì™
 			{
@@ -188,8 +188,8 @@ namespace game
 
 			Assert::AreEqual(static_cast<size_t>(3), mg.getArguments().size());
 			Assert::AreEqual(std::string("3"), mg.getArgument(0));
-			Assert::AreEqual(std::string("enemy"), mg.getArgument(0));
-			Assert::AreEqual(std::string("4.0"), mg.getArgument(0));
+			Assert::AreEqual(std::string("enemy"), mg.getArgument(1));
+			Assert::AreEqual(std::string("4"), mg.getArgument(2));
 		}
 
 		TEST_METHOD(UpdateValidArgument) {
@@ -297,7 +297,7 @@ namespace game
 			mg.addArgument("asdf");
 			mg.addArgument(13);
 
-			Assert::AreEqual(std::string("[enemy][12]kill(asdf, 12)"), mg.generate());
+			Assert::AreEqual(std::string("[enemy][12]kill(asdf,13)"), mg.generate());
 		}
 	};
 }
