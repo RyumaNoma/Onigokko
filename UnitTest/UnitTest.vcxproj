@@ -160,6 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MessageCommunicatorStub.cpp" />
     <ClCompile Include="MessageGeneratorTest.cpp" />
     <ClCompile Include="MessageManagerTest.cpp" />
     <ClCompile Include="MessageParserTest.cpp" />
@@ -171,6 +172,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MessageCommunicatorStub.hpp" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
