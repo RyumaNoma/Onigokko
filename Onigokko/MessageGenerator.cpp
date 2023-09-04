@@ -40,6 +40,7 @@ std::string MessageGenerator::generate() const {
 
 void MessageGenerator::setDestination(const std::string& destination, int id) {
 	if (destination.empty()) { throw std::invalid_argument("empty destination tag"); }
+	if (destination.find(']') != std::string::npos) { throw std::invalid_argument("destination include ]"); }
 	if (id < 0) { throw std::invalid_argument("minus destination id"); }
 
 	_destTag = destination;
