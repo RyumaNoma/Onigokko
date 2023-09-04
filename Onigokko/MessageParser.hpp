@@ -9,11 +9,11 @@ namespace game {
 		MessageParser() = delete;
 		MessageParser(const std::string& message);
 	
-		std::string getDestination() const;
-		int getDestinationId() const;
+		std::string getDestination() const { return _destTag; }
+		int getDestinationId() const { return _destRange; }
 		bool isBroadcast() const;
-		std::string getSignature() const;
-		std::string getArgumentAsString(int index) const;
+		std::string getSignature() const { return _signature; }
+		std::string getArgumentAsString(int index) const { return _arguments.at(index); }
 		int getArgumentAsInteger(int index) const;
 		double getArgumentAsDouble(int index) const;
 	private:
