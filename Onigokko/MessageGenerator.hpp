@@ -23,6 +23,8 @@ public:
 	const std::string& getArgument(int index) const { return _arguments.at(index); }
 	const std::vector<std::string>& getArguments() const { return _arguments; }
 private:
+	bool isValidSignatureCharacter(char c) const;
+private:
 	std::string _destTag;
 	int _destRange;
 	std::string _signature;
