@@ -13,20 +13,20 @@ namespace game {
 
 	std::string MessageGenerator::generate() const {
 		std::ostringstream oss;
-		// 宛先タグ1
+		// 螳帛�医ち繧ｰ1
 		if (_destTag.empty()) { throw std::runtime_error("empty destination tag"); }
 		oss << '[' << _destTag << ']';
-		// 宛先タグ2
+		// 螳帛�医ち繧ｰ2
 		if (_destRange == -1) {
 			oss << "[Broadcast]";
 		}
 		else {
 			oss << '[' << _destRange << ']';
 		}
-		// シグネチャ
+		// 繧ｷ繧ｰ繝阪メ繝｣
 		if (_signature.empty()) { throw std::runtime_error("empty signature"); }
 		oss << _signature;
-		// 引数
+		// 蠑墓焚
 		oss << '(';
 		if (!_arguments.empty()) {
 			for (int i = 0; i < _arguments.size() - 1; ++i) {
@@ -38,6 +38,11 @@ namespace game {
 
 		return oss.str();
 	}
+  
+  void MessageGenerator::setDestination(const std::string& destination, int id) {
+    if (destination.empty()) { throw std::invalid_argument("empty destination tag"); }
+    if (destination.find(']') != std::string::npos) { throw std::invalid_argument("destination include ]"); }
+    if (id < 0) { throw std::invalid_argument("minus destination id"); }
 
 	void MessageGenerator::setDestination(const std::string& destination, int id) {
 		if (destination.empty()) { throw std::invalid_argument("empty destination tag"); }
