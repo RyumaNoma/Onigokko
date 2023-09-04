@@ -134,6 +134,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DrawPixel.cpp" />
+    <ClCompile Include="MessageGenerator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MessageGenerator.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
