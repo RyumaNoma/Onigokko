@@ -15,7 +15,7 @@ public:
 	template<class ArgType>
 	void addArgument(const ArgType& argument);
 	template<class ArgType>
-	void updateArgument(int id, const ArgType& newArgument);
+	void updateArgument(int index, const ArgType& newArgument);
 
 	bool isBroadcast() const;
 	int getDestinationId() const { return _destRange; }
