@@ -139,7 +139,7 @@
     <ClCompile Include="MessageParser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MessageCommunicationInterface.hpp" />
+    <ClInclude Include="MessageCommunicater.hpp" />
     <ClInclude Include="MessageGenerator.hpp" />
     <ClInclude Include="MessageManager.hpp" />
     <ClInclude Include="MessageParser.hpp" />

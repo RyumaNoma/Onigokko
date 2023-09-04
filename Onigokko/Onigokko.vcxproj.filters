@@ -38,7 +38,7 @@
     <ClInclude Include="MessageManager.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="MessageCommunicationInterface.hpp">
+    <ClInclude Include="MessageCommunicater.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
