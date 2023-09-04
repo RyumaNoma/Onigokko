@@ -106,7 +106,7 @@ namespace game {
 			Assert::AreEqual(std::string("die"), mp.getSignature());
 			Assert::AreEqual(std::string("yo"), mp.getArgumentAsString(0));
 			try {
-				mp.getArgumentAsString(0);
+				mp.getArgumentAsInteger(0);
 			}
 			catch (std::invalid_argument) {
 				return;
@@ -123,7 +123,7 @@ namespace game {
 			Assert::AreEqual(3, mp.getDestinationId());
 			Assert::AreEqual(std::string("die"), mp.getSignature());
 			Assert::AreEqual(std::string("45"), mp.getArgumentAsString(0));
-			Assert::AreEqual(45.0, mp.getArgumentAsDouble(1));
+			Assert::AreEqual(45.0, mp.getArgumentAsDouble(0));
 		}
 		TEST_METHOD(BroadcastMessageTest) {
 			MessageParser mp("[enemy][Broadcast]die()");
