@@ -17,7 +17,13 @@ namespace game {
 		int getArgumentAsInteger(int index) const;
 		double getArgumentAsDouble(int index) const;
 	private:
-		void parse(const std::string& message);
+		void parse(std::string message);
+
+		void parseDestinationTag(std::string::const_iterator& iter);
+		void parseDestinationRange(std::string::const_iterator& iter);
+		void parseSignature(std::string::const_iterator& iter);
+		void parseArguments(std::string::const_iterator& iter);
+		void parseArgument(std::string::const_iterator& iter);
 	private:
 		std::string _destTag;
 		int _destRange;
