@@ -11,7 +11,7 @@ namespace game
 			Assert::IsFalse(mg.isBroadcast());
 			Assert::AreEqual(0, mg.getDestinationId());
 			Assert::AreEqual(std::string(""), mg.getSignature());
-			Assert::AreEqual(std::vector<std::string>(), mg.getArguments());
+			Assert::IsTrue(mg.getArguments().empty());
 		}
 
 		TEST_METHOD(SetBroadcast) {
