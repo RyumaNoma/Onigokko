@@ -135,10 +135,13 @@
   <ItemGroup>
     <ClCompile Include="DrawPixel.cpp" />
     <ClCompile Include="MessageGenerator.cpp" />
+    <ClCompile Include="MessageManager.cpp" />
     <ClCompile Include="MessageParser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MessageCommunicationInterface.hpp" />
     <ClInclude Include="MessageGenerator.hpp" />
+    <ClInclude Include="MessageManager.hpp" />
     <ClInclude Include="MessageParser.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
