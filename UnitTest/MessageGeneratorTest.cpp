@@ -22,6 +22,36 @@ namespace game
 			Assert::AreEqual(-1, mg.getDestinationId());
 		}
 
+		TEST_METHOD(setEmptyDestinationTag) {
+			MessageGenerator mg;
+
+			try {
+				mg.setDestination("", 1);
+			}
+			catch (std::invalid_argument) {
+				return;
+			}
+			catch (...) {
+				Assert::Fail();
+			}
+			Assert::Fail();
+		}
+
+		TEST_METHOD(setInvalidDestinationTag) {
+			MessageGenerator mg;
+
+			try {
+				mg.setDestination("ads]d", 1);
+			}
+			catch (std::invalid_argument) {
+				return;
+			}
+			catch (...) {
+				Assert::Fail();
+			}
+			Assert::Fail();
+		}
+
 		TEST_METHOD(SetValidDestinationId) {
 			MessageGenerator mg;
 			mg.setDestination("enemy", 1);
