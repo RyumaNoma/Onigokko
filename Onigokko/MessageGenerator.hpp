@@ -29,3 +29,18 @@ private:
 	std::vector<std::string> _arguments;
 };
 
+template<class ArgType>
+inline void MessageGenerator::addArgument(const ArgType& argument) {
+	std::ostringstream oss;
+	oss << argument;
+
+	_arguments.emplace_back(oss.str());
+}
+
+template<class ArgType>
+inline void MessageGenerator::updateArgument(int index, const ArgType& newArgument) {
+	std::ostringstream oss;
+	oss << newArgument;
+
+	_arguments.at(index) = oss.str();
+}
