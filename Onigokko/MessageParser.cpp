@@ -35,6 +35,19 @@ namespace game {
 		return std::stod(_arguments.at(index));
 	}
 
+	std::string MessageParser::getBody() const {
+		std::string body = _signature;
+		body.push_back('(');
+		if (!_arguments.empty()) {
+			for (int i = 0; i < _arguments.size() - 1; ++i) {
+				body += _arguments[i] + ',';
+			}
+			body += _arguments.back();
+		}
+		body.push_back(')');
+		return body;
+	}
+
 	void MessageParser::parse(std::string message) {
 		std::string::const_iterator iter = message.begin();
 		PARSE_STATE state = PARSE_STATE::DESTINATION_TAG;

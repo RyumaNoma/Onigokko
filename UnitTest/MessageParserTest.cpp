@@ -11,6 +11,7 @@ namespace game {
 			Assert::AreEqual(std::string("enemy"), mp.getDestination());
 			Assert::AreEqual(3, mp.getDestinationId());
 			Assert::AreEqual(std::string("die"), mp.getSignature());
+			Assert::AreEqual(std::string("die()"), mp.getBody());
 			try {
 				mp.getArgumentAsString(0);
 			}
@@ -29,6 +30,7 @@ namespace game {
 			Assert::AreEqual(3, mp.getDestinationId());
 			Assert::AreEqual(std::string("die"), mp.getSignature());
 			Assert::AreEqual(std::string("letsgo"), mp.getArgumentAsString(0));
+			Assert::AreEqual(std::string("die(letsgo)"), mp.getBody());
 			try {
 				mp.getArgumentAsString(1);
 			}
@@ -48,6 +50,7 @@ namespace game {
 			Assert::AreEqual(std::string("die"), mp.getSignature());
 			Assert::AreEqual(std::string("letsgo"), mp.getArgumentAsString(0));
 			Assert::AreEqual(std::string(" qw"), mp.getArgumentAsString(1));
+			Assert::AreEqual(std::string("die(letsgo, qw)"), mp.getBody());
 			try {
 				mp.getArgumentAsString(2);
 			}
@@ -68,6 +71,7 @@ namespace game {
 			Assert::AreEqual(std::string("die"), mp.getSignature());
 			Assert::AreEqual(std::string("yo"), mp.getArgumentAsString(0));
 			Assert::AreEqual(34, mp.getArgumentAsInteger(1));
+			Assert::AreEqual(std::string("die(yo,34)"), mp.getBody());
 			try {
 				mp.getArgumentAsString(2);
 			}
@@ -87,6 +91,7 @@ namespace game {
 			Assert::AreEqual(std::string("die"), mp.getSignature());
 			Assert::AreEqual(std::string("yo"), mp.getArgumentAsString(0));
 			Assert::AreEqual(0.456, mp.getArgumentAsDouble(1));
+			Assert::AreEqual(std::string("die(yo,0.456)"), mp.getBody());
 			try {
 				mp.getArgumentAsString(2);
 			}
