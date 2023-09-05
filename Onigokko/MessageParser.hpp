@@ -16,6 +16,7 @@ namespace game {
 		std::string getArgumentAsString(int index) const { return _arguments.at(index); }
 		int getArgumentAsInteger(int index) const;
 		double getArgumentAsDouble(int index) const;
+		std::string getBody() const;
 	private:
 		void parse(std::string message);
 
