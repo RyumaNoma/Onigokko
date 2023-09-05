@@ -20,11 +20,11 @@ namespace game {
 	private:
 		void parse(std::string message);
 
-		void parseDestinationTag(std::string::const_iterator& iter);
-		void parseDestinationRange(std::string::const_iterator& iter);
-		void parseSignature(std::string::const_iterator& iter);
-		void parseArguments(std::string::const_iterator& iter);
-		void parseArgument(std::string::const_iterator& iter);
+		void parseDestinationTag(std::string::const_iterator& iter, std::string::const_iterator end);
+		void parseDestinationRange(std::string::const_iterator& iter, std::string::const_iterator end);
+		void parseSignature(std::string::const_iterator& iter, std::string::const_iterator end);
+		void parseArguments(std::string::const_iterator& iter, std::string::const_iterator end);
+		void parseArgument(std::string::const_iterator& iter, std::string::const_iterator end);
 	private:
 		std::string _destTag;
 		int _destRange;

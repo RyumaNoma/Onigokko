@@ -146,5 +146,53 @@ namespace game {
 			Assert::IsFalse(mp.isBroadcast());
 			Assert::AreEqual(std::string("die"), mp.getSignature());
 		}
+		TEST_METHOD(OnlyTagMessage) {
+			try {
+				MessageParser mp("[hello");
+			}
+			catch (std::runtime_error) {
+				return;
+			}
+			catch (...) {
+				Assert::Fail();
+			}
+			Assert::Fail();
+		}
+		TEST_METHOD(OnlyIdMessage) {
+			try {
+				MessageParser mp("[hello][12");
+			}
+			catch (std::runtime_error) {
+				return;
+			}
+			catch (...) {
+				Assert::Fail();
+			}
+			Assert::Fail();
+		}
+		TEST_METHOD(OnlySignatureMessage) {
+			try {
+				MessageParser mp("[hello][12]run");
+			}
+			catch (std::runtime_error) {
+				return;
+			}
+			catch (...) {
+				Assert::Fail();
+			}
+			Assert::Fail();
+		}
+		TEST_METHOD(NotCloseArgumentsMessage) {
+			try {
+				MessageParser mp("[hello][12]run(1");
+			}
+			catch (std::runtime_error) {
+				return;
+			}
+			catch (...) {
+				Assert::Fail();
+			}
+			Assert::Fail();
+		}
 	};
 }
