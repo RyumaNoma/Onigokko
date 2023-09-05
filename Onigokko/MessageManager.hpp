@@ -16,6 +16,8 @@ namespace game {
 		MessageManager();
 
 		void setCommunicator(const std::string& tag, int id, MessageCommunicatorPtr communicator);
+		// TODO: ƒeƒXƒg‚ÆŽÀ‘•
+		void eraseCommunicator(const std::string& tag, int id);
 		void receive(const std::string& message);
 		void sendAll();
 

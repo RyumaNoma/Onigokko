@@ -2,7 +2,6 @@
 #include "MessageManager.hpp"
 #include "MessageCommunicatorStub.hpp"
 
-// Microsoft::VisualStudio::CppUnitTestFramework
 namespace Microsoft {
 	namespace VisualStudio {
 		namespace CppUnitTestFramework {
@@ -93,6 +92,41 @@ namespace game {
 				Assert::Fail();
 			}
 			Assert::Fail();
+		}
+
+		TEST_METHOD(eraseValidCommunicator) {
+			MessageManagerPtr mm(new MessageManager());
+			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			mm->setCommunicator("enemy", 0, enemy);
+			mm->eraseCommunicator("enemy", 0);
+			Assert::AreEqual(MessageCommunicatorPtr(nullptr), mm->getCommunicator("enemy", 0));
+		}
+
+		TEST_METHOD(eraseNotExistTagCommunicator) {
+			MessageManagerPtr mm(new MessageManager());
+			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			mm->setCommunicator("enemy", 0, enemy);
+			mm->eraseCommunicator("you", 0);
+			Assert::AreEqual(MessageCommunicatorPtr(enemy), mm->getCommunicator("enemy", 0));
+			Assert::AreEqual(MessageCommunicatorPtr(nullptr), mm->getCommunicator("you", 0));
+		}
+
+		TEST_METHOD(eraseNotExistIdCommunicator) {
+			MessageManagerPtr mm(new MessageManager());
+			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			mm->setCommunicator("enemy", 0, enemy);
+			mm->eraseCommunicator("enemy", 12);
+			Assert::AreEqual(MessageCommunicatorPtr(enemy), mm->getCommunicator("enemy", 0));
+			Assert::AreEqual(MessageCommunicatorPtr(nullptr), mm->getCommunicator("enemy", 12));
+		}
+
+		TEST_METHOD(eraseCommunicatorTwice) {
+			MessageManagerPtr mm(new MessageManager());
+			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			mm->setCommunicator("enemy", 0, enemy);
+			mm->eraseCommunicator("enemy", 0);
+			mm->eraseCommunicator("enemy", 0);
+			Assert::AreEqual(MessageCommunicatorPtr(nullptr), mm->getCommunicator("enemy", 0));
 		}
 
 		TEST_METHOD(ReceiveValidMessage) {

@@ -19,6 +19,13 @@ namespace game {
         _communicators[tag][id] = communicator;
     }
 
+    void MessageManager::eraseCommunicator(const std::string& tag, int id) {
+        auto communicator = getCommunicator(tag, id);
+        if (communicator == nullptr) { return; }
+
+        _communicators.at(tag).erase(id);
+    }
+
     void MessageManager::receive(const std::string& message) {
         _messages.push_back(message);
     }
