@@ -9,10 +9,9 @@ namespace game {
 	using MessageCommunicatorPtr = std::shared_ptr<MessageCommunicator>;
 
 	class MessageManager {
+		using TagCommunicators = std::unordered_map<int, MessageCommunicatorPtr>;
 		using CommunicatorHierarchy = 
-			std::unordered_map<std::string,
-							   std::unordered_map<int,
-												  std::vector<MessageCommunicatorPtr>>>;
+			std::unordered_map<std::string, TagCommunicators>;
 	public:
 		MessageManager();
 
@@ -25,6 +24,8 @@ namespace game {
 
 		// –³‚¯‚ê‚Înullptr‚ð•Ô‚·
 		MessageCommunicatorPtr getCommunicator(const std::string& tag, int id) const;
+	private:
+		void sendBroadcast(const std::string& tag, const std::string& messageBody);
 	private:
 		std::vector<std::string> _messages;
 		/*
