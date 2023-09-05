@@ -43,19 +43,19 @@ namespace game {
 			switch (state)
 			{
 			case PARSE_STATE::DESTINATION_TAG:
-				parseDestinationTag(iter);
+				parseDestinationTag(iter, message.end());
 				state = PARSE_STATE::DESTINATION_RANGE;
 				break;
 			case PARSE_STATE::DESTINATION_RANGE:
-				parseDestinationRange(iter);
+				parseDestinationRange(iter, message.end());
 				state = PARSE_STATE::SIGNATURE;
 				break;
 			case PARSE_STATE::SIGNATURE:
-				parseSignature(iter);
+				parseSignature(iter, message.end());
 				state = PARSE_STATE::ARGUMENTS;
 				break;
 			case PARSE_STATE::ARGUMENTS:
-				parseArguments(iter);
+				parseArguments(iter, message.end());
 				state = PARSE_STATE::END;
 				break;
 			default:
@@ -64,36 +64,42 @@ namespace game {
 		}
 	}
 
-	void MessageParser::parseDestinationTag(std::string::const_iterator& iter) {
+	void MessageParser::parseDestinationTag(std::string::const_iterator& iter, std::string::const_iterator end) {
+		if (iter == end) { throw std::runtime_error("not exist destination tag"); }
 		if (*iter == '[') {
 			++iter;
 		}
 		else {
 			throw std::runtime_error("destination tag must start with [");
 		}
+		if (iter == end) { throw std::runtime_error("destination tag end with ["); }
 
 		while (*iter != ']') {
 			_destTag.push_back(*iter);
 			++iter;
+			if (iter == end) { throw std::runtime_error("not close destination tag"); }
 		}
 		++iter;
 	}
 
-	void MessageParser::parseDestinationRange(std::string::const_iterator& iter) {
+	void MessageParser::parseDestinationRange(std::string::const_iterator& iter, std::string::const_iterator end) {
+		if (iter == end) { throw std::runtime_error("not exist destination range"); }
 		if (*iter == '[') {
 			++iter;
 		}
 		else {
 			throw std::runtime_error("destination range must start with [");
 		}
+		if (iter == end) { throw std::runtime_error("destination range end with ["); }
 
 		std::string destRange;
 		while (*iter != ']') {
 			destRange.push_back(*iter);
 			++iter;
+			if (iter == end) { throw std::runtime_error("not close destination range"); }
 		}
 		if (destRange == "Broadcast") {
-			_destRange = -1;
+			_destRange = BROADCAST_RANGE;
 		}
 		else {
 			_destRange = std::stoi(destRange);
@@ -101,35 +107,41 @@ namespace game {
 		++iter;
 	}
 
-	void MessageParser::parseSignature(std::string::const_iterator& iter) {
+	void MessageParser::parseSignature(std::string::const_iterator& iter, std::string::const_iterator end) {
+		if (iter == end) { throw std::runtime_error("not exist signature"); }
 		while (*iter != '(') {
 			_signature.push_back(*iter);
 			++iter;
+			if (iter == end) { throw std::runtime_error("not close signature"); }
 		}
 	}
-	void MessageParser::parseArguments(std::string::const_iterator& iter) {
+	void MessageParser::parseArguments(std::string::const_iterator& iter, std::string::const_iterator end) {
+		if (iter == end) { throw std::runtime_error("not exist arguments"); }
 		if (*iter == '(') {
 			++iter;
+			if (iter == end) { throw std::runtime_error("arguments end with ("); }
 		}
 		else {
 			throw std::runtime_error("arguments must start with (");
 		}
-
 		while (*iter != ')') {
 			if (*iter == ',') {
 				++iter;
 			}
 			else {
-				parseArgument(iter);
+				parseArgument(iter, end);
 			}
+			if (iter == end) { throw std::runtime_error("not close arguments"); }
 		}
 		++iter;
 	}
-	void MessageParser::parseArgument(std::string::const_iterator& iter) {
+	void MessageParser::parseArgument(std::string::const_iterator& iter, std::string::const_iterator end) {
+		if (iter == end) { throw std::runtime_error("not exist argument"); }
 		_arguments.push_back("");
 		while (*iter != ',' && *iter != ')') {
 			_arguments.back().push_back(*iter);
 			++iter;
+			if (iter == end) { throw std::runtime_error("not close argument"); }
 		}
 	}
 }
