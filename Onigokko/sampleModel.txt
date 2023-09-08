@@ -1,0 +1,6 @@
+<vertex>pos=(100.0,100.0,0), norm=(0,0,-1), dif=(255,255,255,255), spc=(0,0,0,0), u=0, v=0, su=0.0, sv=0.0</vertex>
+<vertex>pos=(250,100,0), norm=(0,0,-1), dif=(255,0,255,255), spc=(0,0,0,0), u=0, v=0, su=0.0, sv=0.0</vertex>
+<vertex>pos=(100.0,300.0,0), norm=(0,0,-1), dif=(0,255,255,255), spc=(0,0,0,0), u=0, v=0, su=0.0, sv=0.0</vertex>
+<vertex>pos=(400.0 ,200.0, 0), norm=(0, 0, -1), dif=(255, 255, 255, 255), spc=(0,0,0,0), u=0, v=0, su=0.0, sv=0.0</vertex>
+<index>0 1 2</index>
+<index>3 2 1</index>
