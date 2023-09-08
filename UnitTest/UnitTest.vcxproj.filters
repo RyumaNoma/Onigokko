@@ -36,7 +36,7 @@
     <ClCompile Include="ModelInstanceTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ModelParser.cpp">
+    <ClCompile Include="ModelParserTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
