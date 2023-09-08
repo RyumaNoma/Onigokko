@@ -138,6 +138,7 @@
     <ClCompile Include="MessageManager.cpp" />
     <ClCompile Include="MessageParser.cpp" />
     <ClCompile Include="ModelInstance.cpp" />
+    <ClCompile Include="ModelParser.cpp" />
     <ClCompile Include="ModelResource.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +147,7 @@
     <ClInclude Include="MessageManager.hpp" />
     <ClInclude Include="MessageParser.hpp" />
     <ClInclude Include="ModelInstance.hpp" />
+    <ClInclude Include="ModelParser.hpp" />
     <ClInclude Include="ModelResource.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
