@@ -30,12 +30,6 @@
     <ClCompile Include="MessageParserTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ModelResourceTest.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ModelInstanceTest.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ModelParserTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
