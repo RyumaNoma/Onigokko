@@ -5,6 +5,9 @@
 #include <tuple>
 
 namespace game {
+	/**
+	 * @brief モデル用ファイルパーサ。
+	 */
 	class ModelParser {
 	public:
 		/**
