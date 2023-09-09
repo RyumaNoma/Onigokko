@@ -1,34 +1,7 @@
 #include "ModelParser.hpp"
 #include <fstream>
 #include <cctype>
-#include <set>
 #include <stdexcept>
-
-namespace {
-	enum class TOKEN {
-		NONE,
-		VERTEX_START,
-		VERTEX_END,
-		INDEX_START,
-		INDEX_END,
-		LEFT_PAR,
-		RIGHT_PAR,
-		KEY_POS,
-		KEY_NORM,
-		KEY_DIF,
-		KEY_SPC,
-		KEY_U,
-		KEY_V,
-		KEY_SU,
-		KEY_SV,
-		EQ,
-		MINUS,
-		COMMA,
-		PERIOD,
-		DIGIT,
-		END
-	};
-}
 
 namespace game {
 	ModelParser::ModelParser()
