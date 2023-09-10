@@ -165,6 +165,7 @@
     <ClCompile Include="MessageGeneratorTest.cpp" />
     <ClCompile Include="MessageManagerTest.cpp" />
     <ClCompile Include="MessageParserTest.cpp" />
+    <ClCompile Include="ModelInstanceTest.cpp" />
     <ClCompile Include="ModelParserTest.cpp" />
     <ClCompile Include="ModelResourceTest.cpp" />
     <ClCompile Include="pch.cpp">

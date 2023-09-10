@@ -9,6 +9,7 @@
 
 #include "CppUnitTest.h"
 #include "DxLib.h"
+#include <memory>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -16,6 +17,9 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 bool operator == (const VECTOR& lhs, const VECTOR& rhs);
 bool operator == (const COLOR_U8& lhs, const COLOR_U8& rhs);
 // ToStringの特殊化
+namespace game {
+	class ModelResource;
+}
 namespace Microsoft {
 	namespace VisualStudio {
 		namespace CppUnitTestFramework {
@@ -30,6 +34,9 @@ namespace Microsoft {
 			}
 			template<> inline std::wstring ToString<unsigned short>(unsigned short* t) {
 				RETURN_WIDE_STRING(t);
+			}
+			template<> inline std::wstring ToString<std::shared_ptr<game::ModelResource const>>(const std::shared_ptr<game::ModelResource const>& t) {
+				RETURN_WIDE_STRING(t.get());
 			}
 		}
 	}
