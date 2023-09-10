@@ -13,8 +13,6 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-// ==演算子のオーバーロード
-bool operator == (const VECTOR& lhs, const VECTOR& rhs);
 bool operator == (const COLOR_U8& lhs, const COLOR_U8& rhs);
 // ToStringの特殊化
 namespace game {
