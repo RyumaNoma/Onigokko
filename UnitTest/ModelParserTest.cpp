@@ -1,5 +1,6 @@
 ﻿#include "pch.h"
 #include "ModelParser.hpp"
+#include "VectorOperator.hpp"
 #include <stdexcept>
 
 namespace game {

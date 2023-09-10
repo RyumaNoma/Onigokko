@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "ModelResource.hpp"
+#include "VectorOperator.hpp"
 
 namespace game {
 	TEST_CLASS(ModelResourceTest) {
