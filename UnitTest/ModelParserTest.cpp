@@ -1,6 +1,5 @@
 ﻿#include "pch.h"
 #include "ModelParser.hpp"
-#include "DxLib.h"
 #include <stdexcept>
 
 namespace game {

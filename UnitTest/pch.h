@@ -13,12 +13,8 @@
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 // ==演算子のオーバーロード
-bool operator == (const VECTOR& lhs, const VECTOR& rhs) {
-	return (lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z);
-}
-bool operator == (const COLOR_U8& lhs, const COLOR_U8& rhs) {
-	return (lhs.r == rhs.r && lhs.g == rhs.g && lhs.b == rhs.b && lhs.a == rhs.a);
-}
+bool operator == (const VECTOR& lhs, const VECTOR& rhs);
+bool operator == (const COLOR_U8& lhs, const COLOR_U8& rhs);
 // ToStringの特殊化
 namespace Microsoft {
 	namespace VisualStudio {
