@@ -245,10 +245,10 @@ namespace game {
 			ModelInstance mi(mr);
 
 			mi.lookAt(VGet(1, 4, -6));
-			mi.lookAt(VGet(2,2,2));
+			Assert::AreEqual(VGet(1, 4, -6), mi.getRotate());
 
-			Assert::AreEqual(VGet(0, 0, 0), mi.getTranslate());
-			Assert::AreEqual(VGet(2,2,2), mi.getRotate());
+			mi.lookAt(VGet(5, 0, 2));
+			Assert::AreEqual(VGet(5, 0, 2), mi.getRotate());
 		}
 	};
 }
