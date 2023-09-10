@@ -3,28 +3,6 @@
 #include "DxLib.h"
 #include <stdexcept>
 
-
-// ==演算子のオーバーロード
-bool operator == (const VECTOR& lhs, const VECTOR& rhs) {
-	return (lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z);
-}
-bool operator == (const COLOR_U8& lhs, const COLOR_U8& rhs) {
-	return (lhs.r == rhs.r && lhs.g == rhs.g && lhs.b == rhs.b && lhs.a == rhs.a);
-}
-// Microsoft::VisualStudio::CppUnitTestFramework
-namespace Microsoft {
-	namespace VisualStudio {
-		namespace CppUnitTestFramework {
-			template<> inline std::wstring ToString<VECTOR>(const VECTOR& t) {
-				RETURN_WIDE_STRING(std::string('(' + std::to_string(t.x) + ',' + std::to_string(t.y) + ',' + std::to_string(t.z) + ')').c_str());
-			}
-			template<> inline std::wstring ToString<COLOR_U8>(const COLOR_U8& t) {
-				RETURN_WIDE_STRING(std::string('(' + std::to_string(t.r) + ',' + std::to_string(t.g) + ',' + std::to_string(t.b) + ',' + std::to_string(t.a) + ')').c_str());
-			}
-		}
-	}
-}
-
 namespace game {
 	TEST_CLASS(ModelParserTest) {
 		public:
