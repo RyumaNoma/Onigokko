@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "DxLib.h"
 #include <string>
+#include <memory>
 
 /**
  * @brief モデルファイルのデータを読み込む。
@@ -91,4 +92,6 @@ namespace game {
 		unsigned short* _indexBuffer;
 		int _polygonNum;
 	};
+	using ModelResourcePtr = std::shared_ptr<ModelResource>;
+	using ModelResourceRef = std::shared_ptr<const ModelResource>;
 }
