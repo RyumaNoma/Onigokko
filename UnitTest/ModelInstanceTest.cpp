@@ -226,10 +226,10 @@ namespace game {
 			ModelResourcePtr mr(new ModelResource());
 			ModelInstance mi(mr);
 
-			mi.move(VGet(2, 4, 5));
-			mi.move(VGet(-4, -1, -4.6));
+			mi.move(VGet(2, 4, 0.5));
+			mi.move(VGet(-4, -1, -0.5));
 
-			Assert::AreEqual(VGet(-2.0, 3, 0.4), mi.getTranslate());
+			Assert::AreEqual(VGet(-2.0, 3, 0), mi.getTranslate());
 		}
 		TEST_METHOD(MoveToDestination) {
 			ModelResourcePtr mr(new ModelResource());
@@ -245,9 +245,10 @@ namespace game {
 			ModelInstance mi(mr);
 
 			mi.lookAt(VGet(1, 4, -6));
-			mi.lookAt(VGet(2, 4, 5));
+			mi.lookAt(VGet(2,2,2));
 
-			Assert::AreEqual(VGet(2, 4, 5), mi.getRotate());
+			Assert::AreEqual(VGet(0, 0, 0), mi.getTranslate());
+			Assert::AreEqual(VGet(2,2,2), mi.getRotate());
 		}
 	};
 }
