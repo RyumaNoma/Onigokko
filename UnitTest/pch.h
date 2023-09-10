@@ -25,6 +25,12 @@ namespace Microsoft {
 			template<> inline std::wstring ToString<COLOR_U8>(const COLOR_U8& t) {
 				RETURN_WIDE_STRING(std::string('(' + std::to_string(t.r) + ',' + std::to_string(t.g) + ',' + std::to_string(t.b) + ',' + std::to_string(t.a) + ')').c_str());
 			}
+			template<> inline std::wstring ToString<VERTEX3D>(VERTEX3D* t) {
+				RETURN_WIDE_STRING(t);
+			}
+			template<> inline std::wstring ToString<unsigned short>(unsigned short* t) {
+				RETURN_WIDE_STRING(t);
+			}
 		}
 	}
 }
