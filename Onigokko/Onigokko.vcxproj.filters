@@ -59,6 +59,9 @@
     <ClInclude Include="ModelParser.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="VectorOperator.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="sampleModel.txt" />
