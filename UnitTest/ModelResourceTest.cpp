@@ -2,7 +2,7 @@
 #include "ModelResource.hpp"
 
 namespace game {
-	TEST_CLASS(ModelParserTest) {
+	TEST_CLASS(ModelResourceTest) {
 	public:
 		TEST_METHOD(DefaultConstructor) {
 			ModelResource mr;
