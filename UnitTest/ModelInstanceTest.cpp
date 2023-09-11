@@ -258,5 +258,14 @@ namespace game {
 			mi.setRotation(DX_PI_F / 4.0f);
 			Assert::AreEqual(DX_PI_F / 4.0f, mi.getRotation());
 		}
+		TEST_METHOD(ChangeModelResource) {
+			ModelResourcePtr mr1(new ModelResource());
+			ModelResourcePtr mr2(new ModelResource());
+			ModelInstance mi(mr1);
+
+			Assert::AreEqual(ModelResourceRef(mr1), mi.getModelResource());
+			mi.changeModelResource(mr2);
+			Assert::AreEqual(ModelResourceRef(mr2), mi.getModelResource());
+		}
 	};
 }

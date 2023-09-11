@@ -85,6 +85,10 @@ namespace game {
 		_rotation += rotation;
 	}
 
+	void ModelInstance::changeModelResource(ModelResourceRef newModelResource) {
+		_modelResource = newModelResource;
+	}
+
 	MATRIX ModelInstance::generateWorldMatrix() const {
 		std::ofstream dbg("Debug.txt");
 		// 回転

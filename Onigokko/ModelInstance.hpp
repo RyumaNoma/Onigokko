@@ -92,6 +92,13 @@ namespace game {
 		void rotate(float rotation);
 
 		/**
+		 * @brief 元となるモデルを変更する。
+		 * 
+		 * @param newModelResource 変更後の元となるモデル
+		 */
+		void changeModelResource(ModelResourceRef newModelResource);
+
+		/**
 		 * @brief XYZ方向の拡大倍率を取得する。
 		 * 
 		 * @return  拡大倍率
