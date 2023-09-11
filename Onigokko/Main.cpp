@@ -1,6 +1,6 @@
-/*
-ƒvƒƒWƒFƒNƒgİ’è
-QlF
+ï»¿/*
+ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆè¨­å®š
+å‚è€ƒï¼š
 [1]https://dxlib.xsrv.jp/use/dxuse_vscom2022.html
 [2]https://www.ay3s-room.com/entry/dxlib-lnk2019
 */
@@ -8,12 +8,12 @@
 #include "ModelResource.hpp"
 #include "ModelInstance.hpp"
 
-// ƒvƒƒOƒ‰ƒ€‚Í WinMain ‚©‚çn‚Ü‚è‚Ü‚·
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã¯ WinMain ã‹ã‚‰å§‹ã¾ã‚Šã¾ã™
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	if (DxLib_Init() == -1)		// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»ˆ—
+	if (DxLib_Init() == -1)		// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–å‡¦ç†
 	{
-		return -1;			// ƒGƒ‰[‚ª‹N‚«‚½‚ç’¼‚¿‚ÉI—¹
+		return -1;			// ã‚¨ãƒ©ãƒ¼ãŒèµ·ããŸã‚‰ç›´ã¡ã«çµ‚äº†
 	}
 
 	SetCameraPositionAndTarget_UpVecY(VGet(0, 0, 1000), VGet(0, 0, 0));
@@ -28,9 +28,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		mi.rotate(DX_PI_F / 8.0f);
 	}
 
-	WaitKey();				// ƒL[“ü—Í‘Ò‚¿
+	WaitKey();				// ã‚­ãƒ¼å…¥åŠ›å¾…ã¡
 
-	DxLib_End();				// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠg—p‚ÌI—¹ˆ—
+	DxLib_End();				// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½¿ç”¨ã®çµ‚äº†å‡¦ç†
 
-	return 0;				// ƒ\ƒtƒg‚ÌI—¹ 
+	return 0;				// ã‚½ãƒ•ãƒˆã®çµ‚äº† 
 }
