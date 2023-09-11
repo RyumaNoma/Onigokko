@@ -68,5 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="sampleModel.txt" />
+    <Text Include="square.txt" />
   </ItemGroup>
 </Project>
