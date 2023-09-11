@@ -77,11 +77,19 @@ namespace game {
 		void moveTo(VECTOR destination);
 
 		/**
-		 * @brief 注視点を向く。
+		 * @brief モデルの向きを設定する。
+		 * @brief Y軸を中心とした回転
 		 * 
-		 * @param fixation 注視点座標
+		 * @param rad 角度[単位：ラジアン]
 		 */
-		void lookAt(VECTOR fixation);
+		void setAngle(float rad);
+
+		/**
+		 * @brief 指定した角度だけ回転する。
+		 * 
+		 * @param difference 回転する角度
+		 */
+		void rotate(float rotation);
 
 		/**
 		 * @brief XYZ方向の拡大倍率を取得する。
@@ -99,11 +107,10 @@ namespace game {
 
 		/**
 		 * @brief 向きの取得。
-		 * @attention デフォルトの向きは(0, 0, -1)とする
 		 * 
-		 * @return  向き
+		 * @return  向き[単位：ラジアン]
 		 */
-		VECTOR getRotate() const { return _rotate; }
+		float getRotate() const { return _angle; }
 
 		/**
 		 * @brief 元となるモデルの取得。
@@ -112,14 +119,11 @@ namespace game {
 		 */
 		ModelResourceRef getModelResource() const { return _modelResource; }
 	private:
-		MATRIX generateScaleMatrix() const;
-		MATRIX generateTranslateMatrix() const;
-		MATRIX generateRotateMatrix() const;
-		MATRIX generateInstanceMatrix() const;
+		MATRIX generateWorldMatrix() const;
 	private:
 		VECTOR _scale;
 		VECTOR _translate;
-		VECTOR _rotate;
+		float _angle;
 		ModelResourceRef _modelResource;
 	};
 }
