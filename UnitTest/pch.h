@@ -8,7 +8,36 @@
 #define PCH_H
 
 #include "CppUnitTest.h"
+#include "DxLib.h"
+#include <memory>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+
+bool operator == (const COLOR_U8& lhs, const COLOR_U8& rhs);
+// ToStringの特殊化
+namespace game {
+	class ModelResource;
+}
+namespace Microsoft {
+	namespace VisualStudio {
+		namespace CppUnitTestFramework {
+			template<> inline std::wstring ToString<VECTOR>(const VECTOR& t) {
+				RETURN_WIDE_STRING(std::string('(' + std::to_string(t.x) + ',' + std::to_string(t.y) + ',' + std::to_string(t.z) + ')').c_str());
+			}
+			template<> inline std::wstring ToString<COLOR_U8>(const COLOR_U8& t) {
+				RETURN_WIDE_STRING(std::string('(' + std::to_string(t.r) + ',' + std::to_string(t.g) + ',' + std::to_string(t.b) + ',' + std::to_string(t.a) + ')').c_str());
+			}
+			template<> inline std::wstring ToString<VERTEX3D>(VERTEX3D* t) {
+				RETURN_WIDE_STRING(t);
+			}
+			template<> inline std::wstring ToString<unsigned short>(unsigned short* t) {
+				RETURN_WIDE_STRING(t);
+			}
+			template<> inline std::wstring ToString<std::shared_ptr<game::ModelResource const>>(const std::shared_ptr<game::ModelResource const>& t) {
+				RETURN_WIDE_STRING(t.get());
+			}
+		}
+	}
+}
 
 #endif //PCH_H
