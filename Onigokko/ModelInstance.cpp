@@ -34,12 +34,6 @@ namespace game {
 			worldVertexBuffer[i].pos = VTransform(worldVertexBuffer[i].pos, worldMatrix);
 		}
 		DrawPolygonIndexed3D(worldVertexBuffer, vertexNum, _modelResource->getIndexBuffer(), polygonNum, DX_NONE_GRAPH, false);
-		const auto black = GetColor(0, 0, 0);
-		const auto white = GetColor(255, 255, 255);
-		DrawLine3D(VGet(0,0,0), VGet(100,0,0), white);
-		DrawLine3D(VGet(100,0,0), VGet(100,100,0), white);
-		DrawLine3D(VGet(100,100,0), VGet(0,100,0), white);
-		DrawLine3D(VGet(0,100,0), VGet(0,0,0), white);
 	}
 
 	void ModelInstance::setScaleX(float scale) {
@@ -90,7 +84,6 @@ namespace game {
 	}
 
 	MATRIX ModelInstance::generateWorldMatrix() const {
-		std::ofstream dbg("Debug.txt");
 		// 回転
 		MATRIX worldMatrix = MGetRotY(_rotation);
 
@@ -110,7 +103,6 @@ namespace game {
 		worldMatrix.m[3][1] = _position.y;
 		worldMatrix.m[3][2] = _position.z;
 
-		dbg.close();
 		return worldMatrix;
 	}
 }
