@@ -15,8 +15,8 @@ std::ostream& operator << (std::ostream& os, const DxLib::MATRIX& mat) {
 namespace game {
 	ModelInstance::ModelInstance(ModelResourceRef modelResource)
 		: _scale(VGet(1.0f, 1.0f, 1.0f))
-		, _translate(VGet(0.0f, 0.0f, 0.0f))
-		, _angle(0.0f)
+		, _position(VGet(0.0f, 0.0f, 0.0f))
+		, _rotation(0.0f)
 		, _modelResource(modelResource)
 	{}
 
@@ -70,25 +70,25 @@ namespace game {
 	}
 
 	void ModelInstance::move(VECTOR difference) {
-		_translate += difference;
+		_position += difference;
 	}
 
 	void ModelInstance::moveTo(VECTOR destination) {
-		_translate = destination;
+		_position = destination;
 	}
 
-	void ModelInstance::setAngle(float rad) {
-		_angle = rad;
+	void ModelInstance::setRotation(float rotation) {
+		_rotation = rotation;
 	}
 
 	void ModelInstance::rotate(float rotation) {
-		_angle += rotation;
+		_rotation += rotation;
 	}
 
 	MATRIX ModelInstance::generateWorldMatrix() const {
 		std::ofstream dbg("Debug.txt");
 		// 回転
-		MATRIX worldMatrix = MGetRotY(_angle);
+		MATRIX worldMatrix = MGetRotY(_rotation);
 
 		// スケール
 		worldMatrix.m[0][0] *= _scale.x;
@@ -102,9 +102,9 @@ namespace game {
 		worldMatrix.m[2][2] *= _scale.z;
 
 		// 平行移動
-		worldMatrix.m[3][0] = _translate.x;
-		worldMatrix.m[3][1] = _translate.y;
-		worldMatrix.m[3][2] = _translate.z;
+		worldMatrix.m[3][0] = _position.x;
+		worldMatrix.m[3][1] = _position.y;
+		worldMatrix.m[3][2] = _position.z;
 
 		dbg.close();
 		return worldMatrix;

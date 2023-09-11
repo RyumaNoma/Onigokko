@@ -11,8 +11,8 @@ namespace game {
 			ModelInstance mi(mr);
 
 			Assert::AreEqual(VGet(1, 1, 1), mi.getScale());
-			Assert::AreEqual(VGet(0, 0, 0), mi.getTranslate());
-			Assert::AreEqual(0.0f, mi.getRotate());
+			Assert::AreEqual(VGet(0, 0, 0), mi.getPosition());
+			Assert::AreEqual(0.0f, mi.getRotation());
 			Assert::AreEqual(static_cast<ModelResourceRef>(mr), mi.getModelResource());
 		}
 		TEST_METHOD(CopyConstructor) {
@@ -21,8 +21,8 @@ namespace game {
 			ModelInstance mi2 = mi;
 
 			Assert::AreEqual(VGet(1, 1, 1), mi2.getScale());
-			Assert::AreEqual(VGet(0, 0, 0), mi2.getTranslate());
-			Assert::AreEqual(0.0f, mi2.getRotate());
+			Assert::AreEqual(VGet(0, 0, 0), mi2.getPosition());
+			Assert::AreEqual(0.0f, mi2.getRotation());
 			Assert::AreEqual(static_cast<ModelResourceRef>(mr), mi2.getModelResource());
 		}
 		TEST_METHOD(InputOperator) {
@@ -33,8 +33,8 @@ namespace game {
 			mi2 = mi;
 
 			Assert::AreEqual(VGet(1, 1, 1), mi2.getScale());
-			Assert::AreEqual(VGet(0, 0, 0), mi2.getTranslate());
-			Assert::AreEqual(0.0f, mi2.getRotate());
+			Assert::AreEqual(VGet(0, 0, 0), mi2.getPosition());
+			Assert::AreEqual(0.0f, mi2.getRotation());
 			Assert::AreEqual(static_cast<ModelResourceRef>(mr), mi2.getModelResource());
 		}
 		TEST_METHOD(SetScaleEachVector) {
@@ -46,8 +46,8 @@ namespace game {
 			mi.setScaleZ(4.0f);
 
 			Assert::AreEqual(VGet(2, 3, 4), mi.getScale());
-			Assert::AreEqual(VGet(0, 0, 0), mi.getTranslate());
-			Assert::AreEqual(0.0f, mi.getRotate());
+			Assert::AreEqual(VGet(0, 0, 0), mi.getPosition());
+			Assert::AreEqual(0.0f, mi.getRotation());
 			Assert::AreEqual(static_cast<ModelResourceRef>(mr), mi.getModelResource());
 		}
 		TEST_METHOD(SetScaleWithVector) {
@@ -57,8 +57,8 @@ namespace game {
 			mi.setScale(VGet(2.0f, 3.0f, 4.0f));
 
 			Assert::AreEqual(VGet(2, 3, 4), mi.getScale());
-			Assert::AreEqual(VGet(0, 0, 0), mi.getTranslate());
-			Assert::AreEqual(0.0f, mi.getRotate());
+			Assert::AreEqual(VGet(0, 0, 0), mi.getPosition());
+			Assert::AreEqual(0.0f, mi.getRotation());
 			Assert::AreEqual(static_cast<ModelResourceRef>(mr), mi.getModelResource());
 		}
 		TEST_METHOD(SetScaleSameScale) {
@@ -68,8 +68,8 @@ namespace game {
 			mi.setScale(5.0f);
 
 			Assert::AreEqual(VGet(5, 5, 5), mi.getScale());
-			Assert::AreEqual(VGet(0, 0, 0), mi.getTranslate());
-			Assert::AreEqual(0.0f, mi.getRotate());
+			Assert::AreEqual(VGet(0, 0, 0), mi.getPosition());
+			Assert::AreEqual(0.0f, mi.getRotation());
 			Assert::AreEqual(static_cast<ModelResourceRef>(mr), mi.getModelResource());
 		}
 		TEST_METHOD(SetMinusScaleX) {
@@ -229,7 +229,7 @@ namespace game {
 			mi.move(VGet(2, 4, 0.5));
 			mi.move(VGet(-4, -1, -0.5));
 
-			Assert::AreEqual(VGet(-2.0, 3, 0), mi.getTranslate());
+			Assert::AreEqual(VGet(-2.0, 3, 0), mi.getPosition());
 		}
 		TEST_METHOD(MoveToDestination) {
 			ModelResourcePtr mr(new ModelResource());
@@ -238,25 +238,25 @@ namespace game {
 			mi.moveTo(VGet(2, 4, 5));
 			mi.moveTo(VGet(-4, -1, -4.6));
 
-			Assert::AreEqual(VGet(-4, -1, -4.6), mi.getTranslate());
+			Assert::AreEqual(VGet(-4, -1, -4.6), mi.getPosition());
 		}
 		TEST_METHOD(AddRotate) {
 			ModelResourcePtr mr(new ModelResource());
 			ModelInstance mi(mr);
 
 			mi.rotate(DX_PI_F / 4.0f);
-			Assert::AreEqual(DX_PI_F / 4.0f, mi.getRotate());
+			Assert::AreEqual(DX_PI_F / 4.0f, mi.getRotation());
 			mi.rotate(DX_PI_F / 4.0f);
-			Assert::AreEqual(DX_PI_F / 2.0f, mi.getRotate());
+			Assert::AreEqual(DX_PI_F / 2.0f, mi.getRotation());
 		}
-		TEST_METHOD(setAngle) {
+		TEST_METHOD(SetRotation) {
 			ModelResourcePtr mr(new ModelResource());
 			ModelInstance mi(mr);
 
-			mi.setAngle(DX_PI_F / 4.0f);
-			Assert::AreEqual(DX_PI_F / 4.0f, mi.getRotate());
-			mi.setAngle(DX_PI_F / 4.0f);
-			Assert::AreEqual(DX_PI_F / 4.0f, mi.getRotate());
+			mi.setRotation(DX_PI_F / 4.0f);
+			Assert::AreEqual(DX_PI_F / 4.0f, mi.getRotation());
+			mi.setRotation(DX_PI_F / 4.0f);
+			Assert::AreEqual(DX_PI_F / 4.0f, mi.getRotation());
 		}
 	};
 }

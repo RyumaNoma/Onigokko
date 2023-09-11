@@ -82,7 +82,7 @@ namespace game {
 		 * 
 		 * @param rad 角度[単位：ラジアン]
 		 */
-		void setAngle(float rad);
+		void setRotation(float rotation);
 
 		/**
 		 * @brief 指定した角度だけ回転する。
@@ -103,14 +103,14 @@ namespace game {
 		 * 
 		 * @return  位置座標
 		 */
-		VECTOR getTranslate() const { return _translate; }
+		VECTOR getPosition() const { return _position; }
 
 		/**
 		 * @brief 向きの取得。
 		 * 
 		 * @return  向き[単位：ラジアン]
 		 */
-		float getRotate() const { return _angle; }
+		float getRotation() const { return _rotation; }
 
 		/**
 		 * @brief 元となるモデルの取得。
@@ -122,8 +122,8 @@ namespace game {
 		MATRIX generateWorldMatrix() const;
 	private:
 		VECTOR _scale;
-		VECTOR _translate;
-		float _angle;
+		VECTOR _position;
+		float _rotation;
 		ModelResourceRef _modelResource;
 	};
 }
