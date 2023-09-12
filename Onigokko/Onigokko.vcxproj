@@ -153,6 +153,7 @@
     <ClInclude Include="VectorOperator.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="cube.txt" />
     <Text Include="sampleModel.txt" />
     <Text Include="square.txt" />
   </ItemGroup>
