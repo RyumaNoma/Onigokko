@@ -67,7 +67,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="sampleModel.txt" />
-    <Text Include="square.txt" />
+    <Text Include="sampleModel.txt">
+      <Filter>リソース ファイル</Filter>
+    </Text>
+    <Text Include="square.txt">
+      <Filter>リソース ファイル</Filter>
+    </Text>
+    <Text Include="cube.txt">
+      <Filter>リソース ファイル</Filter>
+    </Text>
   </ItemGroup>
 </Project>
