@@ -20,7 +20,7 @@ namespace game {
 
 			Direction() : x(0), y(0) {}
 			Direction(int x, int y) : x(x), y(y) {}
-			explicit operator MOVE_DIRECTION() const;
+			explicit operator InGameInputInterface::MOVE_DIRECTION() const;
 		};
 
 		virtual ~InGameInputInterface() {}
