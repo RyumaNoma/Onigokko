@@ -1,7 +1,7 @@
 ﻿#include "InGameInputInterface.hpp"
 
 namespace game {
-    InGameInputInterface::Direction::operator MOVE_DIRECTION() const {
+    InGameInputInterface::Direction::operator InGameInputInterface::MOVE_DIRECTION() const {
         if (x < 0) { // 左方向
             if (y < 0) { // 左下
                 return MOVE_DIRECTION::LEFT_DOWN;
