@@ -150,6 +150,7 @@
     <ClInclude Include="ModelInstance.hpp" />
     <ClInclude Include="ModelParser.hpp" />
     <ClInclude Include="ModelResource.hpp" />
+    <ClInclude Include="Scene.hpp" />
     <ClInclude Include="VectorOperator.hpp" />
   </ItemGroup>
   <ItemGroup>
