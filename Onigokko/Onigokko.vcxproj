@@ -144,6 +144,7 @@
     <ClCompile Include="VectorOperator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="InGameInputInterface.hpp" />
     <ClInclude Include="MessageCommunicator.hpp" />
     <ClInclude Include="MessageGenerator.hpp" />
     <ClInclude Include="MessageManager.hpp" />
