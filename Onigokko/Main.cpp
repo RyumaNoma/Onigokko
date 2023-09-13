@@ -16,19 +16,27 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		return -1;			// エラーが起きたら直ちに終了
 	}
 
-	SetCameraPositionAndTarget_UpVecY(VGet(0, 0, 1000), VGet(0, 0, 0));
-	SetCameraNearFar(5, 1050);
 	SetBackgroundColor(128, 128, 128);
+	SetUseLighting(false);
+	SetUseZBuffer3D(true);
+	SetWriteZBuffer3D(true);
+	SetDrawScreen(DX_SCREEN_BACK);
 
-	game::ModelResourcePtr mr(new game::ModelResource("square.txt"));
+	game::ModelResourcePtr mr(new game::ModelResource("cube.txt"));
 	game::ModelInstance mi(mr);
-	while (WaitKey() != KEY_INPUT_ESCAPE) {
-		ClearDrawScreen();
-		mi.draw();
-		mi.rotate(DX_PI_F / 8.0f);
-	}
+	mi.setScale(100);
+	mi.setAnchor(VGet(0.5, 0.5, 0.5));
+	mi.move(VGet(-0.5, -0.5, -0.5));
+	while (CheckHitKey(KEY_INPUT_ESCAPE) == 0) {
+		SetCameraPositionAndTarget_UpVecY(VGet(0, 400, 400), VGet(0, 0, 0));
+		SetCameraNearFar(5, 1050);
 
-	WaitKey();				// キー入力待ち
+		ClearDrawScreen();
+
+		mi.draw();
+		mi.rotate(DX_PI_F / 100.0f);
+		ScreenFlip();
+	}
 
 	DxLib_End();				// ＤＸライブラリ使用の終了処理
 
