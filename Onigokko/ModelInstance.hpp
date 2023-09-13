@@ -92,6 +92,14 @@ namespace game {
 		void rotate(float rotation);
 
 		/**
+		 * @brief 基準点座標を設定する。
+		 * @details 回転・スケール・平行移動の基準点となる。
+		 * 
+		 * @param anchorPosition 基準点座標
+		 */
+		void setAnchor(VECTOR anchorPosition);
+
+		/**
 		 * @brief 元となるモデルを変更する。
 		 * 
 		 * @param newModelResource 変更後の元となるモデル
@@ -120,6 +128,14 @@ namespace game {
 		float getRotation() const { return _rotation; }
 
 		/**
+		 * @brief 基準点座標の取得。
+		 * @details 回転・スケール・平行移動の基準点となる。
+		 * 
+		 * @return  基準点座標
+		 */
+		VECTOR getAnchorPosition() const { return _anchorPosition; }
+
+		/**
 		 * @brief 元となるモデルの取得。
 		 * 
 		 * @return  元となるモデル
@@ -131,6 +147,7 @@ namespace game {
 		VECTOR _scale;
 		VECTOR _position;
 		float _rotation;
+		VECTOR _anchorPosition;
 		ModelResourceRef _modelResource;
 	};
 }

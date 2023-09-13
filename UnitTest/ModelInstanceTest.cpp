@@ -4,6 +4,9 @@
 #include "VectorOperator.hpp"
 
 namespace game {
+	/**
+	 * - draw機能は個の単体テストでは確認できない
+	 */
 	TEST_CLASS(ModelInstanceTest) {
 		public:
 		TEST_METHOD(Constructor) {
@@ -13,6 +16,7 @@ namespace game {
 			Assert::AreEqual(VGet(1, 1, 1), mi.getScale());
 			Assert::AreEqual(VGet(0, 0, 0), mi.getPosition());
 			Assert::AreEqual(0.0f, mi.getRotation());
+			Assert::AreEqual(VGet(0, 0, 0), mi.getAnchorPosition());
 			Assert::AreEqual(static_cast<ModelResourceRef>(mr), mi.getModelResource());
 		}
 		TEST_METHOD(CopyConstructor) {
@@ -257,6 +261,14 @@ namespace game {
 			Assert::AreEqual(DX_PI_F / 4.0f, mi.getRotation());
 			mi.setRotation(DX_PI_F / 4.0f);
 			Assert::AreEqual(DX_PI_F / 4.0f, mi.getRotation());
+		}
+		TEST_METHOD(SetAnchor) {
+			ModelResourcePtr mr(new ModelResource());
+			ModelInstance mi(mr);
+
+			const VECTOR anchorPos = VGet(0.5, 0.5, 0.5);
+			mi.setAnchor(anchorPos);
+			Assert::AreEqual(anchorPos, mi.getAnchorPosition());
 		}
 		TEST_METHOD(ChangeModelResource) {
 			ModelResourcePtr mr1(new ModelResource());

@@ -9,6 +9,7 @@ namespace game {
 		: _scale(VGet(1.0f, 1.0f, 1.0f))
 		, _position(VGet(0.0f, 0.0f, 0.0f))
 		, _rotation(0.0f)
+		, _anchorPosition(VGet(0.0f, 0.0f, 0.0f))
 		, _modelResource(modelResource)
 	{}
 
@@ -23,6 +24,7 @@ namespace game {
 			worldVertexBuffer);
 
 		for (int i = 0; i < vertexNum; ++i) {
+			worldVertexBuffer[i].pos = VSub(worldVertexBuffer[i].pos, _anchorPosition);
 			worldVertexBuffer[i].pos = VTransform(worldVertexBuffer[i].pos, worldMatrix);
 		}
 		DrawPolygonIndexed3D(worldVertexBuffer, vertexNum, _modelResource->getIndexBuffer(), polygonNum, DX_NONE_GRAPH, false);
@@ -69,6 +71,10 @@ namespace game {
 
 	void ModelInstance::rotate(float rotation) {
 		_rotation += rotation;
+	}
+
+	void ModelInstance::setAnchor(VECTOR anchorPosition) {
+		_anchorPosition = anchorPosition;
 	}
 
 	void ModelInstance::changeModelResource(ModelResourceRef newModelResource) {
