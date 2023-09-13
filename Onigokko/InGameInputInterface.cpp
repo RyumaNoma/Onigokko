@@ -1,37 +1,37 @@
-#include "InGameInputInterface.hpp"
+Ôªø#include "InGameInputInterface.hpp"
 
 namespace game {
     InGameInputInterface::MOVE_DIRECTION InGameInputInterface::operator()(const Direction& dir) {
-        if (dir.x < 0) { // ç∂ï˚å¸
-            if (dir.y < 0) { // ç∂â∫
+        if (dir.x < 0) { // Â∑¶ÊñπÂêë
+            if (dir.y < 0) { // Â∑¶‰∏ã
                 return MOVE_DIRECTION::LEFT_DOWN;
             }
-            else if (dir.y > 0) { // ç∂è„
+            else if (dir.y > 0) { // Â∑¶‰∏ä
                 return MOVE_DIRECTION::LEFT_UP;
             }
-            else { // ç∂
+            else { // Â∑¶
                 return MOVE_DIRECTION::LEFT;
             }
         }
-        else if (dir.x > 0) { // âEï˚å¸
-            if (dir.y < 0) { // âEâ∫
+        else if (dir.x > 0) { // Âè≥ÊñπÂêë
+            if (dir.y < 0) { // Âè≥‰∏ã
                 return MOVE_DIRECTION::RIGHT_DOWN;
             }
-            else if (dir.y > 0) { // âEè„
+            else if (dir.y > 0) { // Âè≥‰∏ä
                 return MOVE_DIRECTION::RIGHT_UP;
             }
-            else { // âE
+            else { // Âè≥
                 return MOVE_DIRECTION::RIGHT;
             }
         }
         else {
-            if (dir.y < 0) { // â∫
+            if (dir.y < 0) { // ‰∏ã
                 return MOVE_DIRECTION::DOWN;
             }
-            else if (dir.y > 0) { // è„
+            else if (dir.y > 0) { // ‰∏ä
                 return MOVE_DIRECTION::UP;
             }
-            else { // ñ≥
+            else { // ÁÑ°
                 return MOVE_DIRECTION::NONE;
             }
         }
