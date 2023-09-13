@@ -9,14 +9,14 @@ namespace game {
     , _communicators()
     {}
 
-    void MessageManager::setCommunicator(const std::string & tag, int id, MessageCommunicatorPtr communicator) {
+    int MessageManager::setCommunicator(const std::string& tag, MessageCommunicatorPtr communicator) {
         if (communicator == nullptr) {
             throw std::invalid_argument("nullptr communicator");
         }
-        if (id < 0) {
-            throw std::invalid_argument("minus id");
-        }
+        const int id = useNextId(tag);
         _communicators[tag][id] = communicator;
+
+        return id;
     }
 
     void MessageManager::eraseCommunicator(const std::string& tag, int id) {
@@ -62,6 +62,18 @@ namespace game {
 
         for (auto communicator : tagCommunicators) {
             communicator.second->receive(messageBody);
+        }
+    }
+
+    int MessageManager::useNextId(const std::string& tag) {
+        auto nextId = _nextIds.find(tag);
+        
+        if (nextId == _nextIds.end()) { // ƒ^ƒO‚ª‘¶Ý‚µ‚È‚¢ê‡
+            _nextIds.emplace(tag, 1);
+            return 0;
+        }
+        else {
+            return nextId->second++;
         }
     }
 }

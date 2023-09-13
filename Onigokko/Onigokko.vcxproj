@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MessageCommunicator.cpp" />
     <ClCompile Include="MessageGenerator.cpp" />
     <ClCompile Include="MessageManager.cpp" />
     <ClCompile Include="MessageParser.cpp" />
