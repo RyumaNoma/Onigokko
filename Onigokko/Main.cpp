@@ -7,6 +7,7 @@
 #include "DxLib.h"
 #include "ModelResource.hpp"
 #include "ModelInstance.hpp"
+#include "InGameInputKeyboard.hpp"
 
 // プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
@@ -27,6 +28,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	mi.setScale(100);
 	mi.setAnchor(VGet(0.5, 0.5, 0.5));
 	mi.move(VGet(-0.5, -0.5, -0.5));
+
+	game::InGameInputKeyboard keyboard;
+
 	while (CheckHitKey(KEY_INPUT_ESCAPE) == 0) {
 		SetCameraPositionAndTarget_UpVecY(VGet(0, 400, 400), VGet(0, 0, 0));
 		SetCameraNearFar(5, 1050);
@@ -34,7 +38,20 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		ClearDrawScreen();
 
 		mi.draw();
-		mi.rotate(DX_PI_F / 100.0f);
+		switch (keyboard.move()) {
+		case game::InGameInputInterface::MOVE_DIRECTION::LEFT:
+			mi.rotate(DX_PI_F / 100.0f);
+			break;
+		case game::InGameInputInterface::MOVE_DIRECTION::RIGHT:
+			mi.rotate(-DX_PI_F / 100.0f);
+			break;
+		case game::InGameInputInterface::MOVE_DIRECTION::UP:
+			mi.move(VGet(0, 1, 0));
+			break;
+		case game::InGameInputInterface::MOVE_DIRECTION::DOWN:
+			mi.move(VGet(0, -1, 0));
+			break;
+		}
 		ScreenFlip();
 	}
 
