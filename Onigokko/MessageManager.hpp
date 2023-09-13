@@ -22,14 +22,15 @@ namespace game {
 		MessageManager();
 
 		/**
-		 * メッセージ送受信者として(タグ,Id)に紐づける。
-		 * メッセージ受け取り意思表明となる。
+		 * @brief メッセージ送受信者として(タグ)に紐づける。
+		 * @brief Idは自動的に割り当てられる。
+		 * @brief メッセージ受け取り意思表明となる。
 		 * 
 		 * @param tag 受け取りタグ
-		 * @param id Id
 		 * @param communicator メッセージ送受信者
+		 * @return Id
 		 */
-		void setCommunicator(const std::string& tag, int id, MessageCommunicatorPtr communicator);
+		int setCommunicator(const std::string& tag, MessageCommunicatorPtr communicator);
 
 		/**
 		 * 設定されたメッセージ送受信者の紐づけを解除する。
@@ -78,6 +79,8 @@ namespace game {
 		MessageCommunicatorPtr getCommunicator(const std::string& tag, int id) const;
 	private:
 		void sendBroadcast(const std::string& tag, const std::string& messageBody);
+		
+		int useNextId(const std::string& tag);
 	private:
 		std::vector<std::string> _messages;
 		/*
@@ -92,6 +95,7 @@ namespace game {
 			- 2
 		*/
 		CommunicatorHierarchy _communicators;
+		std::unordered_map<std::string, int> _nextIds;
 	};
 	using MessageManagerPtr = std::shared_ptr<MessageManager>;
 }
