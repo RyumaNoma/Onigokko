@@ -133,8 +133,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="InGameInputKeyboard.cpp" />
     <ClCompile Include="InGameInputInterface.cpp" />
+    <ClCompile Include="InGameInputKeyboard.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MessageCommunicator.cpp" />
     <ClCompile Include="MessageGenerator.cpp" />
