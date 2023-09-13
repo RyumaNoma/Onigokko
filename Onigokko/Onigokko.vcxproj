@@ -140,7 +140,6 @@
     <ClCompile Include="ModelInstance.cpp" />
     <ClCompile Include="ModelParser.cpp" />
     <ClCompile Include="ModelResource.cpp" />
-    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="VectorOperator.cpp" />
   </ItemGroup>
   <ItemGroup>
