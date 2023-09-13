@@ -28,5 +28,7 @@ namespace game {
 		virtual Direction getDirection() = 0;
 		virtual bool getSkillItem() = 0;
 		virtual bool useSkillItem() = 0;
+	protected:
+		MOVE_DIRECTION operator() (const Direction& dir);
 	};
 }
