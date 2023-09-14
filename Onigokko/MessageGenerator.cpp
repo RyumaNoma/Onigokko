@@ -1,7 +1,9 @@
 #include "MessageGenerator.hpp"
 #include <sstream>
 #include <cctype>
-#define DESTINATION_BROADCAST (-1)
+namespace {
+	constexpr int DESTINATION_BROADCAST = -1;
+}
 
 namespace game {
 	MessageGenerator::MessageGenerator()
