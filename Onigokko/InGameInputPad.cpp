@@ -26,6 +26,10 @@ namespace game {
 		return inputState.Buttons[XINPUT_BUTTON_A];
 	}
 
+	void InGameInputPad::setDeadZone(double zone) {
+		SetJoypadDeadZone(_id, zone);
+	}
+
 	XINPUT_STATE InGameInputPad::getInputState() const {
 		XINPUT_STATE inputState;
 		int success = GetJoypadXInputState(_id, &inputState);
