@@ -11,10 +11,8 @@ namespace game {
 	}
 
 	InGameInputInterface::Direction InGameInputPad::getDirection() {
-		XINPUT_STATE inputState = getInputState();
 		Direction dir;
-		dir.x = inputState.ThumbLX;
-		dir.y = inputState.ThumbLY;
+		GetJoypadAnalogInput(&dir.x, &dir.y, _id);
 		return dir;
 	}
 
