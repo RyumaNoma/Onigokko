@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="InGameInputInterface.cpp" />
+    <ClCompile Include="InGameInputKeyboard.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MessageCommunicator.cpp" />
     <ClCompile Include="MessageGenerator.cpp" />
@@ -146,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InGameInputInterface.hpp" />
+    <ClInclude Include="InGameInputKeyboard.hpp" />
     <ClInclude Include="MessageCommunicator.hpp" />
     <ClInclude Include="MessageGenerator.hpp" />
     <ClInclude Include="MessageManager.hpp" />
