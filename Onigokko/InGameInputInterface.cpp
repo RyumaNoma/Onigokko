@@ -1,39 +1,39 @@
 ﻿#include "InGameInputInterface.hpp"
+#include <cmath>
+#include "DxLib.h"
 
 namespace game {
     InGameInputInterface::Direction::operator InGameInputInterface::MOVE_DIRECTION() const {
-        if (x < 0) { // 左方向
-            if (y < 0) { // 左下
-                return MOVE_DIRECTION::LEFT_DOWN;
-            }
-            else if (y > 0) { // 左上
-                return MOVE_DIRECTION::LEFT_UP;
-            }
-            else { // 左
-                return MOVE_DIRECTION::LEFT;
-            }
+        if (x == 0 && y == 0) { return MOVE_DIRECTION::NONE; }
+        double angle = std::atan2(y, x);
+        constexpr float UNIT = DX_PI_F / 8.0f;
+
+        if (angle <= -UNIT * 7) {
+            return MOVE_DIRECTION::LEFT;
         }
-        else if (x > 0) { // 右方向
-            if (y < 0) { // 右下
-                return MOVE_DIRECTION::RIGHT_DOWN;
-            }
-            else if (y > 0) { // 右上
-                return MOVE_DIRECTION::RIGHT_UP;
-            }
-            else { // 右
-                return MOVE_DIRECTION::RIGHT;
-            }
+        else if (angle <= -UNIT * 5) {
+            return MOVE_DIRECTION::LEFT_UP;
+        }
+        else if (angle <= -UNIT * 3) {
+            return MOVE_DIRECTION::UP;
+        }
+        else if (angle <= -UNIT) {
+            return MOVE_DIRECTION::RIGHT_UP;
+        }
+        if (angle <= UNIT) {
+            return MOVE_DIRECTION::RIGHT;
+        }
+        else if (angle <= UNIT * 3) {
+            return MOVE_DIRECTION::RIGHT_DOWN;
+        }
+        else if (angle <= UNIT * 5) {
+            return MOVE_DIRECTION::DOWN;
+        }
+        else if (angle <= UNIT * 7) {
+            return MOVE_DIRECTION::LEFT_DOWN;
         }
         else {
-            if (y < 0) { // 下
-                return MOVE_DIRECTION::DOWN;
-            }
-            else if (y > 0) { // 上
-                return MOVE_DIRECTION::UP;
-            }
-            else { // 無
-                return MOVE_DIRECTION::NONE;
-            }
+            return MOVE_DIRECTION::LEFT;
         }
     }
 }
