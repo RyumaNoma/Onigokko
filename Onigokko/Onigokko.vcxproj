@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Clock.cpp" />
     <ClCompile Include="InGameInputInterface.cpp" />
     <ClCompile Include="InGameInputPad.cpp" />
     <ClCompile Include="InGameInputKeyboard.cpp" />
@@ -146,9 +147,11 @@
     <ClCompile Include="ModelInstance.cpp" />
     <ClCompile Include="ModelParser.cpp" />
     <ClCompile Include="ModelResource.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="VectorOperator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Clock.hpp" />
     <ClInclude Include="InGameInputInterface.hpp" />
     <ClInclude Include="InGameInputPad.hpp" />
     <ClInclude Include="InGameInputKeyboard.hpp" />
@@ -160,6 +163,7 @@
     <ClInclude Include="ModelParser.hpp" />
     <ClInclude Include="ModelResource.hpp" />
     <ClInclude Include="Scene.hpp" />
+    <ClInclude Include="Timer.hpp" />
     <ClInclude Include="VectorOperator.hpp" />
   </ItemGroup>
   <ItemGroup>
