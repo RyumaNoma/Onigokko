@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include <memory>
 
 namespace game {
 	/**
@@ -27,4 +28,6 @@ namespace game {
 	private:
 		size_t _now;
 	};
+	using ClockRef = std::shared_ptr<const Clock>;
+	using ClockPtr = std::shared_ptr<Clock>;
 }
