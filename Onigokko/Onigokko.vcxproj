@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Clock.cpp" />
     <ClCompile Include="InGameInputInterface.cpp" />
     <ClCompile Include="InGameInputPad.cpp" />
     <ClCompile Include="InGameInputKeyboard.cpp" />
@@ -149,6 +150,7 @@
     <ClCompile Include="VectorOperator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Clock.hpp" />
     <ClInclude Include="InGameInputInterface.hpp" />
     <ClInclude Include="InGameInputPad.hpp" />
     <ClInclude Include="InGameInputKeyboard.hpp" />
