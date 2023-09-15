@@ -162,6 +162,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ClockTest.cpp" />
     <ClCompile Include="MessageCommunicatorStub.cpp" />
     <ClCompile Include="MessageGeneratorTest.cpp" />
     <ClCompile Include="MessageManagerTest.cpp" />
