@@ -147,6 +147,7 @@
     <ClCompile Include="ModelInstance.cpp" />
     <ClCompile Include="ModelParser.cpp" />
     <ClCompile Include="ModelResource.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="VectorOperator.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +163,7 @@
     <ClInclude Include="ModelParser.hpp" />
     <ClInclude Include="ModelResource.hpp" />
     <ClInclude Include="Scene.hpp" />
+    <ClInclude Include="Timer.hpp" />
     <ClInclude Include="VectorOperator.hpp" />
   </ItemGroup>
   <ItemGroup>
