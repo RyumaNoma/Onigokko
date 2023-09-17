@@ -168,6 +168,10 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="cube.txt" />
+    <Text Include="ground.txt" />
+    <Text Include="item.txt" />
+    <Text Include="oni.txt" />
+    <Text Include="person.txt" />
     <Text Include="sampleModel.txt" />
     <Text Include="square.txt" />
   </ItemGroup>

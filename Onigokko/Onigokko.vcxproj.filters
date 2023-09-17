@@ -112,5 +112,17 @@
     <Text Include="cube.txt">
       <Filter>リソース ファイル</Filter>
     </Text>
+    <Text Include="person.txt">
+      <Filter>リソース ファイル</Filter>
+    </Text>
+    <Text Include="oni.txt">
+      <Filter>リソース ファイル</Filter>
+    </Text>
+    <Text Include="ground.txt">
+      <Filter>リソース ファイル</Filter>
+    </Text>
+    <Text Include="item.txt">
+      <Filter>リソース ファイル</Filter>
+    </Text>
   </ItemGroup>
 </Project>
