@@ -121,5 +121,8 @@
     <Text Include="ground.txt">
       <Filter>リソース ファイル</Filter>
     </Text>
+    <Text Include="item.txt">
+      <Filter>リソース ファイル</Filter>
+    </Text>
   </ItemGroup>
 </Project>
