@@ -144,6 +144,7 @@
     <ClCompile Include="MessageGenerator.cpp" />
     <ClCompile Include="MessageManager.cpp" />
     <ClCompile Include="MessageParser.cpp" />
+    <ClCompile Include="ModelDatabase.cpp" />
     <ClCompile Include="ModelInstance.cpp" />
     <ClCompile Include="ModelParser.cpp" />
     <ClCompile Include="ModelResource.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="MessageGenerator.hpp" />
     <ClInclude Include="MessageManager.hpp" />
     <ClInclude Include="MessageParser.hpp" />
+    <ClInclude Include="ModelDatabase.hpp" />
     <ClInclude Include="ModelInstance.hpp" />
     <ClInclude Include="ModelParser.hpp" />
     <ClInclude Include="ModelResource.hpp" />
