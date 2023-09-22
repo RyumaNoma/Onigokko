@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <unordered_map>
 #include <string>
-#include <vector>
+#include <queue>
 #include <memory>
 
 namespace game {
@@ -56,11 +56,24 @@ namespace game {
 		void sendAll();
 
 		/**
+		 * @brief 先頭のメッセージを送信する。
+		 * 
+		 */
+		void send();
+
+		/**
+		 * @brief 未送信のメッセージが空かどうかを判定する。
+		 * 
+		 * @return メッセージが空ならtrue
+		 */
+		bool isEmpty() const { return _messages.empty(); }
+
+		/**
 		 * 受け取ったがまだ送信していないメッセージの参照を取得する。
 		 * 
 		 * @return  受け取ったがまだ送信していないメッセージ
 		 */
-		const std::vector<std::string>& getMessages() const { return _messages; }
+		const std::queue<std::string>& getMessages() const { return _messages; }
 
 		/**
 		 * メッセージ送受信者の階層構造の参照を取得する。
@@ -82,7 +95,7 @@ namespace game {
 		
 		int useNextId(const std::string& tag);
 	private:
-		std::vector<std::string> _messages;
+		std::queue<std::string> _messages;
 		/*
 		受信者の階層構造
 		tag -> id
