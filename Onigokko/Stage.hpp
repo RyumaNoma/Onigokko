@@ -53,7 +53,7 @@ namespace game {
 		 * 
 		 * @return  壁オブジェクト
 		 */
-		const std::vector<ModelInstancePtr>& getWalls() const { return _walls; }
+		std::vector<ModelInstanceRef> getWalls() const;
 
 		/**
 		 * @brief ステージの持つすべてのオブジェクトの取得。
