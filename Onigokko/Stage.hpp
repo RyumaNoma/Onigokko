@@ -1,10 +1,7 @@
 ﻿#pragma once
 #include <memory>
 #include <vector>
-
-namespace DxLib {
-	class VECTOR;
-}
+#include "DxLib.h"
 
 namespace game {
 	class ModelDatabase;
