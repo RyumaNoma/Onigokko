@@ -178,6 +178,7 @@
     <Text Include="person.txt" />
     <Text Include="sampleModel.txt" />
     <Text Include="square.txt" />
+    <Text Include="wall.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

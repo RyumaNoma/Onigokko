@@ -58,8 +58,8 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Stage.cpp">
-	  <Filter>ソース ファイル</Filter>
-	</ClCompile>
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
     <ClCompile Include="ModelDatabase.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -108,8 +108,8 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Stage.hpp">
-	  <Filter>ヘッダー ファイル</Filter>
-	</ClInclude>
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
     <ClInclude Include="ModelDatabase.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -134,6 +134,9 @@
       <Filter>リソース ファイル</Filter>
     </Text>
     <Text Include="item.txt">
+      <Filter>リソース ファイル</Filter>
+    </Text>
+    <Text Include="wall.txt">
       <Filter>リソース ファイル</Filter>
     </Text>
   </ItemGroup>
