@@ -37,13 +37,6 @@ namespace game {
 		Stage(ModelDatabaseRef modelDatabase, DxLib::VECTOR scale);
 
 		/**
-		 * @brief 床と壁4枚を生成する。
-		 * 
-		 * @param scale ステージの大きさ
-		 */
-		void init(DxLib::VECTOR scale);
-
-		/**
 		 * @brief ステージの持つ全てのオブジェクトの描画。
 		 */
 		void draw() const;
@@ -69,6 +62,13 @@ namespace game {
 		 */
 		std::vector<ModelInstanceRef> getAllObjects() const;
 	private:
+		/**
+		 * @brief 床と壁4枚を生成する。
+		 *
+		 * @param scale ステージの大きさ
+		 */
+		void initStage(DxLib::VECTOR scale);
+
 		ModelInstancePtr _floor;
 		std::vector<ModelInstancePtr> _walls;
 	};
