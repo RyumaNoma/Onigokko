@@ -56,8 +56,8 @@ namespace game {
 			}
 			Assert::Fail();
 		}
-		TEST_METHOD(ConstructorWithModelDBWithValidScale_NotLoaded) {
-			ModelDatabasePtr mdb;
+		TEST_METHOD(ConstructorModelDBValidScale_NotLoaded) {
+			ModelDatabasePtr mdb(new ModelDatabase());
 			Stage stage(mdb, VGet(100, 123, 5));
 
 			auto floor = stage.getFloor();
@@ -77,8 +77,8 @@ namespace game {
 			Assert::AreEqual(walls[2].get(), obj[3].get());
 			Assert::AreEqual(walls[3].get(), obj[4].get());
 		}
-		TEST_METHOD(ConstructorWithModelDBWithValidScale_Loaded) {
-			ModelDatabasePtr mdb;
+		TEST_METHOD(ConstructorModelDBValidScale_Loaded) {
+			ModelDatabasePtr mdb(new ModelDatabase());
 			mdb->load("floor", "../../Onigokko/ground.txt");
 			mdb->load("wall", "../../Onigokko/wall.txt");
 
