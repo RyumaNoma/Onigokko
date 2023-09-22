@@ -53,7 +53,7 @@ namespace game {
 		 * 
 		 * @return  床オブジェクト
 		 */
-		const std::vector<ModelInstancePtr>& getFloors() const { return _floors; }
+		ModelInstanceRef getFloor() const { return _floor; }
 
 		/**
 		 * @brief 壁オブジェクトの取得。
@@ -69,6 +69,7 @@ namespace game {
 		 */
 		std::vector<ModelInstanceRef> getAllObjects() const;
 	private:
-		std::vector<ModelInstancePtr> _floors, _walls;
+		ModelInstancePtr _floor;
+		std::vector<ModelInstancePtr> _walls;
 	};
 }
