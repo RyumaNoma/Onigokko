@@ -144,9 +144,11 @@
     <ClCompile Include="MessageGenerator.cpp" />
     <ClCompile Include="MessageManager.cpp" />
     <ClCompile Include="MessageParser.cpp" />
+    <ClCompile Include="ModelDatabase.cpp" />
     <ClCompile Include="ModelInstance.cpp" />
     <ClCompile Include="ModelParser.cpp" />
     <ClCompile Include="ModelResource.cpp" />
+    <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="VectorOperator.cpp" />
   </ItemGroup>
@@ -159,10 +161,12 @@
     <ClInclude Include="MessageGenerator.hpp" />
     <ClInclude Include="MessageManager.hpp" />
     <ClInclude Include="MessageParser.hpp" />
+    <ClInclude Include="ModelDatabase.hpp" />
     <ClInclude Include="ModelInstance.hpp" />
     <ClInclude Include="ModelParser.hpp" />
     <ClInclude Include="ModelResource.hpp" />
     <ClInclude Include="Scene.hpp" />
+    <ClInclude Include="Stage.hpp" />
     <ClInclude Include="Timer.hpp" />
     <ClInclude Include="VectorOperator.hpp" />
   </ItemGroup>
@@ -174,6 +178,7 @@
     <Text Include="person.txt" />
     <Text Include="sampleModel.txt" />
     <Text Include="square.txt" />
+    <Text Include="wall.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
