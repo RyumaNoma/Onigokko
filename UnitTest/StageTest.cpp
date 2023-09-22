@@ -11,7 +11,9 @@ namespace game {
 	{
 	public:
 		TEST_METHOD(ConstructorWithValidScale) {
-			Stage stage(VGet(100, 100, 100));
+			Stage stage(VGet(100, 100, 100),
+				"../../Onigokko/ground.txt",
+				"../../Onigokko/wall.txt");
 
 			auto floor = stage.getFloor();
 			auto walls = stage.getWalls();
@@ -31,9 +33,10 @@ namespace game {
 			Assert::AreEqual(walls[3].get(), obj[4].get());
 		}
 		TEST_METHOD(ConstructorWithZeroScale) {
-			Stage stage(VGet(100, 0, 200));
 			try {
-				Stage stage(VGet(100, 100, 100));
+				Stage stage(VGet(0, 0, 0),
+					"../../Onigokko/ground.txt",
+					"../../Onigokko/wall.txt");
 			}
 			catch (std::invalid_argument) {
 				return;
@@ -44,9 +47,10 @@ namespace game {
 			Assert::Fail();
 		}
 		TEST_METHOD(ConstructorWithMinusScale) {
-			Stage stage(VGet(-100, -100, -100));
 			try {
-				Stage stage(VGet(100, 100, 100));
+				Stage stage(VGet(100, -14, 100),
+					"../../Onigokko/ground.txt",
+					"../../Onigokko/wall.txt");
 			}
 			catch (std::invalid_argument) {
 				return;
@@ -58,7 +62,9 @@ namespace game {
 		}
 		TEST_METHOD(ConstructorModelDBValidScale_NotLoaded) {
 			ModelDatabasePtr mdb(new ModelDatabase());
-			Stage stage(mdb, VGet(100, 123, 5));
+			Stage stage(mdb, VGet(100, 123, 5),
+				"../../Onigokko/ground.txt",
+				"../../Onigokko/wall.txt");
 
 			auto floor = stage.getFloor();
 			auto walls = stage.getWalls();
@@ -82,7 +88,9 @@ namespace game {
 			mdb->load("floor", "../../Onigokko/ground.txt");
 			mdb->load("wall", "../../Onigokko/wall.txt");
 
-			Stage stage(mdb, VGet(100, 123, 5));
+			Stage stage(mdb, VGet(100, 100, 100),
+				"../../Onigokko/ground.txt",
+				"../../Onigokko/wall.txt");
 
 			auto floor = stage.getFloor();
 			auto walls = stage.getWalls();

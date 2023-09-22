@@ -28,7 +28,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	game::ModelDatabasePtr mdb(new game::ModelDatabase());
 	mdb->load("floor", "ground.txt");
 	mdb->load("wall", "wall.txt");
-	game::Stage stage(mdb, VGet(100, 30, 100));
+	game::Stage stage(VGet(100, 100, 100),
+			"ground.txt",
+			"wall.txt");
 
 	while (CheckHitKey(KEY_INPUT_ESCAPE) == 0) {
 		SetCameraPositionAndTarget_UpVecY(VGet(0, 200, 200), VGet(50, 0, 50));
