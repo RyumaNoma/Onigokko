@@ -1,4 +1,6 @@
 #include "pch.h"
+#include "ModelDatabase.hpp"
+#include "ModelInstance.hpp"
 #include "Stage.hpp"
 #include "DxLib.h"
 #include <stdexcept>
@@ -53,6 +55,62 @@ namespace game {
 				Assert::Fail();
 			}
 			Assert::Fail();
+		}
+		TEST_METHOD(ConstructorWithModelDBWithValidScale_NotLoaded) {
+			ModelDatabasePtr mdb;
+			Stage stage(mdb, VGet(100, 123, 5));
+
+			auto floor = stage.getFloor();
+			auto walls = stage.getWalls();
+			auto obj = stage.getAllObjects();
+
+			Assert::IsNotNull(floor.get());
+			Assert::AreEqual(4ULL, walls.size());
+			Assert::IsNotNull(walls[0].get());
+			Assert::IsNotNull(walls[1].get());
+			Assert::IsNotNull(walls[2].get());
+			Assert::IsNotNull(walls[3].get());
+			Assert::AreEqual(5ULL, obj.size());
+			Assert::AreEqual(floor.get(), obj[0].get());
+			Assert::AreEqual(walls[0].get(), obj[1].get());
+			Assert::AreEqual(walls[1].get(), obj[2].get());
+			Assert::AreEqual(walls[2].get(), obj[3].get());
+			Assert::AreEqual(walls[3].get(), obj[4].get());
+		}
+		TEST_METHOD(ConstructorWithModelDBWithValidScale_Loaded) {
+			ModelDatabasePtr mdb;
+			mdb->load("floor", "../../Onigokko/ground.txt");
+			mdb->load("wall", "../../Onigokko/wall.txt");
+
+			Stage stage(mdb, VGet(100, 123, 5));
+
+			auto floor = stage.getFloor();
+			auto walls = stage.getWalls();
+			auto obj = stage.getAllObjects();
+
+			Assert::IsNotNull(floor.get());
+			Assert::AreEqual(4ULL, walls.size());
+			Assert::IsNotNull(walls[0].get());
+			Assert::IsNotNull(walls[1].get());
+			Assert::IsNotNull(walls[2].get());
+			Assert::IsNotNull(walls[3].get());
+			Assert::AreEqual(5ULL, obj.size());
+			Assert::AreEqual(floor.get(), obj[0].get());
+			Assert::AreEqual(walls[0].get(), obj[1].get());
+			Assert::AreEqual(walls[1].get(), obj[2].get());
+			Assert::AreEqual(walls[2].get(), obj[3].get());
+			Assert::AreEqual(walls[3].get(), obj[4].get());
+
+			Assert::AreEqual(static_cast<ModelResourceRef>(mdb->fetch("floor", "honyarara")), floor->getModelResource());
+			Assert::AreEqual(static_cast<ModelResourceRef>(mdb->fetch("wall", "honyarara")), walls[0]->getModelResource());
+			Assert::AreEqual(static_cast<ModelResourceRef>(mdb->fetch("wall", "honyarara")), walls[1]->getModelResource());
+			Assert::AreEqual(static_cast<ModelResourceRef>(mdb->fetch("wall", "honyarara")), walls[2]->getModelResource());
+			Assert::AreEqual(static_cast<ModelResourceRef>(mdb->fetch("wall", "honyarara")), walls[3]->getModelResource());
+			Assert::AreEqual(static_cast<ModelResourceRef>(mdb->fetch("floor", "honyarara")), obj[0]->getModelResource());
+			Assert::AreEqual(static_cast<ModelResourceRef>(mdb->fetch("wall", "honyarara")), obj[1]->getModelResource());
+			Assert::AreEqual(static_cast<ModelResourceRef>(mdb->fetch("wall", "honyarara")), obj[2]->getModelResource());
+			Assert::AreEqual(static_cast<ModelResourceRef>(mdb->fetch("wall", "honyarara")), obj[3]->getModelResource());
+			Assert::AreEqual(static_cast<ModelResourceRef>(mdb->fetch("wall", "honyarara")), obj[4]->getModelResource());
 		}
 	};
 }

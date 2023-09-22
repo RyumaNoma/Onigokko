@@ -17,6 +17,7 @@ bool operator == (const COLOR_U8& lhs, const COLOR_U8& rhs);
 // ToStringの特殊化
 namespace game {
 	class ModelResource;
+	class ModelInstance;
 }
 namespace Microsoft {
 	namespace VisualStudio {
@@ -35,6 +36,12 @@ namespace Microsoft {
 			}
 			template<> inline std::wstring ToString<std::shared_ptr<game::ModelResource const>>(const std::shared_ptr<game::ModelResource const>& t) {
 				RETURN_WIDE_STRING(t.get());
+			}
+			template<> inline std::wstring ToString<std::shared_ptr<game::ModelInstance const>>(const std::shared_ptr<game::ModelInstance const>& t) {
+				RETURN_WIDE_STRING(t.get());
+			}
+			template<> inline std::wstring ToString<game::ModelInstance>(const game::ModelInstance* t) {
+				RETURN_WIDE_STRING(t);
 			}
 		}
 	}
