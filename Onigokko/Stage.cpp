@@ -1,27 +1,22 @@
-﻿#include "Stage.hpp"
-#include "ModelResource.hpp"
+﻿#include "ModelResource.hpp"
 #include "ModelDatabase.hpp"
 #include "ModelInstance.hpp"
-
-namespace {
-	const char* FLOOR_FILEPATH = "ground.txt";
-	const char* WALL_FILEPATH = "wall.txt";
-}
+#include "Stage.hpp"
 
 namespace game {
-	Stage::Stage(DxLib::VECTOR scale)
+	Stage::Stage(VECTOR scale, const std::string& floorFilename, const std::string& wallFilename)
 		: _floor(nullptr)
 		, _walls()
 	{
-		generate();
+		generate(floorFilename, wallFilename);
 		init(scale);
 	}
 
-	Stage::Stage(ModelDatabasePtr modelDatabase, DxLib::VECTOR scale)
+	Stage::Stage(ModelDatabasePtr modelDatabase, VECTOR scale, const std::string& floorFilename, const std::string& wallFilename)
 		: _floor(nullptr)
 		, _walls()
 	{
-		generate(modelDatabase);
+		generate(modelDatabase, floorFilename, wallFilename);
 		init(scale);
 	}
 
@@ -45,10 +40,10 @@ namespace game {
 		return refs;
 	}
 
-	void Stage::generate() {
+	void Stage::generate(const std::string& floorFilename, const std::string& wallFilename) {
 		// リソースの生成
-		ModelResourcePtr floorResource(new ModelResource(FLOOR_FILEPATH));
-		ModelResourcePtr wallResource(new ModelResource(WALL_FILEPATH));
+		ModelResourcePtr floorResource(new ModelResource(floorFilename));
+		ModelResourcePtr wallResource(new ModelResource(wallFilename));
 		// インスタンスの生成
 		_floor = ModelInstancePtr(new ModelInstance(floorResource));
 		_walls.resize(4);
@@ -57,9 +52,10 @@ namespace game {
 		}
 	}
 
-	void Stage::generate(ModelDatabasePtr modelDatabase) {
-		auto floorResource = modelDatabase->fetch("floor", FLOOR_FILEPATH);
-		auto wallResource = modelDatabase->fetch("wall", WALL_FILEPATH);
+	void Stage::generate(ModelDatabasePtr modelDatabase, const std::string& floorFilename, const std::string& wallFilename) {
+		// リソースの生成
+		auto floorResource = modelDatabase->fetch("floor", floorFilename);
+		auto wallResource = modelDatabase->fetch("wall", wallFilename);
 		// インスタンスの生成
 		_floor = ModelInstancePtr(new ModelInstance(floorResource));
 		_walls.resize(4);
@@ -68,7 +64,7 @@ namespace game {
 		}
 	}
 
-	void Stage::init(DxLib::VECTOR scale) {
+	void Stage::init(VECTOR scale) {
 		// 床
 		_floor->setScale(VGet(scale.x, 1, scale.z));
 		// 壁(x軸に平行, y=0)
