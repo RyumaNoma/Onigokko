@@ -6,15 +6,15 @@ namespace game {
 		: _resources()
 	{}
 	
-	void ModelDatabase::load(const std::string & filename) {
+	void ModelDatabase::load(const std::string& key, const std::string & filename) {
 		ModelResourcePtr model(new ModelResource(filename));
-		_resources.emplace(filename, model);
+		_resources.emplace(key, model);
 	}
 	
-	ModelResourcePtr ModelDatabase::fetch(const std::string& filename) {
-		if (_resources.find(filename) == _resources.end()) {
-			load(filename);
+	ModelResourcePtr ModelDatabase::fetch(const std::string& key, const std::string& filename) {
+		if (_resources.find(key) == _resources.end()) {
+			load(key, filename);
 		}
-		return _resources.at(filename);
+		return _resources.at(key);
 	}
 }
