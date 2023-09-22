@@ -19,18 +19,20 @@ namespace game {
 		 * @brief ファイルをロードする。
 		 * 同じファイル名の場合、リロードする。
 		 * 
+		 * @param key 管理キー
 		 * @param filename ファイル名
 		 */
-		void load(const std::string& filename);
+		void load(const std::string& key, const std::string& filename);
 
 		/**
 		 * @brief ファイル名をキーとしてモデルリソースを返す。
 		 * @brief ロードされていない場合ロードを行う。
 		 * 
+		 * @param key 管理キー
 		 * @param filename ファイル名
 		 * @return  モデルリソース
 		 */
-		ModelResourcePtr fetch(const std::string& filename);
+		ModelResourcePtr fetch(const std::string& key, const std::string& filename);
 
 		/**
 		 * @brief 既にロードされたモデルの数の取得。
