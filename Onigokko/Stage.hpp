@@ -20,7 +20,7 @@ namespace game {
 	class Stage {
 	public:
 		/**
-		 * @brief デフォルトコンストラクタ。
+		 * @brief コンストラクタ。
 		 * @brief 床と壁4枚が生成される。
 		 * 
 		 * @param scale ステージの大きさ
@@ -65,7 +65,7 @@ namespace game {
 		/**
 		 * @brief ステージの持つすべてのオブジェクトの取得。
 		 * 
-		 * @return  ステージの持つすべてのオブジェクト（床・壁）
+		 * @return  ステージの持つすべてのオブジェクト（床,壁0,壁1,壁2,壁3の順）
 		 */
 		std::vector<ModelInstanceRef> getAllObjects() const;
 	private:
