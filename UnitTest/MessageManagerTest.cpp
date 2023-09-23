@@ -117,7 +117,7 @@ namespace game {
 			mm->receive("");
 		}
 
-		TEST_METHOD(SendMultipleMessages) {
+		TEST_METHOD(SendAllMultipleMessages) {
 			MessageManagerPtr mm(new MessageManager());
 			std::shared_ptr<Enemy> enemy(new Enemy(mm));
 			const std::string msg1 = "die()";
@@ -132,7 +132,7 @@ namespace game {
 			Assert::AreEqual(msg2, enemy->getReceivedMessage(1));
 		}
 		
-		TEST_METHOD(SendInvalidMessages) {
+		TEST_METHOD(SendAllInvalidMessages) {
 			MessageManagerPtr mm(new MessageManager());
 			std::shared_ptr<Enemy> enemy(new Enemy(mm));
 			enemy->raiseHand("enemy");
@@ -150,7 +150,7 @@ namespace game {
 			Assert::Fail();
 		}
 		
-		TEST_METHOD(SendMessagesBroadcast) {
+		TEST_METHOD(SendAllMessagesBroadcast) {
 			MessageManagerPtr mm(new MessageManager());
 			std::shared_ptr<Enemy> enemy(new Enemy(mm));
 			const std::string msg = "run(34.5)";
@@ -167,7 +167,7 @@ namespace game {
 			Assert::AreEqual(msg, enemy->getReceivedMessage(1));
 		}
 		
-		TEST_METHOD(SendMessageToNotExistTag) {
+		TEST_METHOD(SendAllMessageToNotExistTag) {
 			MessageManagerPtr mm(new MessageManager());
 			std::shared_ptr<Enemy> enemy(new Enemy(mm));
 			enemy->raiseHand("enemy");
@@ -177,7 +177,7 @@ namespace game {
 			Assert::IsTrue(enemy->getReceivedMessages().empty());
 		}
 		
-		TEST_METHOD(SendMessageToNotExistTagBroadcast) {
+		TEST_METHOD(SendAllMessageToNotExistTagBroadcast) {
 			MessageManagerPtr mm(new MessageManager());
 			std::shared_ptr<Enemy> enemy(new Enemy(mm));
 			enemy->raiseHand("enemy");
@@ -187,7 +187,7 @@ namespace game {
 			Assert::IsTrue(enemy->getReceivedMessages().empty());
 		}
 		
-		TEST_METHOD(SendMessageToNotExistCommunicator) {
+		TEST_METHOD(SendAllMessageToNotExistCommunicator) {
 			MessageManagerPtr mm(new MessageManager());
 			std::shared_ptr<Enemy> enemy(new Enemy(mm));
 			enemy->raiseHand("enemy");
@@ -197,11 +197,46 @@ namespace game {
 			Assert::IsTrue(enemy->getReceivedMessages().empty());
 		}
 		
-		TEST_METHOD(Send0Messages) {
+		TEST_METHOD(SendAll0Messages) {
 			MessageManagerPtr mm(new MessageManager());
 			std::shared_ptr<Enemy> enemy(new Enemy(mm));
 			enemy->raiseHand("enemy");
 			mm->sendAll();
+		}
+
+		TEST_METHOD(SendMessage) {
+			MessageManagerPtr mm(new MessageManager());
+			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			enemy->raiseHand("enemy");
+
+			mm->receive("[enemy][0]run(34.5)");
+			mm->send();
+			Assert::AreEqual(static_cast<size_t>(1), enemy->getReceivedMessages().size());
+			Assert::AreEqual(std::string("run(34.5)"), enemy->getReceivedMessages()[0]);
+		}
+
+		TEST_METHOD(SendMultipleMessage) {
+			MessageManagerPtr mm(new MessageManager());
+			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			enemy->raiseHand("enemy");
+
+			mm->receive("[enemy][0]run(34.5)");
+			mm->receive("[enemy][0]jump()");
+			mm->send();
+			Assert::AreEqual(static_cast<size_t>(1), enemy->getReceivedMessages().size());
+			Assert::AreEqual(std::string("run(34.5)"), enemy->getReceivedMessages()[0]);
+			mm->send();
+			Assert::AreEqual(static_cast<size_t>(2), enemy->getReceivedMessages().size());
+			Assert::AreEqual(std::string("jump()"), enemy->getReceivedMessages()[1]);
+		}
+
+		TEST_METHOD(Send0Message) {
+			MessageManagerPtr mm(new MessageManager());
+			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			enemy->raiseHand("enemy");
+
+			mm->send();
+			Assert::AreEqual(static_cast<size_t>(0), enemy->getReceivedMessages().size());
 		}
 	};
 }

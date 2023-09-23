@@ -27,22 +27,31 @@ namespace game {
     }
 
     void MessageManager::receive(const std::string& message) {
-        _messages.push_back(message);
+        _messages.push(message);
     }
 
     void MessageManager::sendAll() {
-        for (const auto& msg : _messages) {
-            MessageParser mp(msg);
-            if (mp.isBroadcast()) {
-                sendBroadcast(mp.getDestination(), mp.getBody());
-            }
-            else {
-                auto communicator = getCommunicator(mp.getDestination(), mp.getDestinationId());
-                if (communicator == nullptr) { continue; }
-                communicator->receive(mp.getBody());
-            }
+        while (!isEmpty()) {
+            send();
         }
-        _messages.clear();
+    }
+
+    void MessageManager::send() {
+        if (isEmpty()) { return; }
+        const auto& msg = _messages.front();
+        MessageParser mp(msg);
+        if (mp.isBroadcast()) {
+            sendBroadcast(mp.getDestination(), mp.getBody());
+        }
+        else {
+            auto communicator = getCommunicator(mp.getDestination(), mp.getDestinationId());
+            if (communicator == nullptr) {
+                _messages.pop();
+                return;
+            }
+            communicator->receive(mp.getBody());
+        }
+        _messages.pop();
     }
 
     MessageCommunicatorPtr MessageManager::getCommunicator(const std::string& tag, int id) const {
