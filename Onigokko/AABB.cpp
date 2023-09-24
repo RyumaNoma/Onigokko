@@ -1,6 +1,8 @@
 ﻿#include "AABB.hpp"
 #include "ModelInstance.hpp"
+#include "ModelResource.hpp"
 #include <stdexcept>
+#include <limits>
 
 namespace game {
 	AABB::AABB()
@@ -11,6 +13,24 @@ namespace game {
 		, _minZ(0.0f)
 		, _maxZ(1.0f)
 	{}
+
+	void AABB::update(ModelInstanceRef model) {
+		const auto worldVertex = model->calcWorldVertex();
+		const int vertexNum = model->getModelResource()->getVertexNum();
+		const float INF = 1e9;
+		// 初期化
+		_minX = _minY = _minZ = INF;
+		_maxX = _maxY = _maxZ = -INF;
+
+		for (int i = 0; i < vertexNum; ++i) {
+			_minX = min(_minX, worldVertex[i].x);
+			_minY = min(_minY, worldVertex[i].y);
+			_minZ = min(_minZ, worldVertex[i].z);
+			_maxX = max(_maxX, worldVertex[i].x);
+			_maxY = max(_maxY, worldVertex[i].y);
+			_maxZ = max(_maxZ, worldVertex[i].z);
+		}
+	}
 
 	void AABB::update(VECTOR min, VECTOR max) {
 		if (min.x > max.x) { throw std::invalid_argument("min.x > max.x"); }
