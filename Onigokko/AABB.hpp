@@ -17,8 +17,6 @@ namespace game {
 
 		void update(VECTOR min, VECTOR max);
 
-		bool intersect(const AABB& aabb) const;
-
 		void drawFrame() const;
 
 		float getMinX() const { return _minX; }
