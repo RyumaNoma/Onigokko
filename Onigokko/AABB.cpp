@@ -1,4 +1,6 @@
 ﻿#include "AABB.hpp"
+#include "ModelInstance.hpp"
+#include <stdexcept>
 
 namespace game {
 	AABB::AABB()
@@ -22,4 +24,29 @@ namespace game {
 		_maxZ = max.z;
 	}
 
+	void AABB::drawFrame() const {
+		const auto red = GetColor(255, 0, 0);
+		const VECTOR points[] = {
+			VGet(_minX, _maxY, _minZ),
+			VGet(_minX, _maxY, _maxZ),
+			VGet(_maxX, _maxY, _maxZ),
+			VGet(_maxX, _maxY, _minZ),
+			VGet(_minX, _minY, _minZ),
+			VGet(_minX, _minY, _maxZ),
+			VGet(_maxX, _minY, _maxZ),
+			VGet(_maxX, _minY, _minZ)
+		};
+		DrawLine3D(points[0], points[1], red);
+		DrawLine3D(points[1], points[2], red);
+		DrawLine3D(points[2], points[3], red);
+		DrawLine3D(points[3], points[0], red);
+		DrawLine3D(points[4], points[5], red);
+		DrawLine3D(points[5], points[6], red);
+		DrawLine3D(points[6], points[7], red);
+		DrawLine3D(points[7], points[4], red);
+		DrawLine3D(points[0], points[4], red);
+		DrawLine3D(points[1], points[5], red);
+		DrawLine3D(points[2], points[6], red);
+		DrawLine3D(points[3], points[7], red);
+	}
 }
