@@ -9,6 +9,7 @@
 #include "ModelInstance.hpp"
 #include "AABB.hpp"
 #include "InGameInputPad.hpp"
+#include "CollisionDetection.hpp"
 
 // プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
@@ -25,20 +26,34 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	game::ModelResourcePtr mr(new game::ModelResource("item.txt"));
+	game::ModelResourcePtr mr2(new game::ModelResource("person.txt"));
 	std::shared_ptr<game::ModelInstance> mi(new game::ModelInstance(mr));
+	std::shared_ptr<game::ModelInstance> mi2(new game::ModelInstance(mr2));
 	mi->setScale(100);
-	game::AABB aabb;
+	mi->move(VGet(0, 0, -400));
+	mi2->setScale(100);
+	game::AABB aabb, aabb2;
+
+	WaitKey();
+	WaitKey();
 
 	while (CheckHitKey(KEY_INPUT_ESCAPE) == 0) {
-		SetCameraPositionAndTarget_UpVecY(VGet(400, 400, 0), VGet(100, 0, 1));
-		SetCameraNearFar(5, 1050);
+		SetCameraPositionAndTarget_UpVecY(VGet(600, 600, 600), VGet(0, 0, 0));
+		SetCameraNearFar(5, 2000);
 
 		ClearDrawScreen();
 
-		mi->rotate(DX_PI_F / 300);
+		if (!game::CollisionDetection::testMove(aabb, VGet(0, 0, 2), aabb2, VGet(0,0,0))) {
+			mi->draw();
+			aabb.drawFrame();
+		}
+		mi2->draw();
+		aabb2.drawFrame();
+
+		mi->move(VGet(0, 0, 2));
 		aabb.update(mi);
-		mi->draw();
-		aabb.drawFrame();
+		aabb2.update(mi2);
+
 
 		ScreenFlip();
 	}
