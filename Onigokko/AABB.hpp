@@ -13,10 +13,27 @@ namespace game {
 	public:
 		AABB();
 
+		/**
+		 * @brief モデルインスタンスによるAABB更新。
+		 * @brief 計算量はモデルの頂点数に比例する
+		 * 
+		 * @param model モデルインスタンス
+		 */
 		void update(ModelInstanceRef model);
 
+		/**
+		 * @brief 頂点minと頂点maxを対角線とする直方体をAABBとして直接設定する。
+		 * @attention minとmaxの各x,y,zはmaxの方が大きくなければならない。
+		 * 
+		 * @param min 
+		 * @param max 
+		 */
 		void update(VECTOR min, VECTOR max);
 
+		/**
+		 * @brief AABBを赤いフレームで描画する。
+		 * 
+		 */
 		void drawFrame() const;
 
 		float getMinX() const { return _minX; }
