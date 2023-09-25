@@ -2,20 +2,7 @@
 #include "MessageManager.hpp"
 #include "MessageCommunicatorStub.hpp"
 
-namespace Microsoft {
-	namespace VisualStudio {
-		namespace CppUnitTestFramework {
-			template<> inline std::wstring ToString<game::MessageCommunicatorPtr>(const game::MessageCommunicatorPtr& t) {
-				RETURN_WIDE_STRING(t.get());
-			}
-		}
-	}
-}
-
 namespace game {
-	class Enemy;
-	class GameObject;
-
 	TEST_CLASS(MessageManagerTest) {
 	public:
 		TEST_METHOD(DefaultConstructor) {
