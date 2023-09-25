@@ -10,15 +10,15 @@ namespace game {
 		const bool collisionZ = (aabb1.getMaxZ() > aabb2.getMinZ()) && (aabb1.getMinZ() < aabb2.getMaxZ());
 		return (collisionX && collisionY && collisionZ);
 	}
-	bool CollisionDetection::testMove(
+	std::pair<bool, float> CollisionDetection::testMove(
 		const AABB& aabb1, VECTOR velocity1,
 		const AABB& aabb2, VECTOR velocity2
 	) {
 		const bool startStatus = testStop(aabb1, aabb2);
-		if (startStatus) { return true; }
+		if (startStatus) { return std::make_pair(true, 0.0f); }
 		// 静止状態の場合
 		if (isZero(velocity1) && isZero(velocity2)) {
-			return startStatus;
+			return std::make_pair(startStatus, 0.0f);
 		}
 		// 相対速度
 		const VECTOR relativeVelocity = velocity1 - velocity2;
@@ -36,20 +36,20 @@ namespace game {
 		
 		return testVectorAndAABB(point, relativeVelocity, exaabb);
 	}
-	bool CollisionDetection::testVectorAndAABB(const VECTOR origin, const VECTOR dir, const AABB& aabb) {
+	std::pair<bool, float> CollisionDetection::testVectorAndAABB(const VECTOR origin, const VECTOR dir, const AABB& aabb) {
 		// x
 		if (abs(dir.x) > FLT_EPSILON) {
 			const float lineX = (dir.x > 0) ? aabb.getMinX() : aabb.getMaxX();
 			const float time = (lineX - origin.x) / dir.x;
 
-			if (time < 0.0f || time > 1.0f) { return false; }
+			if (time < 0.0f || time > 1.0f) { return std::make_pair(false, 0.0f); }
 
 			const float hitY = origin.y + time * dir.y;
 			const float hitZ = origin.z + time * dir.z;
 			if (aabb.getMinY() <= hitY && hitY <= aabb.getMaxY() &&
 				aabb.getMinZ() <= hitZ && hitZ <= aabb.getMaxZ())
 			{
-				return true;
+				return std::make_pair(true, time);
 			}
 		}
 		// y
@@ -57,14 +57,14 @@ namespace game {
 			const float lineY = (dir.y > 0) ? aabb.getMinY() : aabb.getMaxY();
 			const float time = (lineY - origin.y) / dir.y;
 
-			if (time < 0.0f || time > 1.0f) { return false; }
+			if (time < 0.0f || time > 1.0f) { return std::make_pair(false, 0.0f); }
 
 			const float hitX = origin.x + time * dir.x;
 			const float hitZ = origin.z + time * dir.z;
 			if (aabb.getMinY() <= hitX && hitX <= aabb.getMaxY() &&
 				aabb.getMinZ() <= hitZ && hitZ <= aabb.getMaxZ())
 			{
-				return true;
+				return std::make_pair(true, time);
 			}
 		}
 		// z
@@ -72,16 +72,16 @@ namespace game {
 			const float lineZ = (dir.z > 0) ? aabb.getMinZ() : aabb.getMaxZ();
 			const float time = (lineZ - origin.z) / dir.z;
 
-			if (time < 0.0f || time > 1.0f) { return false; }
+			if (time < 0.0f || time > 1.0f) { return std::make_pair(false, 0.0f); }
 
 			const float hitX = origin.x + time * dir.x;
 			const float hitY = origin.y + time * dir.y;
 			if (aabb.getMinX() <= hitX && hitX <= aabb.getMaxX() &&
 				aabb.getMinY() <= hitY && hitY <= aabb.getMaxY())
 			{
-				return true;
+				return std::make_pair(true, time);
 			}
 		}
-		return false;
+		return std::make_pair(false, 0.0f);;
 	}
 }

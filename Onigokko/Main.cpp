@@ -34,16 +34,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	mi2->setScale(100);
 	game::AABB aabb, aabb2;
 
-	WaitKey();
-	WaitKey();
-
 	while (CheckHitKey(KEY_INPUT_ESCAPE) == 0) {
 		SetCameraPositionAndTarget_UpVecY(VGet(600, 600, 600), VGet(0, 0, 0));
 		SetCameraNearFar(5, 2000);
 
 		ClearDrawScreen();
 
-		if (!game::CollisionDetection::testMove(aabb, VGet(0, 0, 2), aabb2, VGet(0,0,0))) {
+		if (!game::CollisionDetection::testMove(aabb, VGet(0, 0, 2), aabb2, VGet(0,0,0)).first) {
 			mi->draw();
 			aabb.drawFrame();
 		}
