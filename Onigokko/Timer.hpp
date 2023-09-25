@@ -36,5 +36,6 @@ namespace game {
 		size_t _start;
 	};
 	using TimerPtr = std::shared_ptr<Timer>;
+	using TimerRef = std::shared_ptr<const Timer>;
 }
 

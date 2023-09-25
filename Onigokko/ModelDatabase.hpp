@@ -44,4 +44,5 @@ namespace game {
 		std::unordered_map<std::string, ModelResourcePtr> _resources;
 	};
 	using ModelDatabasePtr = std::shared_ptr<ModelDatabase>;
+	using ModelDatabaseRef = std::shared_ptr<const ModelDatabase>;
 }

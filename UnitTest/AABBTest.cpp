@@ -6,9 +6,6 @@
 #include <stdexcept>
 
 namespace game {
-	using ModelInstancePtr = std::shared_ptr<ModelInstance>;
-	using ModelInstanceRef = std::shared_ptr<const ModelInstance>;
-
 	TEST_CLASS(AABBTest)
 	{
 	public:

@@ -70,4 +70,6 @@ namespace game {
 		ModelInstancePtr _floor;
 		std::vector<ModelInstancePtr> _walls;
 	};
+	using StagePtr = std::shared_ptr<Stage>;
+	using StageRef = std::shared_ptr<const Stage>;
 }

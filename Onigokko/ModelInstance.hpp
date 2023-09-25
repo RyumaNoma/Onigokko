@@ -169,4 +169,6 @@ namespace game {
 		VECTOR _anchorPosition;
 		ModelResourceRef _modelResource;
 	};
+	using ModelInstancePtr = std::shared_ptr<ModelInstance>;
+	using ModelInstanceRef = std::shared_ptr<const ModelInstance>;
 }

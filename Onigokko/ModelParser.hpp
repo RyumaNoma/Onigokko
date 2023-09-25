@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <tuple>
+#include <memory>
 
 namespace game {
 	/**
@@ -65,4 +66,6 @@ namespace game {
 		std::vector<VERTEX3D> _vertexBuffer;
 		std::vector<std::vector<unsigned short>> _indexBuffer;
 	};
+	using ModelParserPtr = std::shared_ptr<ModelParser>;
+	using ModelParseRef = std::shared_ptr<const ModelParser>;
 }
