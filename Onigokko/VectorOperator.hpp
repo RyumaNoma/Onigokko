@@ -14,4 +14,6 @@ namespace DxLib {
 	VECTOR& operator/= (VECTOR& lhs, float rhs);
 	bool operator== (const VECTOR& lhs, const VECTOR& rhs);
 	bool operator!= (const VECTOR& lhs, const VECTOR& rhs);
+
+	bool isZero(const VECTOR& v);
 }
