@@ -7,8 +7,9 @@
 #include "DxLib.h"
 #include "ModelResource.hpp"
 #include "ModelInstance.hpp"
-#include "ModelDatabase.hpp"
-#include "Stage.hpp"
+#include "AABB.hpp"
+#include "InGameInputPad.hpp"
+#include "CollisionDetection.hpp"
 
 // プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
@@ -19,31 +20,42 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	}
 
 	SetBackgroundColor(128, 128, 128);
-	SetUseLighting(true);
+	SetUseLighting(false);
 	SetUseZBuffer3D(true);
 	SetWriteZBuffer3D(true);
 	SetDrawScreen(DX_SCREEN_BACK);
 
-
-	game::ModelDatabasePtr mdb(new game::ModelDatabase());
-	mdb->load("floor", "ground.txt");
-	mdb->load("wall", "wall.txt");
-	game::Stage stage(VGet(100, 100, 100),
-			"ground.txt",
-			"wall.txt");
+	game::ModelResourcePtr mr(new game::ModelResource("item.txt"));
+	game::ModelResourcePtr mr2(new game::ModelResource("person.txt"));
+	std::shared_ptr<game::ModelInstance> mi(new game::ModelInstance(mr));
+	std::shared_ptr<game::ModelInstance> mi2(new game::ModelInstance(mr2));
+	mi->setScale(100);
+	mi->move(VGet(0, 0, -400));
+	mi2->setScale(100);
+	game::AABB aabb, aabb2;
 
 	while (CheckHitKey(KEY_INPUT_ESCAPE) == 0) {
-		SetCameraPositionAndTarget_UpVecY(VGet(0, 200, 200), VGet(50, 0, 50));
-		SetCameraNearFar(5, 1050);
+		SetCameraPositionAndTarget_UpVecY(VGet(600, 600, 600), VGet(0, 0, 0));
+		SetCameraNearFar(5, 2000);
 
 		ClearDrawScreen();
 
-		stage.draw();
+		if (!game::CollisionDetection::testMove(aabb, VGet(0, 0, 2), aabb2, VGet(0,0,0)).first) {
+			mi->draw();
+			aabb.drawFrame();
+		}
+		mi2->draw();
+		aabb2.drawFrame();
+
+		mi->move(VGet(0, 0, 2));
+		aabb.update(mi);
+		aabb2.update(mi2);
+
 
 		ScreenFlip();
 	}
 
 	DxLib_End();				// ＤＸライブラリ使用の終了処理
 
-	return 0;				// ソフトの終了 
+	return 0;				// ソフトの終了
 }

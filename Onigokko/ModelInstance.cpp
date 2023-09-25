@@ -14,20 +14,31 @@ namespace game {
 	{}
 
 	void ModelInstance::draw() const {
-		const MATRIX worldMatrix = generateWorldMatrix();
-
 		const int vertexNum = _modelResource->getVertexNum();
 		const int polygonNum = _modelResource->getPolygonNum();
-		VERTEX3D* worldVertexBuffer = new VERTEX3D[vertexNum];
 
-		std::copy(_modelResource->getVertexBuffer(), _modelResource->getVertexBuffer() + vertexNum,
-			worldVertexBuffer);
+		// モデルリソースの内容をコピー
+		std::shared_ptr<VERTEX3D[]> worldVertexBuffer(new VERTEX3D[vertexNum]);
+		copyFromModelResource(worldVertexBuffer);
+
+		// ワールド座標系での座標を算出し代入
+		const auto worldVertexPos = calcWorldVertex();
+		for (int i = 0; i < vertexNum; ++i) {
+			worldVertexBuffer[i].pos = worldVertexPos[i];
+		}
+		DrawPolygonIndexed3D(worldVertexBuffer.get(), vertexNum, _modelResource->getIndexBuffer(), polygonNum, DX_NONE_GRAPH, false);
+	}
+
+	std::vector<VECTOR> ModelInstance::calcWorldVertex() const {
+		const int vertexNum = _modelResource->getVertexNum();
+		VERTEX3D const* vertexBuffer = _modelResource->getVertexBuffer();
+		std::vector<VECTOR> vertex(vertexNum);
+		const MATRIX worldMatrix = generateWorldMatrix();
 
 		for (int i = 0; i < vertexNum; ++i) {
-			worldVertexBuffer[i].pos = VSub(worldVertexBuffer[i].pos, _anchorPosition);
-			worldVertexBuffer[i].pos = VTransform(worldVertexBuffer[i].pos, worldMatrix);
+			vertex[i] = VTransform(VSub(vertexBuffer[i].pos, _anchorPosition), worldMatrix);
 		}
-		DrawPolygonIndexed3D(worldVertexBuffer, vertexNum, _modelResource->getIndexBuffer(), polygonNum, DX_NONE_GRAPH, false);
+		return vertex;
 	}
 
 	void ModelInstance::setScaleX(float scale) {
@@ -102,5 +113,17 @@ namespace game {
 		worldMatrix.m[3][2] = _position.z;
 
 		return worldMatrix;
+	}
+
+	void ModelInstance::copyFromModelResource(std::shared_ptr<VERTEX3D[]> dst) const {
+		const int vertexNum = _modelResource->getVertexNum();
+		auto src = _modelResource->getVertexBuffer();
+		for (int i = 0; i < vertexNum; ++i) {
+			dst[i].norm = src[i].norm;
+			dst[i].dif = src[i].dif;
+			dst[i].spc = src[i].spc;
+			dst[i].u = src[i].u;
+			dst[i].v = src[i].v;
+		}
 	}
 }

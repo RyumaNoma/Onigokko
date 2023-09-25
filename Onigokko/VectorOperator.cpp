@@ -1,5 +1,7 @@
 #include "VectorOperator.hpp"
 #include "DxLib.h"
+#include <cfloat>
+#include <cstdlib>
 
 namespace DxLib {
 	VECTOR operator+(const VECTOR& lhs, const VECTOR& rhs) {
@@ -69,5 +71,12 @@ namespace DxLib {
 	}
 	bool operator!=(const VECTOR& lhs, const VECTOR& rhs) {
 		return !(lhs == rhs);
+	}
+	bool isZero(const VECTOR& v) {
+		return (
+			abs(v.x) < FLT_EPSILON &&
+			abs(v.y) < FLT_EPSILON &&
+			abs(v.z) < FLT_EPSILON
+		);
 	}
 }

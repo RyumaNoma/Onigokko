@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "DxLib.h"
 #include <memory>
+#include <vector>
 
 namespace game {
 	class ModelResource;
@@ -26,6 +27,13 @@ namespace game {
 		 *
 		 */
 		void draw() const;
+
+		/**
+		 * @brief 全頂点のワールド座標を計算する。
+		 * 
+		 * @return  全頂点のワールド座標
+		 */
+		std::vector<VECTOR> calcWorldVertex() const;
 
 		/**
 		 * @brief X方向への拡大縮小。
@@ -86,6 +94,7 @@ namespace game {
 
 		/**
 		 * @brief 指定した角度だけ回転する。
+		 * @attention y軸マイナス方向を見て時計回りに回転する
 		 * 
 		 * @param difference 回転する角度
 		 */
@@ -143,6 +152,16 @@ namespace game {
 		ModelResourceRef getModelResource() const { return _modelResource; }
 	private:
 		MATRIX generateWorldMatrix() const;
+
+		/**
+		 * @brief モデルリソースの必要な頂点情報をコピーする。
+		 * @brief 具体的にはnorm,dif,spc,u,vのみをコピーし、pos,su,svはコピーしない
+		 * （posはワールド変換後、コピーするためここではコピーしない）
+		 * @attention dstは頂点数分、領域を確保する必要あり
+		 * 
+		 * @param dst コピー先
+		 */
+		void copyFromModelResource(std::shared_ptr<VERTEX3D[]> dst) const;
 	private:
 		VECTOR _scale;
 		VECTOR _position;
