@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "DxLib.h"
+#include <utility>
 
 namespace game {
 	class AABB;
@@ -25,9 +26,9 @@ namespace game {
 		 * @param velocity1 aabb1の速度ベクトル
 		 * @param aabb2 運動状態のAABB
 		 * @param velocity2 aabb2の速度ベクトル
-		 * @return 衝突しているならtrue
+		 * @return < 衝突しているならtrue , 衝突しているなら衝突する時刻(0以上1以下) >
 		 */
-		static bool testMove(
+		static std::pair<bool, float> testMove(
 			const AABB& aabb1, VECTOR velocity1,
 			const AABB& aabb2, VECTOR velocity2
 		);
@@ -37,8 +38,8 @@ namespace game {
 		 * @param origin 線分の始点
 		 * @param dir 線分のベクトル
 		 * @param aabb 静止状態のAABB
-		 * @return  衝突しているならtrue
+		 * @return < 衝突しているならtrue , 衝突しているなら衝突する時刻(0以上1以下) >
 		 */
-		static bool testVectorAndAABB(const VECTOR origin, const VECTOR dir, const AABB& aabb);
+		static std::pair<bool, float> testVectorAndAABB(const VECTOR origin, const VECTOR dir, const AABB& aabb);
 	};
 }
