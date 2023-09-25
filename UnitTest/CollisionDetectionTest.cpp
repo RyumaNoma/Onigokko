@@ -104,8 +104,8 @@ namespace game {
 			b.update(VGet(100, 100, 100), VGet(101, 101, 101));
 			VECTOR va = VGet(50, 50, 50);
 			VECTOR vb = VGet(-50, -50, -50);
-			Assert::IsTrue(CollisionDetection::testMove(a, va, b, vb));
-			Assert::IsTrue(CollisionDetection::testMove(b, vb, a, va));
+			Assert::IsTrue(CollisionDetection::testMove(a, va, b, vb).first);
+			Assert::IsTrue(CollisionDetection::testMove(b, vb, a, va).first);
 		}
 		TEST_METHOD(MoveCollision) {
 			// (100, 0, 0)Ç≈è’ìÀ
@@ -114,8 +114,8 @@ namespace game {
 			b.update(VGet(100, 100, 0), VGet(101, 101, 1));
 			VECTOR va = VGet(200, 0, 0);
 			VECTOR vb = VGet(0, -200, 0);
-			Assert::IsTrue(CollisionDetection::testMove(a, va, b, vb));
-			Assert::IsTrue(CollisionDetection::testMove(b, vb, a, va));
+			Assert::IsTrue(CollisionDetection::testMove(a, va, b, vb).first);
+			Assert::IsTrue(CollisionDetection::testMove(b, vb, a, va).first);
 		}
 		TEST_METHOD(MoveOvertake) {
 			AABB a, b;
@@ -123,8 +123,8 @@ namespace game {
 			b.update(VGet(0, 0, 100), VGet(1, 1, 101));
 			VECTOR va = VGet(0, 0, -10);
 			VECTOR vb = VGet(0, 0, -1000 );
-			Assert::IsTrue(CollisionDetection::testMove(a, va, b, vb));
-			Assert::IsTrue(CollisionDetection::testMove(b, vb, a, va));
+			Assert::IsTrue(CollisionDetection::testMove(a, va, b, vb).first);
+			Assert::IsTrue(CollisionDetection::testMove(b, vb, a, va).first);
 		}
 		TEST_METHOD(MoveCollisionOtherStop) {
 			AABB a, b;
@@ -132,8 +132,8 @@ namespace game {
 			b.update(VGet(100, 100, 100), VGet(101, 101, 101));
 			VECTOR va = VGet(0, 0, 0);
 			VECTOR vb = VGet(-1000, -1000, -1000);
-			Assert::IsTrue(CollisionDetection::testMove(a, va, b, vb));
-			Assert::IsTrue(CollisionDetection::testMove(b, vb, a, va));
+			Assert::IsTrue(CollisionDetection::testMove(a, va, b, vb).first);
+			Assert::IsTrue(CollisionDetection::testMove(b, vb, a, va).first);
 		}
 		TEST_METHOD(MoveCollisionStopAndStop) {
 			AABB a, b;
@@ -141,8 +141,8 @@ namespace game {
 			b.update(VGet(1, 1, 1), VGet(4, 4, 4));
 			VECTOR va = VGet(0, 0, 0);
 			VECTOR vb = VGet(0, 0, 0);
-			Assert::IsTrue(CollisionDetection::testMove(a, va, b, vb));
-			Assert::IsTrue(CollisionDetection::testMove(b, vb, a, va));
+			Assert::IsTrue(CollisionDetection::testMove(a, va, b, vb).first);
+			Assert::IsTrue(CollisionDetection::testMove(b, vb, a, va).first);
 		}
 		TEST_METHOD(MoveCannotOvertake) {
 			AABB a, b;
@@ -150,8 +150,8 @@ namespace game {
 			b.update(VGet(0, 0, 100), VGet(1, 1, 101));
 			VECTOR va = VGet(0, 0, -1000);
 			VECTOR vb = VGet(0, 0, -1000);
-			Assert::IsFalse(CollisionDetection::testMove(a, va, b, vb));
-			Assert::IsFalse(CollisionDetection::testMove(b, vb, a, va));
+			Assert::IsFalse(CollisionDetection::testMove(a, va, b, vb).first);
+			Assert::IsFalse(CollisionDetection::testMove(b, vb, a, va).first);
 		}
 		TEST_METHOD(MoveNotCollisionOtherStop) {
 			AABB a, b;
@@ -159,8 +159,8 @@ namespace game {
 			b.update(VGet(100, 100, 100), VGet(101, 101, 101));
 			VECTOR va = VGet(0, 0, 0);
 			VECTOR vb = VGet(1000, 1000, 1000);
-			Assert::IsFalse(CollisionDetection::testMove(a, va, b, vb));
-			Assert::IsFalse (CollisionDetection::testMove(b, vb, a, va));
+			Assert::IsFalse(CollisionDetection::testMove(a, va, b, vb).first);
+			Assert::IsFalse (CollisionDetection::testMove(b, vb, a, va).first);
 		}
 		TEST_METHOD(MoveNotCollisionStopAndStop) {
 			AABB a, b;
@@ -168,8 +168,8 @@ namespace game {
 			b.update(VGet(2, 2, 2), VGet(4, 4, 4));
 			VECTOR va = VGet(0, 0, 0);
 			VECTOR vb = VGet(0, 0, 0);
-			Assert::IsFalse(CollisionDetection::testMove(a, va, b, vb));
-			Assert::IsFalse(CollisionDetection::testMove(b, vb, a, va));
+			Assert::IsFalse(CollisionDetection::testMove(a, va, b, vb).first);
+			Assert::IsFalse(CollisionDetection::testMove(b, vb, a, va).first);
 		}
 		TEST_METHOD(MoveToOtherSide) {
 			AABB a, b;
@@ -177,8 +177,8 @@ namespace game {
 			b.update(VGet(2, 2, 2), VGet(4, 4, 4));
 			VECTOR va = VGet(-10, -10, -10);
 			VECTOR vb = VGet(10, 10, 10);
-			Assert::IsFalse(CollisionDetection::testMove(a, va, b, vb));
-			Assert::IsFalse(CollisionDetection::testMove(b, vb, a, va));
+			Assert::IsFalse(CollisionDetection::testMove(a, va, b, vb).first);
+			Assert::IsFalse(CollisionDetection::testMove(b, vb, a, va).first);
 		}
 	};
 }
