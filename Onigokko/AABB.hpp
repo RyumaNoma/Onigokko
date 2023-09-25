@@ -47,4 +47,6 @@ namespace game {
 		float _minY, _maxY;
 		float _minZ, _maxZ;
 	};
+	using AABBPtr = std::shared_ptr<AABB>;
+	using AABBRef = std::shared_ptr<const AABB>;
 }

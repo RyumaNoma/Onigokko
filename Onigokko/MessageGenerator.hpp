@@ -110,6 +110,8 @@ namespace game {
 		std::string _signature;
 		std::vector<std::string> _arguments;
 	};
+	using MessageGeneratorPtr = std::shared_ptr<MessageGenerator>;
+	using MessageGeneratorRef = std::shared_ptr<const MessageGenerator>;
 
 	template<class ArgType>
 	inline void MessageGenerator::addArgument(const ArgType& argument) {

@@ -56,4 +56,5 @@ namespace game {
 		 int _id;
 	};
 	using MessageCommunicatorPtr = std::shared_ptr<MessageCommunicator>;
+	using MessageCommunicatorRef = std::shared_ptr<const MessageCommunicator>;
 }

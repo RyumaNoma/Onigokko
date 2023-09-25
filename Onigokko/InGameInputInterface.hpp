@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <utility>
+#include <memory>
 
 namespace game {
 	class InGameInputInterface {
@@ -30,4 +31,6 @@ namespace game {
 		virtual bool getSkillItem() = 0;
 		virtual bool useSkillItem() = 0;
 	};
+	using InGameInputInterfacePtr = std::shared_ptr<InGameInputInterface>;
+	using InGameInputInterfaceRef = std::shared_ptr<const InGameInputInterface>;
 }

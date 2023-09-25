@@ -62,4 +62,6 @@ namespace game {
         XINPUT_STATE getInputState() const;
         int _id;
     };
+    using InGameInputPadPtr = std::shared_ptr<InGameInputPad>;
+    using InGameInputPadRef = std::shared_ptr<const InGameInputPad>;
 }

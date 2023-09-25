@@ -21,5 +21,6 @@ namespace game {
 		virtual void update() = 0;
 	};
 	using ScenePtr = std::shared_ptr<Scene>;
+	using SceneRef = std::shared_ptr<const Scene>;
 }
 

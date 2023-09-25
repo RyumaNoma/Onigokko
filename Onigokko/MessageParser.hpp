@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <memory>
 
 namespace game {
 	/**
@@ -90,4 +91,6 @@ namespace game {
 		std::string _signature;
 		std::vector<std::string> _arguments;
 	};
+	using MessageParserPtr = std::shared_ptr<MessageParser>;
+	using MessageParserRef = std::shared_ptr<const MessageParser>;
 }

@@ -111,4 +111,5 @@ namespace game {
 		std::unordered_map<std::string, int> _nextIds;
 	};
 	using MessageManagerPtr = std::shared_ptr<MessageManager>;
+	using MessageManagerRef = std::shared_ptr<const MessageManager>;
 }

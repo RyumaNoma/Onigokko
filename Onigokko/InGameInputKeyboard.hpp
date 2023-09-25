@@ -35,4 +35,6 @@ namespace game {
 	private:
 		Direction getDirectionWASD();
 	};
+	using InGameInputKeyboardPtr = std::shared_ptr<InGameInputKeyboard>;
+	using InGameInputKeyboardRef = std::shared_ptr<const InGameInputKeyboard>;
 }
