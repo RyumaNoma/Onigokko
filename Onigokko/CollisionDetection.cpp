@@ -14,9 +14,11 @@ namespace game {
 		const AABB& aabb1, VECTOR velocity1,
 		const AABB& aabb2, VECTOR velocity2
 	) {
+		const bool startStatus = testStop(aabb1, aabb2);
+		if (startStatus) { return true; }
 		// 静止状態の場合
 		if (isZero(velocity1) && isZero(velocity2)) {
-			return testStop(aabb1, aabb2);
+			return startStatus;
 		}
 		// 相対速度
 		const VECTOR relativeVelocity = velocity1 - velocity2;
