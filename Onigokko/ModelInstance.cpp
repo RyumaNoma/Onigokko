@@ -26,6 +26,12 @@ namespace game {
 		for (int i = 0; i < vertexNum; ++i) {
 			worldVertexBuffer[i].pos = worldVertexPos[i];
 		}
+		// 法線ベクトルのワールド変換
+		const auto worldVertexNorm = calcWorldNorm();
+		for (int i = 0; i < vertexNum; ++i) {
+			worldVertexBuffer[i].norm = worldVertexNorm[i];
+		}
+		// 描画
 		DrawPolygonIndexed3D(worldVertexBuffer.get(), vertexNum, _modelResource->getIndexBuffer(), polygonNum, DX_NONE_GRAPH, false);
 	}
 
@@ -35,6 +41,7 @@ namespace game {
 		std::vector<VECTOR> vertex(vertexNum);
 		const MATRIX worldMatrix = generateWorldMatrix();
 
+		// ワールド変換
 		for (int i = 0; i < vertexNum; ++i) {
 			vertex[i] = VTransform(VSub(vertexBuffer[i].pos, _anchorPosition), worldMatrix);
 		}
@@ -115,15 +122,45 @@ namespace game {
 		return worldMatrix;
 	}
 
+	MATRIX ModelInstance::generateWorldMatrixSR() const {
+		// 回転
+		MATRIX worldMatrix = MGetRotY(_rotation);
+
+		// スケール
+		worldMatrix.m[0][0] *= _scale.x;
+		worldMatrix.m[0][1] *= _scale.x;
+		worldMatrix.m[0][2] *= _scale.x;
+		worldMatrix.m[1][0] *= _scale.y;
+		worldMatrix.m[1][1] *= _scale.y;
+		worldMatrix.m[1][2] *= _scale.y;
+		worldMatrix.m[2][0] *= _scale.z;
+		worldMatrix.m[2][1] *= _scale.z;
+		worldMatrix.m[2][2] *= _scale.z;
+
+		return worldMatrix;
+	}
+
 	void ModelInstance::copyFromModelResource(std::shared_ptr<VERTEX3D[]> dst) const {
 		const int vertexNum = _modelResource->getVertexNum();
 		auto src = _modelResource->getVertexBuffer();
 		for (int i = 0; i < vertexNum; ++i) {
-			dst[i].norm = src[i].norm;
 			dst[i].dif = src[i].dif;
 			dst[i].spc = src[i].spc;
 			dst[i].u = src[i].u;
 			dst[i].v = src[i].v;
 		}
+	}
+	std::vector<VECTOR> ModelInstance::calcWorldNorm() const {
+		const int vertexNum = _modelResource->getVertexNum();
+		VERTEX3D const* vertexBuffer = _modelResource->getVertexBuffer();
+		std::vector<VECTOR> vertex(vertexNum);
+		// ワールド変換行列の逆転置行列
+		const MATRIX worldMatrix = MTranspose(MInverse(generateWorldMatrixSR()));
+
+		// ワールド変換
+		for (int i = 0; i < vertexNum; ++i) {
+			vertex[i] = VTransform(vertexBuffer[i].norm, worldMatrix);
+		}
+		return vertex;
 	}
 }
