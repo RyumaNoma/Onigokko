@@ -14,7 +14,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 {
 	const auto White = GetColorF(1.0f, 1.0f, 1.0f, 1.0f);
 	const auto Black = GetColorF(0.0f, 0.0f, 0.0f, 1.0f);
-	const auto Gray = GetColorF(0.05f, 0.05f, 0.05f, 1.0f);
+	const auto Gray = GetColorF(0.1f, 0.1f, 0.1f, 1.0f);
 	if (DxLib_Init() == -1)		// ＤＸライブラリ初期化処理
 	{
 		return -1;			// エラーが起きたら直ちに終了
@@ -23,7 +23,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetBackgroundColor(128, 128, 128);
 
 	// 標準ライトの設定
-	ChangeLightTypeDir(VGet(-1, -1, -1));// ディレクショナルライトにする
+	ChangeLightTypeDir(VGet(-1, 0, 0));// ディレクショナルライトにする
 	SetLightAmbColor(White);// アンビエントカラー
 	SetLightDifColor(White);// ディフューズカラーを設定
 
@@ -43,23 +43,20 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	// ダブルバッファリング
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	game::ModelResourcePtr mr(new game::ModelResource("cube.txt"));
+	game::ModelResourcePtr mr(new game::ModelResource("person.txt"));
 	std::shared_ptr<game::ModelInstance> mi(new game::ModelInstance(mr));
 	mi->setScale(100);
 	mi->setAnchor(VGet(0.5, 0.5, 0.5));
 
-	game::Stage stage(VGet(100, 30, 100), "ground.txt", "wall.txt");
-
 	while (CheckHitKey(KEY_INPUT_ESCAPE) == 0) {
-		SetCameraPositionAndTarget_UpVecY(VGet(100, 100, 200), VGet(50, 0, 50));
+		SetCameraPositionAndTarget_UpVecY(VGet(200, 200, 200), VGet(50, 0, 50));
 		SetCameraNearFar(5, 2000);
 
 		ClearDrawScreen();
 
 		mi->draw();
-		stage.draw();
 
-		mi->rotate(DX_PI_F / 100);
+		mi->rotate(DX_PI_F / 500);
 
 		ScreenFlip();
 	}
