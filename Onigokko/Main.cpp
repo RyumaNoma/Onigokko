@@ -7,50 +7,59 @@
 #include "DxLib.h"
 #include "ModelResource.hpp"
 #include "ModelInstance.hpp"
-#include "AABB.hpp"
-#include "InGameInputPad.hpp"
-#include "CollisionDetection.hpp"
+#include "Stage.hpp"
 
 // プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
+	const auto White = GetColorF(1.0f, 1.0f, 1.0f, 1.0f);
+	const auto Black = GetColorF(0.0f, 0.0f, 0.0f, 1.0f);
+	const auto Gray = GetColorF(0.05f, 0.05f, 0.05f, 1.0f);
 	if (DxLib_Init() == -1)		// ＤＸライブラリ初期化処理
 	{
 		return -1;			// エラーが起きたら直ちに終了
 	}
-
+	// 背景色
 	SetBackgroundColor(128, 128, 128);
-	SetUseLighting(false);
+
+	// 標準ライトの設定
+	ChangeLightTypeDir(VGet(-1, -1, -1));// ディレクショナルライトにする
+	SetLightAmbColor(White);// アンビエントカラー
+	SetLightDifColor(White);// ディフューズカラーを設定
+
+	// マテリアルのパラメータをセット
+	MATERIALPARAM MatParam;
+	MatParam.Diffuse = White;	// ディフューズカラーは白
+	MatParam.Ambient = Gray;	// アンビエントカラーは白( ライトのアンビエントカラーを弱くして反映する )
+	MatParam.Specular = Black;	// スペキュラカラーは無し
+	MatParam.Emissive = Black;	// エミッシブカラー( 自己発光 )もなし
+	MatParam.Power = 0.0f;						// スペキュラはないので０
+	SetMaterialParam(MatParam);
+
+	// 3D描画機能を有効にする
 	SetUseZBuffer3D(true);
 	SetWriteZBuffer3D(true);
+
+	// ダブルバッファリング
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	game::ModelResourcePtr mr(new game::ModelResource("item.txt"));
-	game::ModelResourcePtr mr2(new game::ModelResource("person.txt"));
+	game::ModelResourcePtr mr(new game::ModelResource("cube.txt"));
 	std::shared_ptr<game::ModelInstance> mi(new game::ModelInstance(mr));
-	std::shared_ptr<game::ModelInstance> mi2(new game::ModelInstance(mr2));
 	mi->setScale(100);
-	mi->move(VGet(0, 0, -400));
-	mi2->setScale(100);
-	game::AABB aabb, aabb2;
+	mi->setAnchor(VGet(0.5, 0.5, 0.5));
+
+	game::Stage stage(VGet(100, 30, 100), "ground.txt", "wall.txt");
 
 	while (CheckHitKey(KEY_INPUT_ESCAPE) == 0) {
-		SetCameraPositionAndTarget_UpVecY(VGet(600, 600, 600), VGet(0, 0, 0));
+		SetCameraPositionAndTarget_UpVecY(VGet(100, 100, 200), VGet(50, 0, 50));
 		SetCameraNearFar(5, 2000);
 
 		ClearDrawScreen();
 
-		if (!game::CollisionDetection::testMove(aabb, VGet(0, 0, 2), aabb2, VGet(0,0,0)).first) {
-			mi->draw();
-			aabb.drawFrame();
-		}
-		mi2->draw();
-		aabb2.drawFrame();
+		mi->draw();
+		stage.draw();
 
-		mi->move(VGet(0, 0, 2));
-		aabb.update(mi);
-		aabb2.update(mi2);
-
+		mi->rotate(DX_PI_F / 100);
 
 		ScreenFlip();
 	}
