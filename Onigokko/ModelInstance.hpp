@@ -152,16 +152,19 @@ namespace game {
 		ModelResourceRef getModelResource() const { return _modelResource; }
 	private:
 		MATRIX generateWorldMatrix() const;
+		MATRIX generateWorldMatrixSR() const;
 
 		/**
 		 * @brief モデルリソースの必要な頂点情報をコピーする。
-		 * @brief 具体的にはnorm,dif,spc,u,vのみをコピーし、pos,su,svはコピーしない
-		 * （posはワールド変換後、コピーするためここではコピーしない）
+		 * @brief 具体的にはdif,spc,u,vのみをコピーし、pos,norm,su,svはコピーしない
+		 * （pos,normはワールド変換後、コピーするためここではコピーしない）
 		 * @attention dstは頂点数分、領域を確保する必要あり
 		 * 
 		 * @param dst コピー先
 		 */
 		void copyFromModelResource(std::shared_ptr<VERTEX3D[]> dst) const;
+
+		std::vector<VECTOR> calcWorldNorm() const;
 	private:
 		VECTOR _scale;
 		VECTOR _position;
