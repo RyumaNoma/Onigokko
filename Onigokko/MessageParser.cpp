@@ -51,6 +51,9 @@ namespace game {
 	void MessageParser::parse(std::string message) {
 		std::string::const_iterator iter = message.begin();
 		PARSE_STATE state = PARSE_STATE::DESTINATION_TAG;
+		if (*iter != '[') {
+			state = PARSE_STATE::SIGNATURE;
+		}
 
 		while (iter != message.end()) {
 			switch (state)
