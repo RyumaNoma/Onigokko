@@ -12,6 +12,9 @@ namespace game {
 		virtual bool getSkillItem() override;
 		virtual bool useSkillItem() override;
 	};
+	using InGameInputTruePtr = std::shared_ptr<InGameInputTrue>;
+	using InGameInputTrueRef = std::shared_ptr<InGameInputTrue>;
+
 	class InGameInputFalse
 		: public InGameInputInterface
 	{
@@ -21,4 +24,6 @@ namespace game {
 		virtual bool getSkillItem() override;
 		virtual bool useSkillItem() override;
 	};
+	using InGameInputFalsePtr = std::shared_ptr<InGameInputFalse>;
+	using InGameInputFalseRef = std::shared_ptr<InGameInputFalse>;
 }
