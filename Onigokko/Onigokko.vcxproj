@@ -142,9 +142,9 @@
     <ClCompile Include="InGameInputPad.cpp" />
     <ClCompile Include="InGameInputKeyboard.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MessageCommunicator.cpp" />
+    <ClCompile Include="MessageClient.cpp" />
     <ClCompile Include="MessageGenerator.cpp" />
-    <ClCompile Include="MessageManager.cpp" />
+    <ClCompile Include="MessageServer.cpp" />
     <ClCompile Include="MessageParser.cpp" />
     <ClCompile Include="ModelDatabase.cpp" />
     <ClCompile Include="ModelInstance.cpp" />
@@ -161,9 +161,9 @@
     <ClInclude Include="InGameInputInterface.hpp" />
     <ClInclude Include="InGameInputPad.hpp" />
     <ClInclude Include="InGameInputKeyboard.hpp" />
-    <ClInclude Include="MessageCommunicator.hpp" />
+    <ClInclude Include="MessageClient.hpp" />
     <ClInclude Include="MessageGenerator.hpp" />
-    <ClInclude Include="MessageManager.hpp" />
+    <ClInclude Include="MessageServer.hpp" />
     <ClInclude Include="MessageParser.hpp" />
     <ClInclude Include="ModelDatabase.hpp" />
     <ClInclude Include="ModelInstance.hpp" />

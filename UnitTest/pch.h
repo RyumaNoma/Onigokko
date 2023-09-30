@@ -18,7 +18,7 @@ bool operator == (const COLOR_U8& lhs, const COLOR_U8& rhs);
 namespace game {
 	class ModelResource;
 	class ModelInstance;
-	class MessageCommunicator;
+	class MessageClient;
 }
 namespace Microsoft {
 	namespace VisualStudio {
@@ -44,7 +44,7 @@ namespace Microsoft {
 			template<> inline std::wstring ToString<game::ModelInstance>(const game::ModelInstance* t) {
 				RETURN_WIDE_STRING(t);
 			}
-			template<> inline std::wstring ToString<std::shared_ptr<game::MessageCommunicator>>(const std::shared_ptr<game::MessageCommunicator>& t) {
+			template<> inline std::wstring ToString<std::shared_ptr<game::MessageClient>>(const std::shared_ptr<game::MessageClient>& t) {
 				RETURN_WIDE_STRING(t.get());
 			}
 		}

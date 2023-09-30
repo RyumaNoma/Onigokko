@@ -5,21 +5,21 @@
 #include <memory>
 
 namespace game {
-	class MessageCommunicator;
-	using MessageCommunicatorPtr = std::shared_ptr<MessageCommunicator>;
+	class MessageClient;
+	using MessageClientPtr = std::shared_ptr<MessageClient>;
 
 	/**
 	 * @brief メッセージの送受信を管理する。
 	 */
-	class MessageManager {
-		using TagCommunicators = std::unordered_map<int, MessageCommunicatorPtr>;
+	class MessageServer {
+		using TagCommunicators = std::unordered_map<int, MessageClientPtr>;
 		using CommunicatorHierarchy = 
 			std::unordered_map<std::string, TagCommunicators>;
 	public:
 		/**
 		 * コンストラクタ。
 		 */
-		MessageManager();
+		MessageServer();
 
 		/**
 		 * @brief メッセージ送受信者として(タグ)に紐づける。
@@ -30,7 +30,7 @@ namespace game {
 		 * @param communicator メッセージ送受信者
 		 * @return Id
 		 */
-		int setCommunicator(const std::string& tag, MessageCommunicatorPtr communicator);
+		int setCommunicator(const std::string& tag, MessageClientPtr communicator);
 
 		/**
 		 * 設定されたメッセージ送受信者の紐づけを解除する。
@@ -89,7 +89,7 @@ namespace game {
 		 * @param id Id
 		 * @return  メッセージ送受信者（無ければnullptr）
 		 */
-		MessageCommunicatorPtr getCommunicator(const std::string& tag, int id) const;
+		MessageClientPtr getCommunicator(const std::string& tag, int id) const;
 	private:
 		void sendBroadcast(const std::string& tag, const std::string& messageBody);
 		
@@ -110,6 +110,6 @@ namespace game {
 		CommunicatorHierarchy _communicators;
 		std::unordered_map<std::string, int> _nextIds;
 	};
-	using MessageManagerPtr = std::shared_ptr<MessageManager>;
-	using MessageManagerRef = std::shared_ptr<const MessageManager>;
+	using MessageServerPtr = std::shared_ptr<MessageServer>;
+	using MessageServerRef = std::shared_ptr<const MessageServer>;
 }

@@ -3,25 +3,25 @@
 #include <memory>
 
 namespace game {
-	class MessageManager;
-	using MessageManagerPtr = std::shared_ptr<MessageManager>;
+	class MessageServer;
+	using MessageServerPtr = std::shared_ptr<MessageServer>;
 
 	/**
 	 * @brief メッセージ送受信者用インタフェース。
 	 */
-	class MessageCommunicator
-		: public std::enable_shared_from_this<MessageCommunicator> {
+	class MessageClient
+		: public std::enable_shared_from_this<MessageClient> {
 	public:
-		MessageCommunicator() = delete;
+		MessageClient() = delete;
 
 		/**
 		 * コンストラクタ。
 		 * 
-		 * @param messageManager 送受信相手となるMessageManager
+		 * @param MessageServer 送受信相手となるMessageServer
 		 */
-		MessageCommunicator(MessageManagerPtr messageManager);
+		MessageClient(MessageServerPtr MessageServer);
 
-		virtual ~MessageCommunicator() {}
+		virtual ~MessageClient() {}
 		
 		/**
 		 * メッセージを受け取る。
@@ -51,10 +51,10 @@ namespace game {
 		 */
 		int getId() const { return _id; }
 	protected:
-		 MessageManagerPtr _messageManager;
+		 MessageServerPtr _MessageServer;
 		 std::string _tag;
 		 int _id;
 	};
-	using MessageCommunicatorPtr = std::shared_ptr<MessageCommunicator>;
-	using MessageCommunicatorRef = std::shared_ptr<const MessageCommunicator>;
+	using MessageClientPtr = std::shared_ptr<MessageClient>;
+	using MessageClientRef = std::shared_ptr<const MessageClient>;
 }

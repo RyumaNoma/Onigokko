@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "MessageCommunicatorStub.hpp"
+#include "MessageClientStub.hpp"
 
 namespace game {
 	void Enemy::receive(const std::string& message) {
