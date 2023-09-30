@@ -1,4 +1,4 @@
-#include "InGameInput.hpp"
+ï»¿#include "InGameInput.hpp"
 #include "MessageParser.hpp"
 #include "InGameInputInterface.hpp"
 #include "MessageGenerator.hpp"
@@ -40,13 +40,13 @@ namespace game {
 	void InGameInput::responseMove(const std::string& message) {
 		MessageParser mp(message);
 		const int id = mp.getArgumentAsInteger(0);
-		// ƒfƒoƒCƒX‚Ìæ“¾
+		// ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—
 		auto device = getDevice(id);
 		if (device == nullptr) { return; }
-		// ˆÚ“®“ü—Í‚Ìæ“¾
+		// ç§»å‹•å…¥åŠ›ã®å–å¾—
 		const auto move = device->move();
 		if (move == InGameInputInterface::MOVE_DIRECTION::NONE) { return; }
-		// ƒŒƒXƒ|ƒ“ƒX‚Ìì¬E‘—M
+		// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®ä½œæˆãƒ»é€ä¿¡
 		MessageGenerator mg;
 		mg.setDestination("Game", 0);
 		mg.setSignature("move");
@@ -58,13 +58,13 @@ namespace game {
 	void InGameInput::responseGetItem(const std::string& message) {
 		MessageParser mp(message);
 		const int id = mp.getArgumentAsInteger(0);
-		// ƒfƒoƒCƒX‚Ìæ“¾
+		// ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—
 		auto device = getDevice(id);
 		if (device == nullptr) { return; }
-		// ƒAƒCƒeƒ€æ“¾‚Ìæ“¾
+		// ã‚¢ã‚¤ãƒ†ãƒ å–å¾—ã®å–å¾—
 		const auto getItem = device->getSkillItem();
 		if (!getItem) { return; }
-		// ƒŒƒXƒ|ƒ“ƒX‚Ìì¬E‘—M
+		// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®ä½œæˆãƒ»é€ä¿¡
 		MessageGenerator mg;
 		mg.setDestination("Game", 0);
 		mg.setSignature("getItem");
@@ -75,13 +75,13 @@ namespace game {
 	void InGameInput::responseUseItem(const std::string& message) {
 		MessageParser mp(message);
 		const int id = mp.getArgumentAsInteger(0);
-		// ƒfƒoƒCƒX‚Ìæ“¾
+		// ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—
 		auto device = getDevice(id);
 		if (device == nullptr) { return; }
-		// ƒAƒCƒeƒ€g—p‚Ìæ“¾
+		// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ã®å–å¾—
 		const auto useItem = device->getSkillItem();
 		if (!useItem) { return; }
-		// ƒŒƒXƒ|ƒ“ƒX‚Ìì¬E‘—M
+		// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®ä½œæˆãƒ»é€ä¿¡
 		MessageGenerator mg;
 		mg.setDestination("Game", 0);
 		mg.setSignature("useItem");

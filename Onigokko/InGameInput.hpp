@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <memory>
 #include <vector>
 #include "MessageClient.hpp"
@@ -14,7 +14,7 @@ namespace game {
 		InGameInput(MessageServerPtr messageServer);
 		virtual void receive(const std::string& message) override;
 
-		// “ü—Í‹@Ší‚ÌƒZƒbƒg
+		// å…¥åŠ›æ©Ÿå™¨ã®ã‚»ãƒƒãƒˆ
 		void setDevice(int playerId, InGameInputInterfacePtr device);
 		InGameInputInterfacePtr getDevice(int playerId) const;
 		size_t size() const { return _devices.size(); }
