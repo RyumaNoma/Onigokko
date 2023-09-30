@@ -1,15 +1,15 @@
-#include "MessageManager.hpp"
+#include "MessageServer.hpp"
 #include "MessageParser.hpp"
-#include "MessageCommunicator.hpp"
+#include "MessageClient.hpp"
 #include <stdexcept>
 
 namespace game {
-    MessageManager::MessageManager()
+    MessageServer::MessageServer()
     : _messages()
     , _communicators()
     {}
 
-    int MessageManager::setCommunicator(const std::string& tag, MessageCommunicatorPtr communicator) {
+    int MessageServer::setCommunicator(const std::string& tag, MessageClientPtr communicator) {
         if (communicator == nullptr) {
             throw std::invalid_argument("nullptr communicator");
         }
@@ -19,24 +19,24 @@ namespace game {
         return id;
     }
 
-    void MessageManager::eraseCommunicator(const std::string& tag, int id) {
+    void MessageServer::eraseCommunicator(const std::string& tag, int id) {
         auto communicator = getCommunicator(tag, id);
         if (communicator == nullptr) { return; }
 
         _communicators.at(tag).erase(id);
     }
 
-    void MessageManager::receive(const std::string& message) {
+    void MessageServer::receive(const std::string& message) {
         _messages.push(message);
     }
 
-    void MessageManager::sendAll() {
+    void MessageServer::sendAll() {
         while (!isEmpty()) {
             send();
         }
     }
 
-    void MessageManager::send() {
+    void MessageServer::send() {
         if (isEmpty()) { return; }
         const auto& msg = _messages.front();
         MessageParser mp(msg);
@@ -54,7 +54,7 @@ namespace game {
         _messages.pop();
     }
 
-    MessageCommunicatorPtr MessageManager::getCommunicator(const std::string& tag, int id) const {
+    MessageClientPtr MessageServer::getCommunicator(const std::string& tag, int id) const {
         auto tagIter = _communicators.find(tag);
         if (tagIter == _communicators.end()) { return nullptr; }
         auto& tagCommunicators = _communicators.find(tag)->second;
@@ -64,7 +64,7 @@ namespace game {
         return communicatorIter->second;
     }
 
-    void MessageManager::sendBroadcast(const std::string& tag, const std::string& messageBody) {
+    void MessageServer::sendBroadcast(const std::string& tag, const std::string& messageBody) {
         auto tagIter = _communicators.find(tag);
         if (tagIter == _communicators.end()) { return; }
         auto& tagCommunicators = _communicators.find(tag)->second;
@@ -74,7 +74,7 @@ namespace game {
         }
     }
 
-    int MessageManager::useNextId(const std::string& tag) {
+    int MessageServer::useNextId(const std::string& tag) {
         auto nextId = _nextIds.find(tag);
         
         if (nextId == _nextIds.end()) { // ƒ^ƒO‚ª‘¶İ‚µ‚È‚¢ê‡

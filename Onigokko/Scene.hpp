@@ -1,12 +1,12 @@
 #pragma once
 #include <memory>
-#include "MessageCommunicator.hpp"
+#include "MessageClient.hpp"
 
 namespace game {
 	class Scene
-		: public MessageCommunicator {
+		: public MessageClient {
 	public:
-		Scene(MessageManagerPtr messageManager) : MessageCommunicator(messageManager) {}
+		Scene(MessageServerPtr MessageServer) : MessageClient(MessageServer) {}
 
 		virtual ~Scene() {}
 

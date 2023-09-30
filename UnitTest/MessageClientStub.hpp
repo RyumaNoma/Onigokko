@@ -1,12 +1,12 @@
 #pragma once
-#include "MessageCommunicator.hpp"
+#include "MessageClient.hpp"
 #include <vector>
 #include <string>
 
 namespace game {
-	class Enemy : public MessageCommunicator {
+	class Enemy : public MessageClient {
 	public:
-		Enemy(MessageManagerPtr mm) : MessageCommunicator(mm) {}
+		Enemy(MessageServerPtr mm) : MessageClient(mm) {}
 		void receive(const std::string& message) override;
 		const std::vector<std::string>& getReceivedMessages() const { return _receivedMessages; }
 		const std::string& getReceivedMessage(int index) const { return _receivedMessages.at(index); }
@@ -14,9 +14,9 @@ namespace game {
 		std::vector<std::string> _receivedMessages;
 	};
 
-	class GameObject : public MessageCommunicator {
+	class GameObject : public MessageClient {
 	public:
-		GameObject(MessageManagerPtr mm) : MessageCommunicator(mm) {}
+		GameObject(MessageServerPtr mm) : MessageClient(mm) {}
 		void receive(const std::string& message) override;
 		const std::vector<std::string>& getReceivedMessages() const { return _receivedMessages; }
 		const std::string& getReceivedMessage(int index) const { return _receivedMessages.at(index); }
