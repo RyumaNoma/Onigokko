@@ -36,4 +36,36 @@ namespace game {
             return MOVE_DIRECTION::LEFT;
         }
     }
+    std::ostream& operator<<(std::ostream& os, const InGameInputInterface::MOVE_DIRECTION& moveDirection) {
+        switch (moveDirection)
+        {
+        case InGameInputInterface::MOVE_DIRECTION::LEFT:
+            os << "LEFT";
+            break;
+        case InGameInputInterface::MOVE_DIRECTION::LEFT_UP:
+            os << "LEFT_UP";
+            break;
+        case InGameInputInterface::MOVE_DIRECTION::LEFT_DOWN:
+            os << "LEFT_DOWN";
+            break;
+        case InGameInputInterface::MOVE_DIRECTION::RIGHT:
+            os << "RIGHT";
+            break;
+        case InGameInputInterface::MOVE_DIRECTION::RIGHT_UP:
+            os << "RIGHT_UP";
+            break;
+        case InGameInputInterface::MOVE_DIRECTION::RIGHT_DOWN:
+            os << "RIGHT_DOWN";
+            break;
+        case InGameInputInterface::MOVE_DIRECTION::UP:
+            os << "UP";
+            break;
+        case InGameInputInterface::MOVE_DIRECTION::DOWN:
+            os << "DOWN";
+            break;
+        default:
+            break;
+        }
+        return os;
+    }
 }

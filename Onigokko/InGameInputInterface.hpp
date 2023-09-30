@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <utility>
 #include <memory>
+#include <iostream>
 
 namespace game {
 	class InGameInputInterface {
@@ -33,4 +34,6 @@ namespace game {
 	};
 	using InGameInputInterfacePtr = std::shared_ptr<InGameInputInterface>;
 	using InGameInputInterfaceRef = std::shared_ptr<const InGameInputInterface>;
+
+	std::ostream& operator <<(std::ostream& os, const InGameInputInterface::MOVE_DIRECTION& moveDirection);
 }
