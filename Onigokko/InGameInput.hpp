@@ -14,12 +14,15 @@ namespace game {
 		InGameInput(MessageServerPtr messageServer);
 		virtual void receive(const std::string& message) override;
 
-		// 蜈･蜉帶ｩ溷勣縺ｮ繧ｻ繝�繝�
+		// 入力機器のセット
 		void setDevice(int playerId, InGameInputInterfacePtr device);
 		InGameInputInterfacePtr getDevice(int playerId) const;
-		size_t size() const { return _inputDevices.size(); }
+		size_t size() const { return _devices.size(); }
 	private:
-		std::vector<InGameInputInterfacePtr> _inputDevices;
+		void responseMove(const std::string& message);
+		void responseGetItem(const std::string& message);
+		void responseUseItem(const std::string& message);
+	private:
+		std::vector<InGameInputInterfacePtr> _devices;
 	};
 }
-
