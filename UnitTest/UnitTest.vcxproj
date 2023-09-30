@@ -184,6 +184,7 @@
     <ClCompile Include="VectorOperatorTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="InGameInputStub.hpp" />
     <ClInclude Include="MessageClientStub.hpp" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
