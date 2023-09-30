@@ -165,8 +165,9 @@
     <ClCompile Include="AABBTest.cpp" />
     <ClCompile Include="ClockTest.cpp" />
     <ClCompile Include="CollisionDetectionTest.cpp" />
-    <ClCompile Include="MessageCommunicatorStub.cpp" />
+    <ClCompile Include="InGameInputTest.cpp" />
     <ClCompile Include="InGameInputStub.cpp" />
+    <ClCompile Include="MessageClientStub.cpp" />
     <ClCompile Include="MessageGeneratorTest.cpp" />
     <ClCompile Include="MessageManagerTest.cpp" />
     <ClCompile Include="MessageParserTest.cpp" />

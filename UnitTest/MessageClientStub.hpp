@@ -4,9 +4,9 @@
 #include <string>
 
 namespace game {
-	class Enemy : public MessageClient {
+	class MessageClientStub1 : public MessageClient {
 	public:
-		Enemy(MessageServerPtr mm) : MessageClient(mm) {}
+		MessageClientStub1(MessageServerPtr mm) : MessageClient(mm) {}
 		void receive(const std::string& message) override;
 		const std::vector<std::string>& getReceivedMessages() const { return _receivedMessages; }
 		const std::string& getReceivedMessage(int index) const { return _receivedMessages.at(index); }
@@ -14,9 +14,9 @@ namespace game {
 		std::vector<std::string> _receivedMessages;
 	};
 
-	class GameObject : public MessageClient {
+	class MessageClientStub2 : public MessageClient {
 	public:
-		GameObject(MessageServerPtr mm) : MessageClient(mm) {}
+		MessageClientStub2(MessageServerPtr mm) : MessageClient(mm) {}
 		void receive(const std::string& message) override;
 		const std::vector<std::string>& getReceivedMessages() const { return _receivedMessages; }
 		const std::string& getReceivedMessage(int index) const { return _receivedMessages.at(index); }
