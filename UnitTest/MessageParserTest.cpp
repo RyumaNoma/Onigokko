@@ -194,5 +194,12 @@ namespace game {
 			}
 			Assert::Fail();
 		}
+		TEST_METHOD(NotDestination) {
+			MessageParser mp("kill()");
+
+			Assert::AreEqual(std::string(""), mp.getDestination());
+			Assert::AreEqual(0, mp.getDestinationId());
+			Assert::AreEqual(std::string("kill"), mp.getSignature());
+		}
 	};
 }
