@@ -53,7 +53,7 @@ namespace game {
 			Assert::AreEqual(InGameInputInterfacePtr(nullptr), input.getDevice(0));
 			Assert::AreEqual(InGameInputInterfacePtr(nullptr), input.getDevice(1));
 			Assert::AreEqual(InGameInputInterfacePtr(nullptr), input.getDevice(2));
-			Assert::AreEqual(device, input.getDevice(1));
+			Assert::AreEqual(device, input.getDevice(3));
 		}
 		TEST_METHOD(GetFromEmpty) {
 			MessageServerPtr ms(new MessageServer());
@@ -81,7 +81,7 @@ namespace game {
 			input.setDevice(0, device);
 			input.receive("checkMoveInput(0)");
 
-			Assert::AreEqual(std::string("[Game][0]move(0, left)"), ms->getMessages().front());
+			Assert::AreEqual(std::string("[Game][0]move(0,LEFT)"), ms->getMessages().front());
 		}
 		TEST_METHOD(NoneResponseMove) {
 			MessageServerPtr ms(new MessageServer());
@@ -119,7 +119,7 @@ namespace game {
 			InGameInput input(ms);
 
 			input.setDevice(0, device);
-			input.receive("checkGetItemInput(0)");
+			input.receive("checkUseItemInput(0)");
 
 			Assert::AreEqual(std::string("[Game][0]useItem(0)"), ms->getMessages().front());
 		}
