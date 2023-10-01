@@ -138,6 +138,7 @@
     <ClCompile Include="AABB.cpp" />
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="CollisionDetection.cpp" />
+    <ClCompile Include="InGame.cpp" />
     <ClCompile Include="InGameInput.cpp" />
     <ClCompile Include="InGameInputInterface.cpp" />
     <ClCompile Include="InGameInputPad.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="AABB.hpp" />
     <ClInclude Include="Clock.hpp" />
     <ClInclude Include="CollisionDetection.hpp" />
+    <ClInclude Include="InGame.hpp" />
     <ClInclude Include="InGameInput.hpp" />
     <ClInclude Include="InGameInputInterface.hpp" />
     <ClInclude Include="InGameInputPad.hpp" />
