@@ -1,7 +1,30 @@
 #include "pch.h"
 #include "Player.hpp"
 
+namespace Microsoft {
+	namespace VisualStudio {
+		namespace CppUnitTestFramework {
+			template<> inline std::wstring ToString<game::Player::STATUS>(const game::Player::STATUS& t) {
+				char const* str;
+				switch (t)
+				{
+				case game::Player::STATUS::NONE:
+					str = "NONE";
+				case game::Player::STATUS::ONI:
+					str = "ONI";
+				case game::Player::STATUS::PERSON:
+					str = "PERSON";
+				default:
+					str = "???";
+				}
+				RETURN_WIDE_STRING(str);
+			}
+		}
+	}
+}
+
 namespace game {
+
 	TEST_CLASS(PlayerTest)
 	{
 	public:
