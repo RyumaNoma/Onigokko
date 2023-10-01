@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include <memory>
 
 namespace game {
 	/**
@@ -38,4 +39,6 @@ namespace game {
 		const float _OniSpeed;
 		const float _PersonSpeed;
 	};
+	using PlayerPtr = std::shared_ptr<Player>;
+	using PlayerRef = std::shared_ptr<const Player>;
 }
