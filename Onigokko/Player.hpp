@@ -32,11 +32,10 @@ namespace game {
 		void bePerson();
 
 		STATUS getStatus() const { return _status; }
-		float getSpeed() const { return _speed; }
+		float getSpeed() const;
 	private:
 		STATUS _status;
-		float _speed;
-		const float _oniSpeed;
-		const float _personSpeed;
+		const float _OniSpeed;
+		const float _PersonSpeed;
 	};
 }
