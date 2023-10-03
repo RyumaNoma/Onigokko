@@ -69,6 +69,9 @@
     <ClCompile Include="PlayerTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="InGameTest.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
     <ClCompile Include="MapParserTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
