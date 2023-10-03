@@ -102,7 +102,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Onigokko/x64/Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>InGame.obj;Player.obj;InGameInput.obj;InGameInputInterface.obj;CollisionDetection.obj;AABB.obj;Stage.obj;ModelDatabase.obj;Timer.obj;Clock.obj;VectorOperator.obj;ModelInstance.obj;ModelResource.obj;ModelParser.obj;MessageClient.obj;MessageServer.obj;MessageParser.obj;MessageGenerator.obj;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>MapParser.obj;InGame.obj;Player.obj;InGameInput.obj;InGameInputInterface.obj;CollisionDetection.obj;AABB.obj;Stage.obj;ModelDatabase.obj;Timer.obj;Clock.obj;VectorOperator.obj;ModelInstance.obj;ModelResource.obj;ModelParser.obj;MessageClient.obj;MessageServer.obj;MessageParser.obj;MessageGenerator.obj;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -168,6 +168,7 @@
     <ClCompile Include="InGameInputTest.cpp" />
     <ClCompile Include="InGameInputStub.cpp" />
     <ClCompile Include="InGameTest.cpp" />
+    <ClCompile Include="MapParserTest.cpp" />
     <ClCompile Include="MessageClientStub.cpp" />
     <ClCompile Include="MessageGeneratorTest.cpp" />
     <ClCompile Include="MessageManagerTest.cpp" />
@@ -196,6 +197,9 @@
     <ProjectReference Include="..\Onigokko\Onigokko.vcxproj">
       <Project>{e91a2fe4-68c1-42b3-86b1-5560bc66f8c5}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ingameConfig.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

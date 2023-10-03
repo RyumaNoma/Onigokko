@@ -69,6 +69,9 @@
     <ClCompile Include="PlayerTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="MapParserTest.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -80,5 +83,8 @@
     <ClInclude Include="InGameInputStub.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ingameConfig.txt" />
   </ItemGroup>
 </Project>
