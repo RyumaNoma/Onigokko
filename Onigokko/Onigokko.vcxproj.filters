@@ -78,7 +78,7 @@
     <ClCompile Include="Player.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="InGameConfigParser.cpp">
+    <ClCompile Include="MapParser.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -146,7 +146,7 @@
     <ClInclude Include="Player.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="InGameConfigParser.hpp">
+    <ClInclude Include="MapParser.hpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
