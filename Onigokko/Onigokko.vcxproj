@@ -138,12 +138,9 @@
     <ClCompile Include="AABB.cpp" />
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="CollisionDetection.cpp" />
-    <ClCompile Include="InGame.cpp" />
-    <ClCompile Include="MapParser.cpp" />
-    <ClCompile Include="InGameInput.cpp" />
-    <ClCompile Include="InGameInputInterface.cpp" />
-    <ClCompile Include="InGameInputPad.cpp" />
+    <ClCompile Include="Direction.cpp" />
     <ClCompile Include="InGameInputKeyboard.cpp" />
+    <ClCompile Include="InGameInputPad.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MessageClient.cpp" />
     <ClCompile Include="MessageGenerator.cpp" />
@@ -153,7 +150,6 @@
     <ClCompile Include="ModelInstance.cpp" />
     <ClCompile Include="ModelParser.cpp" />
     <ClCompile Include="ModelResource.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="VectorOperator.cpp" />
@@ -162,12 +158,9 @@
     <ClInclude Include="AABB.hpp" />
     <ClInclude Include="Clock.hpp" />
     <ClInclude Include="CollisionDetection.hpp" />
-    <ClInclude Include="InGame.hpp" />
-    <ClInclude Include="MapParser.hpp" />
-    <ClInclude Include="InGameInput.hpp" />
-    <ClInclude Include="InGameInputInterface.hpp" />
-    <ClInclude Include="InGameInputPad.hpp" />
+    <ClInclude Include="Direction.hpp" />
     <ClInclude Include="InGameInputKeyboard.hpp" />
+    <ClInclude Include="InGameInputPad.hpp" />
     <ClInclude Include="MessageClient.hpp" />
     <ClInclude Include="MessageGenerator.hpp" />
     <ClInclude Include="MessageServer.hpp" />
@@ -176,7 +169,6 @@
     <ClInclude Include="ModelInstance.hpp" />
     <ClInclude Include="ModelParser.hpp" />
     <ClInclude Include="ModelResource.hpp" />
-    <ClInclude Include="Player.hpp" />
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="Stage.hpp" />
     <ClInclude Include="Timer.hpp" />
