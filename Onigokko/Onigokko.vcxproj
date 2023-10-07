@@ -138,8 +138,9 @@
     <ClCompile Include="AABB.cpp" />
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="CollisionDetection.cpp" />
-    <ClCompile Include="InGameInputPad.cpp" />
+    <ClCompile Include="Direction.cpp" />
     <ClCompile Include="InGameInputKeyboard.cpp" />
+    <ClCompile Include="InGameInputPad.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MessageClient.cpp" />
     <ClCompile Include="MessageGenerator.cpp" />
@@ -157,8 +158,9 @@
     <ClInclude Include="AABB.hpp" />
     <ClInclude Include="Clock.hpp" />
     <ClInclude Include="CollisionDetection.hpp" />
-    <ClInclude Include="InGameInputPad.hpp" />
+    <ClInclude Include="Direction.hpp" />
     <ClInclude Include="InGameInputKeyboard.hpp" />
+    <ClInclude Include="InGameInputPad.hpp" />
     <ClInclude Include="MessageClient.hpp" />
     <ClInclude Include="MessageGenerator.hpp" />
     <ClInclude Include="MessageServer.hpp" />
