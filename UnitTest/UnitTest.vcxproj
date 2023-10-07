@@ -166,7 +166,7 @@
     <ClCompile Include="ClockTest.cpp" />
     <ClCompile Include="CollisionDetectionTest.cpp" />
     <ClCompile Include="DirectionTest.cpp" />
-    <ClCompile Include="MessageCommunicatorStub.cpp" />
+    <ClCompile Include="MessageClientStub.cpp" />
     <ClCompile Include="MessageGeneratorTest.cpp" />
     <ClCompile Include="MessageManagerTest.cpp" />
     <ClCompile Include="MessageParserTest.cpp" />

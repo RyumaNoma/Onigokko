@@ -2,11 +2,11 @@
 #include "MessageClientStub.hpp"
 
 namespace game {
-	void Enemy::receive(const std::string& message) {
+	void MessageClientStub1::receive(const std::string& message) {
 		_receivedMessages.push_back(message);
 	}
 
-	void GameObject::receive(const std::string& message) {
+	void MessageClientStub2::receive(const std::string& message) {
 		_receivedMessages.push_back(message);
 	}
 }

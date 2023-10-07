@@ -14,8 +14,8 @@ namespace game {
 
 		TEST_METHOD(setValidCommunicator) {
 			MessageServerPtr mm(new MessageServer());
-			MessageClientPtr enemy(new Enemy(mm));
-			MessageClientPtr gameObj(new GameObject(mm));
+			MessageClientPtr enemy(new MessageClientStub1(mm));
+			MessageClientPtr gameObj(new MessageClientStub2(mm));
 
 			enemy->raiseHand("enemy");
 			gameObj->raiseHand("gameObj");
@@ -46,8 +46,8 @@ namespace game {
 
 		TEST_METHOD(getNotexistCommunicator) {
 			MessageServerPtr mm(new MessageServer());
-			MessageClientPtr enemy(new Enemy(mm));
-			MessageClientPtr gameObj(new GameObject(mm));
+			MessageClientPtr enemy(new MessageClientStub1(mm));
+			MessageClientPtr gameObj(new MessageClientStub2(mm));
 
 			enemy->raiseHand("enemy");
 
@@ -60,7 +60,7 @@ namespace game {
 
 		TEST_METHOD(eraseValidCommunicator) {
 			MessageServerPtr mm(new MessageServer());
-			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			std::shared_ptr<MessageClientStub1> enemy(new MessageClientStub1(mm));
 			enemy->raiseHand("enemy");
 			mm->eraseCommunicator("enemy", 0);
 			Assert::AreEqual(MessageClientPtr(nullptr), mm->getCommunicator("enemy", 0));
@@ -68,7 +68,7 @@ namespace game {
 
 		TEST_METHOD(eraseNotExistTagCommunicator) {
 			MessageServerPtr mm(new MessageServer());
-			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			std::shared_ptr<MessageClientStub1> enemy(new MessageClientStub1(mm));
 			enemy->raiseHand("enemy");
 			mm->eraseCommunicator("you", 0);
 			Assert::AreEqual(MessageClientPtr(enemy), mm->getCommunicator("enemy", 0));
@@ -77,7 +77,7 @@ namespace game {
 
 		TEST_METHOD(eraseNotExistIdCommunicator) {
 			MessageServerPtr mm(new MessageServer());
-			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			std::shared_ptr<MessageClientStub1> enemy(new MessageClientStub1(mm));
 			enemy->raiseHand("enemy");
 			mm->eraseCommunicator("enemy", 12);
 			Assert::AreEqual(MessageClientPtr(enemy), mm->getCommunicator("enemy", 0));
@@ -86,7 +86,7 @@ namespace game {
 
 		TEST_METHOD(eraseCommunicatorTwice) {
 			MessageServerPtr mm(new MessageServer());
-			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			std::shared_ptr<MessageClientStub1> enemy(new MessageClientStub1(mm));
 			enemy->raiseHand("enemy");
 			mm->eraseCommunicator("enemy", 0);
 			mm->eraseCommunicator("enemy", 0);
@@ -106,7 +106,7 @@ namespace game {
 
 		TEST_METHOD(SendAllMultipleMessages) {
 			MessageServerPtr mm(new MessageServer());
-			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			std::shared_ptr<MessageClientStub1> enemy(new MessageClientStub1(mm));
 			const std::string msg1 = "die()";
 			const std::string msg2 = "jump(11)";
 			enemy->raiseHand("enemy");
@@ -121,7 +121,7 @@ namespace game {
 		
 		TEST_METHOD(SendAllInvalidMessages) {
 			MessageServerPtr mm(new MessageServer());
-			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			std::shared_ptr<MessageClientStub1> enemy(new MessageClientStub1(mm));
 			enemy->raiseHand("enemy");
 			mm->receive("[e)");
 			mm->receive("");
@@ -139,7 +139,7 @@ namespace game {
 		
 		TEST_METHOD(SendAllMessagesBroadcast) {
 			MessageServerPtr mm(new MessageServer());
-			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			std::shared_ptr<MessageClientStub1> enemy(new MessageClientStub1(mm));
 			const std::string msg = "run(34.5)";
 			enemy->raiseHand("enemy");
 			enemy->raiseHand("enemy");
@@ -156,7 +156,7 @@ namespace game {
 		
 		TEST_METHOD(SendAllMessageToNotExistTag) {
 			MessageServerPtr mm(new MessageServer());
-			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			std::shared_ptr<MessageClientStub1> enemy(new MessageClientStub1(mm));
 			enemy->raiseHand("enemy");
 			mm->receive("[you][1]run(34.5)");
 			mm->sendAll();
@@ -166,7 +166,7 @@ namespace game {
 		
 		TEST_METHOD(SendAllMessageToNotExistTagBroadcast) {
 			MessageServerPtr mm(new MessageServer());
-			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			std::shared_ptr<MessageClientStub1> enemy(new MessageClientStub1(mm));
 			enemy->raiseHand("enemy");
 			mm->receive("[you][Broadcast]run(34.5)");
 			mm->sendAll();
@@ -176,7 +176,7 @@ namespace game {
 		
 		TEST_METHOD(SendAllMessageToNotExistCommunicator) {
 			MessageServerPtr mm(new MessageServer());
-			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			std::shared_ptr<MessageClientStub1> enemy(new MessageClientStub1(mm));
 			enemy->raiseHand("enemy");
 			mm->receive("[enemy][1]run(34.5)");
 			mm->sendAll();
@@ -186,14 +186,14 @@ namespace game {
 		
 		TEST_METHOD(SendAll0Messages) {
 			MessageServerPtr mm(new MessageServer());
-			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			std::shared_ptr<MessageClientStub1> enemy(new MessageClientStub1(mm));
 			enemy->raiseHand("enemy");
 			mm->sendAll();
 		}
 
 		TEST_METHOD(SendMessage) {
 			MessageServerPtr mm(new MessageServer());
-			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			std::shared_ptr<MessageClientStub1> enemy(new MessageClientStub1(mm));
 			enemy->raiseHand("enemy");
 
 			mm->receive("[enemy][0]run(34.5)");
@@ -204,7 +204,7 @@ namespace game {
 
 		TEST_METHOD(SendMultipleMessage) {
 			MessageServerPtr mm(new MessageServer());
-			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			std::shared_ptr<MessageClientStub1> enemy(new MessageClientStub1(mm));
 			enemy->raiseHand("enemy");
 
 			mm->receive("[enemy][0]run(34.5)");
@@ -219,7 +219,7 @@ namespace game {
 
 		TEST_METHOD(Send0Message) {
 			MessageServerPtr mm(new MessageServer());
-			std::shared_ptr<Enemy> enemy(new Enemy(mm));
+			std::shared_ptr<MessageClientStub1> enemy(new MessageClientStub1(mm));
 			enemy->raiseHand("enemy");
 
 			mm->send();

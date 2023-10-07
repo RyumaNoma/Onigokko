@@ -37,6 +37,8 @@ namespace game {
 		 */
 		void raiseHand(std::string tag);
 
+		void send(const std::string& message);
+
 		/**
 		 * @brief 最後に受け取り意思表明をしたタグの取得。
 		 * 

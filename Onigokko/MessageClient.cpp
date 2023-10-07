@@ -12,4 +12,8 @@ namespace game {
 		_tag = tag;
 		_id = _MessageServer->setCommunicator(tag, shared_from_this());
 	}
+
+	void MessageClient::send(const std::string& message) {
+		_MessageServer->receive(message);
+	}
 }

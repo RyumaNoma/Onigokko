@@ -19,6 +19,7 @@ namespace game {
 	class ModelResource;
 	class ModelInstance;
 	class MessageClient;
+	class InGameInputInterface;
 }
 namespace Microsoft {
 	namespace VisualStudio {
@@ -45,6 +46,9 @@ namespace Microsoft {
 				RETURN_WIDE_STRING(t);
 			}
 			template<> inline std::wstring ToString<std::shared_ptr<game::MessageClient>>(const std::shared_ptr<game::MessageClient>& t) {
+				RETURN_WIDE_STRING(t.get());
+			}
+			template<> inline std::wstring ToString<std::shared_ptr<game::InGameInputInterface>>(const std::shared_ptr<game::InGameInputInterface>& t) {
 				RETURN_WIDE_STRING(t.get());
 			}
 		}
