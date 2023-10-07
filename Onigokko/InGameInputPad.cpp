@@ -1,29 +1,27 @@
 ﻿#include "InGameInputPad.hpp"
+#include "Direction.hpp"
+#include "MessageGenerator.hpp"
+#include "MessageParser.hpp"
 #include <stdexcept>
 
 namespace game {
-	InGameInputPad::InGameInputPad(int id)
-		: _id(id)
+	InGameInputPad::InGameInputPad(int padId, MessageServerPtr server)
+		: _padId(padId)
+		, MessageClient(server)
 	{}
 
-	InGameInputInterface::MOVE_DIRECTION InGameInputPad::move() {
-		return static_cast<MOVE_DIRECTION>(getDirection());
-	}
-
-	InGameInputInterface::Direction InGameInputPad::getDirection() {
-		Direction dir;
-		GetJoypadAnalogInput(&dir.x, &dir.y, _id);
-		return dir;
-	}
-
-	bool InGameInputPad::getSkillItem() {
-		XINPUT_STATE inputState = getInputState();
-		return inputState.Buttons[XINPUT_BUTTON_B];
-	}
-
-	bool InGameInputPad::useSkillItem() {
-		XINPUT_STATE inputState = getInputState();
-		return inputState.Buttons[XINPUT_BUTTON_A];
+	void InGameInputPad::receive(const std::string & message) {
+		MessageParser mp(message);
+		
+		if (mp.getSignature() == "checkMoveInput") {
+			responseMove();
+		}
+		else if (mp.getSignature() == "checkGetItemInput") {
+			responseGetSkillItem();
+		}
+		else if (mp.getSignature() == "checkUseItemInput") {
+			responseUseSkillItem();
+		}
 	}
 
 	void InGameInputPad::setDeadZone(double zone) {
@@ -35,5 +33,45 @@ namespace game {
 		int success = GetJoypadXInputState(_id, &inputState);
 		if (success == -1) { throw std::runtime_error("could not get XInput state"); }
 		return inputState;
+	}
+	
+	void InGameInputPad::responseMove() const {
+		int x, y;
+		GetJoypadAnalogInput(&x, &y, _id);
+		Direction dir(x, -y);
+		auto dirStr = static_cast<std::string>(dir);
+
+		// 移動入力が行われた場合のみ
+		if (dirStr != "NONE") {
+			MessageGenerator mg;
+			mg.setDestination("Physics", 0);
+			mg.setSignature("move");
+			mg.addArgument(getId());
+			mg.addArgument(dirStr);
+		}
+	}
+
+	void InGameInputPad::responseGetSkillItem() const {
+		XINPUT_STATE inputState = getInputState();
+		
+		// アイテム取得入力があった場合のみ
+		if (inputState.Buttons[XINPUT_BUTTON_B]) {
+			MessageGenerator mg;
+			mg.setDestination("Physics", 0);
+			mg.setSignature("getItem");
+			mg.addArgument(getId());
+		}
+	}
+
+	void InGameInputPad::responseUseSkillItem() const {
+		XINPUT_STATE inputState = getInputState();
+
+		// アイテム使用入力があった場合のみ
+		if (inputState.Buttons[XINPUT_BUTTON_A]) {
+			MessageGenerator mg;
+			mg.setDestination("Physics", 0);
+			mg.setSignature("useItem");
+			mg.addArgument(getId());
+		}
 	}
 }
