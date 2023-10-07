@@ -21,9 +21,6 @@
     <ClCompile Include="MessageGeneratorTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="MessageCommunicatorStub.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="MessageManagerTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -58,6 +55,12 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="CollisionDetectionTest.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectionTest.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageClientStub.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
