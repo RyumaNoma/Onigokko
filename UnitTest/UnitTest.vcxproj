@@ -102,7 +102,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;$(SolutionDir)Onigokko/x64/Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Direction.obj;MapParser.obj;InGame.obj;Player.obj;InGameInput.obj;InGameInputInterface.obj;CollisionDetection.obj;AABB.obj;Stage.obj;ModelDatabase.obj;Timer.obj;Clock.obj;VectorOperator.obj;ModelInstance.obj;ModelResource.obj;ModelParser.obj;MessageClient.obj;MessageServer.obj;MessageParser.obj;MessageGenerator.obj;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Physics.obj;Direction.obj;MapParser.obj;InGame.obj;Player.obj;InGameInput.obj;InGameInputInterface.obj;CollisionDetection.obj;AABB.obj;Stage.obj;ModelDatabase.obj;Timer.obj;Clock.obj;VectorOperator.obj;ModelInstance.obj;ModelResource.obj;ModelParser.obj;MessageClient.obj;MessageServer.obj;MessageParser.obj;MessageGenerator.obj;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -180,6 +180,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="PhysicsTest.cpp" />
     <ClCompile Include="PlayerTest.cpp" />
     <ClCompile Include="StageTest.cpp" />
     <ClCompile Include="TimerTest.cpp" />
