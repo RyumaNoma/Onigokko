@@ -2,6 +2,9 @@
 #include "ModelDatabase.hpp"
 #include "ModelInstance.hpp"
 #include "StageModel.hpp"
+#include "MessageGenerator.hpp"
+#include "MessageParser.hpp"
+#include "AABB.hpp"
 
 namespace game {
 	StageModel::StageModel(MessageServerPtr server, VECTOR scale, const std::string& floorFilename, const std::string& wallFilename)
@@ -23,6 +26,11 @@ namespace game {
 	}
 
 	void StageModel::receive(const std::string& message) {
+		MessageParser mp(message);
+
+		if (mp.getSignature() == "getAABB") {
+			responseAABB();
+		}
 	}
 
 	void StageModel::draw() const {
@@ -88,5 +96,34 @@ namespace game {
 		_walls[3]->setScale(VGet(1, scale.y + 1, scale.z + 1));
 		_walls[3]->setAnchor(VGet(0, 0, 0));
 		_walls[3]->moveTo(VGet(scale.x, 0, 0));
+	}
+
+	void StageModel::responseAABB() {
+		AABB aabb;
+		MessageGenerator mg;
+		mg.setDestination("Physics", 0);
+		mg.setSignature("stageAABB");
+
+		// floor
+		aabb.update(_floor);
+		mg.addArgument(aabb.getMinX());
+		mg.addArgument(aabb.getMinY());
+		mg.addArgument(aabb.getMinZ());
+		mg.addArgument(aabb.getMaxX());
+		mg.addArgument(aabb.getMaxY());
+		mg.addArgument(aabb.getMaxZ());
+		send(mg.generate());
+
+		// wall
+		for (int i = 0; i < 4; ++i) {
+			aabb.update(_walls[i]);
+			mg.updateArgument(0, aabb.getMinX());
+			mg.updateArgument(1, aabb.getMinY());
+			mg.updateArgument(2, aabb.getMinZ());
+			mg.updateArgument(3, aabb.getMaxX());
+			mg.updateArgument(4, aabb.getMaxY());
+			mg.updateArgument(5, aabb.getMaxZ());
+			send(mg.generate());
+		}
 	}
 }
