@@ -2,6 +2,7 @@
 #include <memory>
 #include <vector>
 #include "DxLib.h"
+#include "MessageClient.hpp"
 
 namespace game {
 	class ModelDatabase;
@@ -14,7 +15,9 @@ namespace game {
 	/**
 	 * @brief ゲーム内のステージを管理する。
 	 */
-	class StageModel {
+	class StageModel
+		: public MessageClient
+	{
 	public:
 		/**
 		 * @brief コンストラクタ。
@@ -24,7 +27,7 @@ namespace game {
 		 * @param floorFilename 床のモデルファイル
 		 * @param wallFilename 壁のモデルファイル
 		 */
-		StageModel(VECTOR scale, const std::string& floorFilename, const std::string& wallFilename);
+		StageModel(MessageServerPtr server, VECTOR scale, const std::string& floorFilename, const std::string& wallFilename);
 
 		/**
 		 * @brief モデルDBを通したステージの生成。
@@ -35,7 +38,9 @@ namespace game {
 		 * @param floorFilename 床のモデルファイル
 		 * @param wallFilename 壁のモデルファイル
 		 */
-		StageModel(ModelDatabasePtr modelDatabase, VECTOR scale, const std::string& floorFilename, const std::string& wallFilename);
+		StageModel(MessageServerPtr server, ModelDatabasePtr modelDatabase, VECTOR scale, const std::string& floorFilename, const std::string& wallFilename);
+
+		void receive(const std::string& message) override;
 
 		/**
 		 * @brief ステージの持つ全てのオブジェクトの描画。

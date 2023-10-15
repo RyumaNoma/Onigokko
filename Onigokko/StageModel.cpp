@@ -4,20 +4,25 @@
 #include "StageModel.hpp"
 
 namespace game {
-	StageModel::StageModel(VECTOR scale, const std::string& floorFilename, const std::string& wallFilename)
-		: _floor(nullptr)
+	StageModel::StageModel(MessageServerPtr server, VECTOR scale, const std::string& floorFilename, const std::string& wallFilename)
+		: MessageClient(server)
+		, _floor(nullptr)
 		, _walls()
 	{
 		generate(floorFilename, wallFilename);
 		init(scale);
 	}
 
-	StageModel::StageModel(ModelDatabasePtr modelDatabase, VECTOR scale, const std::string& floorFilename, const std::string& wallFilename)
-		: _floor(nullptr)
+	StageModel::StageModel(MessageServerPtr server, ModelDatabasePtr modelDatabase, VECTOR scale, const std::string& floorFilename, const std::string& wallFilename)
+		: MessageClient(server)
+		, _floor(nullptr)
 		, _walls()
 	{
 		generate(modelDatabase, floorFilename, wallFilename);
 		init(scale);
+	}
+
+	void StageModel::receive(const std::string& message) {
 	}
 
 	void StageModel::draw() const {
