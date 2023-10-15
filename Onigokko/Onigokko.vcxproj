@@ -152,6 +152,7 @@
     <ClCompile Include="ModelResource.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerModel.cpp" />
     <ClCompile Include="StageModel.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="VectorOperator.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="ModelResource.hpp" />
     <ClInclude Include="Physics.hpp" />
     <ClInclude Include="Player.hpp" />
+    <ClInclude Include="PlayerModel.hpp" />
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="StageModel.hpp" />
     <ClInclude Include="Timer.hpp" />
