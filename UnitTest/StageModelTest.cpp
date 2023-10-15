@@ -1,17 +1,17 @@
 #include "pch.h"
 #include "ModelDatabase.hpp"
 #include "ModelInstance.hpp"
-#include "Stage.hpp"
+#include "StageModel.hpp"
 #include "DxLib.h"
 #include <stdexcept>
 
 namespace game {
 	// draw test in main function
-	TEST_CLASS(StageTest)
+	TEST_CLASS(StageModelTest)
 	{
 	public:
 		TEST_METHOD(ConstructorWithValidScale) {
-			Stage stage(VGet(100, 100, 100),
+			StageModel stage(VGet(100, 100, 100),
 				"../../Onigokko/ground.txt",
 				"../../Onigokko/wall.txt");
 
@@ -34,7 +34,7 @@ namespace game {
 		}
 		TEST_METHOD(ConstructorWithZeroScale) {
 			try {
-				Stage stage(VGet(0, 0, 0),
+				StageModel stage(VGet(0, 0, 0),
 					"../../Onigokko/ground.txt",
 					"../../Onigokko/wall.txt");
 			}
@@ -48,7 +48,7 @@ namespace game {
 		}
 		TEST_METHOD(ConstructorWithMinusScale) {
 			try {
-				Stage stage(VGet(100, -14, 100),
+				StageModel stage(VGet(100, -14, 100),
 					"../../Onigokko/ground.txt",
 					"../../Onigokko/wall.txt");
 			}
@@ -62,7 +62,7 @@ namespace game {
 		}
 		TEST_METHOD(ConstructorModelDBValidScale_NotLoaded) {
 			ModelDatabasePtr mdb(new ModelDatabase());
-			Stage stage(mdb, VGet(100, 123, 5),
+			StageModel stage(mdb, VGet(100, 123, 5),
 				"../../Onigokko/ground.txt",
 				"../../Onigokko/wall.txt");
 
@@ -88,7 +88,7 @@ namespace game {
 			mdb->load("floor", "../../Onigokko/ground.txt");
 			mdb->load("wall", "../../Onigokko/wall.txt");
 
-			Stage stage(mdb, VGet(100, 100, 100),
+			StageModel stage(mdb, VGet(100, 100, 100),
 				"../../Onigokko/ground.txt",
 				"../../Onigokko/wall.txt");
 

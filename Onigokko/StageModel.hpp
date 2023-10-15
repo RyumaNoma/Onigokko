@@ -14,7 +14,7 @@ namespace game {
 	/**
 	 * @brief ゲーム内のステージを管理する。
 	 */
-	class Stage {
+	class StageModel {
 	public:
 		/**
 		 * @brief コンストラクタ。
@@ -24,7 +24,7 @@ namespace game {
 		 * @param floorFilename 床のモデルファイル
 		 * @param wallFilename 壁のモデルファイル
 		 */
-		Stage(VECTOR scale, const std::string& floorFilename, const std::string& wallFilename);
+		StageModel(VECTOR scale, const std::string& floorFilename, const std::string& wallFilename);
 
 		/**
 		 * @brief モデルDBを通したステージの生成。
@@ -35,7 +35,7 @@ namespace game {
 		 * @param floorFilename 床のモデルファイル
 		 * @param wallFilename 壁のモデルファイル
 		 */
-		Stage(ModelDatabasePtr modelDatabase, VECTOR scale, const std::string& floorFilename, const std::string& wallFilename);
+		StageModel(ModelDatabasePtr modelDatabase, VECTOR scale, const std::string& floorFilename, const std::string& wallFilename);
 
 		/**
 		 * @brief ステージの持つ全てのオブジェクトの描画。
@@ -70,6 +70,6 @@ namespace game {
 		ModelInstancePtr _floor;
 		std::vector<ModelInstancePtr> _walls;
 	};
-	using StagePtr = std::shared_ptr<Stage>;
-	using StageRef = std::shared_ptr<const Stage>;
+	using StageModelPtr = std::shared_ptr<StageModel>;
+	using StageModelRef = std::shared_ptr<const StageModel>;
 }

@@ -7,7 +7,7 @@
 #include "DxLib.h"
 #include "ModelResource.hpp"
 #include "ModelInstance.hpp"
-#include "Stage.hpp"
+#include "StageModel.hpp"
 
 // プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)

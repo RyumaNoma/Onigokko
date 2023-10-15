@@ -1,10 +1,10 @@
 ﻿#include "ModelResource.hpp"
 #include "ModelDatabase.hpp"
 #include "ModelInstance.hpp"
-#include "Stage.hpp"
+#include "StageModel.hpp"
 
 namespace game {
-	Stage::Stage(VECTOR scale, const std::string& floorFilename, const std::string& wallFilename)
+	StageModel::StageModel(VECTOR scale, const std::string& floorFilename, const std::string& wallFilename)
 		: _floor(nullptr)
 		, _walls()
 	{
@@ -12,7 +12,7 @@ namespace game {
 		init(scale);
 	}
 
-	Stage::Stage(ModelDatabasePtr modelDatabase, VECTOR scale, const std::string& floorFilename, const std::string& wallFilename)
+	StageModel::StageModel(ModelDatabasePtr modelDatabase, VECTOR scale, const std::string& floorFilename, const std::string& wallFilename)
 		: _floor(nullptr)
 		, _walls()
 	{
@@ -20,27 +20,27 @@ namespace game {
 		init(scale);
 	}
 
-	void Stage::draw() const {
+	void StageModel::draw() const {
 		_floor->draw();
 		for (int i = 0; i < 4; ++i) {
 			_walls[i]->draw();
 		}
 	}
 
-	std::vector<ModelInstanceRef> Stage::getWalls() const {
+	std::vector<ModelInstanceRef> StageModel::getWalls() const {
 		std::vector<ModelInstanceRef> refs;
 		for (auto wall : _walls) { refs.push_back(wall); }
 		return refs;
 	}
 
-	std::vector<ModelInstanceRef> Stage::getAllObjects() const {
+	std::vector<ModelInstanceRef> StageModel::getAllObjects() const {
 		std::vector<ModelInstanceRef> refs;
 		refs.push_back(_floor);
 		for (auto wall : _walls) { refs.push_back(wall); }
 		return refs;
 	}
 
-	void Stage::generate(const std::string& floorFilename, const std::string& wallFilename) {
+	void StageModel::generate(const std::string& floorFilename, const std::string& wallFilename) {
 		// リソースの生成
 		ModelResourcePtr floorResource(new ModelResource(floorFilename));
 		ModelResourcePtr wallResource(new ModelResource(wallFilename));
@@ -52,7 +52,7 @@ namespace game {
 		}
 	}
 
-	void Stage::generate(ModelDatabasePtr modelDatabase, const std::string& floorFilename, const std::string& wallFilename) {
+	void StageModel::generate(ModelDatabasePtr modelDatabase, const std::string& floorFilename, const std::string& wallFilename) {
 		// リソースの生成
 		auto floorResource = modelDatabase->fetch("floor", floorFilename);
 		auto wallResource = modelDatabase->fetch("wall", wallFilename);
@@ -64,7 +64,7 @@ namespace game {
 		}
 	}
 
-	void Stage::init(VECTOR scale) {
+	void StageModel::init(VECTOR scale) {
 		// 床
 		_floor->setScale(VGet(scale.x, 1, scale.z));
 		// 壁(x軸に平行, y=0)
