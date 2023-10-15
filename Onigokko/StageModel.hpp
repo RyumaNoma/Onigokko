@@ -72,6 +72,8 @@ namespace game {
 		void generate(ModelDatabasePtr modelDatabase, const std::string& floorFilename, const std::string& wallFilename);
 		void init(VECTOR scale);
 
+		void responseAABB();
+
 		ModelInstancePtr _floor;
 		std::vector<ModelInstancePtr> _walls;
 	};
