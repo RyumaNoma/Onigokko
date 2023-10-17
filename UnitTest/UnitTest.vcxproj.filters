@@ -48,9 +48,6 @@
     <ClCompile Include="ModelDatabaseTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="StageTest.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="AABBTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -67,6 +64,12 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsTest.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="StageModelTest.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerModelTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
