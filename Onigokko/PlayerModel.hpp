@@ -1,4 +1,6 @@
 ﻿#pragma once
+#include "MessageClient.hpp"
+#include "DxLib.h"
 
 namespace game {
 	class ModelDatabase;
@@ -21,6 +23,10 @@ namespace game {
 		float getSpeed() const { return _speed; }
 
 		ModelInstanceRef getModelInstance() const { return _model; }
+	private:
+		void generateInstance(ModelDatabasePtr modelDatabase, const std::string& modelFilename, float scale);
+		void responseMove(const std::string& direction);
+		void responseAABB();
 	private:
 		ModelInstancePtr _model;
 		float _speed;

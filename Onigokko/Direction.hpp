@@ -10,6 +10,7 @@ namespace game {
 	public:
 		Direction();
 		Direction(int x, int y);
+		Direction(const std::string& direction);
 
 		explicit operator std::string() const;
 
