@@ -45,6 +45,8 @@ namespace game {
 		 */
 		bool isCollidedStage(int playerId) const { return _collisionStage.at(playerId).first <= 1.0f; }
 	private:
+		// 初期化
+		void init(int playerNum);
 	private:
 		ModelDatabasePtr _mdb;
 		// 動く
