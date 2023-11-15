@@ -19,14 +19,12 @@ namespace game {
     void PlayerModel::receive(const std::string& message) {
         MessageParser mp(message);
 
-        if (mp.getSignature() == "move") {
-            responseMove(mp.getArgumentAsString(0));
+        if (mp.getSignature() == "moveInput") {
+            const auto direction = mp.getArgumentAsString(0);
+            responseMove(direction);
         }
         else if (mp.getSignature() == "setSpeed") {
             _speed = mp.getArgumentAsDouble(0);
-        }
-        else if (mp.getSignature() == "getAABB") {
-            responseAABB();
         }
     }
 
@@ -55,7 +53,7 @@ namespace game {
 
         // メッセージ生成
         MessageGenerator mg;
-        mg.setDestination("Physics", 0);
+        mg.setDestination("physics", 0);
         mg.setSignature("playerMove");
         mg.addArgument(getId());
         mg.addArgument(move.x);
@@ -69,25 +67,4 @@ namespace game {
         // 送信
         send(mg.generate());
     }
-
-    void PlayerModel::responseAABB() {
-        // AABB生成
-        AABB aabb;
-        aabb.update(_model);
-
-        // メッセージ生成
-        MessageGenerator mg;
-        mg.setDestination("Physics", 0);
-        mg.setSignature("playerAABB");
-        mg.addArgument(getId());
-        mg.addArgument(aabb.getMinX());
-        mg.addArgument(aabb.getMinY());
-        mg.addArgument(aabb.getMinZ());
-        mg.addArgument(aabb.getMaxX());
-        mg.addArgument(aabb.getMaxY());
-        mg.addArgument(aabb.getMaxZ());
-        // 送信
-        send(mg.generate());
-    }
-
 }
