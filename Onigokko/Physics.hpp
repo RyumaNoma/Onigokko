@@ -50,8 +50,10 @@ namespace game {
 		std::vector<AABB> _dynamicObjects;
 		std::vector<VECTOR> _moves;
 		std::vector<float> _rotates;
+		std::vector<std::vector<float>> _collisionPlayer;
+		std::vector<std::pair<float, int>> _collisionStage;
 		// 動かない
-		std::vector<AABB> _staticObjects;
+		std::vector<AABB> _stages;
 	};
 	using PhysicsPtr = std::shared_ptr<Physics>;
 	using PhysicsRef = std::shared_ptr<const Physics>;
