@@ -45,9 +45,11 @@ namespace game {
 		 */
 		bool isCollidedStage(int playerId) const { return _collisionStage.at(playerId).first <= 1.0f; }
 	private:
+	private:
+		ModelDatabasePtr _mdb;
 		// 動く
-		std::vector<ModelInstance> _models;
-		std::vector<AABB> _dynamicObjects;
+		int _playerNum;
+		std::vector<ModelInstancePtr> _players;
 		std::vector<VECTOR> _moves;
 		std::vector<float> _rotates;
 		std::vector<std::vector<float>> _collisionPlayer;
