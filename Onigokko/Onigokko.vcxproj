@@ -150,7 +150,10 @@
     <ClCompile Include="ModelInstance.cpp" />
     <ClCompile Include="ModelParser.cpp" />
     <ClCompile Include="ModelResource.cpp" />
-    <ClCompile Include="Stage.cpp" />
+    <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerModel.cpp" />
+    <ClCompile Include="StageModel.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="VectorOperator.cpp" />
   </ItemGroup>
@@ -169,8 +172,11 @@
     <ClInclude Include="ModelInstance.hpp" />
     <ClInclude Include="ModelParser.hpp" />
     <ClInclude Include="ModelResource.hpp" />
+    <ClInclude Include="Physics.hpp" />
+    <ClInclude Include="Player.hpp" />
+    <ClInclude Include="PlayerModel.hpp" />
     <ClInclude Include="Scene.hpp" />
-    <ClInclude Include="Stage.hpp" />
+    <ClInclude Include="StageModel.hpp" />
     <ClInclude Include="Timer.hpp" />
     <ClInclude Include="VectorOperator.hpp" />
   </ItemGroup>

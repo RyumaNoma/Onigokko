@@ -2,6 +2,7 @@
 #include <memory>
 #include <vector>
 #include "DxLib.h"
+#include "MessageClient.hpp"
 
 namespace game {
 	class ModelDatabase;
@@ -14,7 +15,9 @@ namespace game {
 	/**
 	 * @brief ゲーム内のステージを管理する。
 	 */
-	class Stage {
+	class StageModel
+		: public MessageClient
+	{
 	public:
 		/**
 		 * @brief コンストラクタ。
@@ -24,7 +27,7 @@ namespace game {
 		 * @param floorFilename 床のモデルファイル
 		 * @param wallFilename 壁のモデルファイル
 		 */
-		Stage(VECTOR scale, const std::string& floorFilename, const std::string& wallFilename);
+		StageModel(MessageServerPtr server, VECTOR scale, const std::string& floorFilename, const std::string& wallFilename);
 
 		/**
 		 * @brief モデルDBを通したステージの生成。
@@ -35,7 +38,9 @@ namespace game {
 		 * @param floorFilename 床のモデルファイル
 		 * @param wallFilename 壁のモデルファイル
 		 */
-		Stage(ModelDatabasePtr modelDatabase, VECTOR scale, const std::string& floorFilename, const std::string& wallFilename);
+		StageModel(MessageServerPtr server, ModelDatabasePtr modelDatabase, VECTOR scale, const std::string& floorFilename, const std::string& wallFilename);
+
+		void receive(const std::string& message) override;
 
 		/**
 		 * @brief ステージの持つ全てのオブジェクトの描画。
@@ -67,9 +72,11 @@ namespace game {
 		void generate(ModelDatabasePtr modelDatabase, const std::string& floorFilename, const std::string& wallFilename);
 		void init(VECTOR scale);
 
+		void responseAABB();
+
 		ModelInstancePtr _floor;
 		std::vector<ModelInstancePtr> _walls;
 	};
-	using StagePtr = std::shared_ptr<Stage>;
-	using StageRef = std::shared_ptr<const Stage>;
+	using StageModelPtr = std::shared_ptr<StageModel>;
+	using StageModelRef = std::shared_ptr<const StageModel>;
 }

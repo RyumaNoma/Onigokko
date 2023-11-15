@@ -51,6 +51,9 @@ namespace Microsoft {
 			template<> inline std::wstring ToString<std::shared_ptr<game::InGameInputInterface>>(const std::shared_ptr<game::InGameInputInterface>& t) {
 				RETURN_WIDE_STRING(t.get());
 			}
+			template<> inline std::wstring ToString<std::pair<float, int>>(const std::pair<float, int>& t) {
+				RETURN_WIDE_STRING(('(' + std::to_string(t.first) + ',' + std::to_string(t.second) + ')').c_str());
+			}
 		}
 	}
 }

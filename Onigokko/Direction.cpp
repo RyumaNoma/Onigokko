@@ -13,6 +13,45 @@ namespace game {
 		, _y(y)
 	{}
 
+	Direction::Direction(const std::string & direction) {
+		if (direction == "LEFT") {
+			_x = -1;
+			_y = 0;
+		}
+		else if (direction == "RIGHT") {
+			_x = 1;
+			_y = 0;
+		}
+		else if (direction == "UP") {
+			_x = 0;
+			_y = 1;
+		}
+		else if (direction == "DOWN") {
+			_x = 0;
+			_y = -1;
+		}
+		else if (direction == "LEFT_UP") {
+			_x = -1;
+			_y = 1;
+		}
+		else if (direction == "LEFT_DOWN") {
+			_x = -1;
+			_y = -1;
+		}
+		else if (direction == "RIGHT_UP") {
+			_x = 1;
+			_y = 1;
+		}
+		else if (direction == "RIGHT_DOWN") {
+			_x = 1;
+			_y = -1;
+		}
+		else {
+			_x = 0;
+			_y = 0;
+		}
+	}
+
 	Direction::operator std::string() const {
 		if (_x == 0 && _y == 0) { return "NONE"; }
 		const float angle = std::atan2f(_y, _x);

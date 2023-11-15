@@ -1,17 +1,20 @@
 #include "pch.h"
 #include "ModelDatabase.hpp"
 #include "ModelInstance.hpp"
-#include "Stage.hpp"
+#include "StageModel.hpp"
+#include "MessageServer.hpp"
 #include "DxLib.h"
+#include "MessageClientStub.hpp"
 #include <stdexcept>
 
 namespace game {
 	// draw test in main function
-	TEST_CLASS(StageTest)
+	TEST_CLASS(StageModelTest)
 	{
 	public:
 		TEST_METHOD(ConstructorWithValidScale) {
-			Stage stage(VGet(100, 100, 100),
+			MessageServerPtr server(new MessageServer());
+			StageModel stage(server, VGet(100, 100, 100),
 				"../../Onigokko/ground.txt",
 				"../../Onigokko/wall.txt");
 
@@ -34,7 +37,8 @@ namespace game {
 		}
 		TEST_METHOD(ConstructorWithZeroScale) {
 			try {
-				Stage stage(VGet(0, 0, 0),
+				MessageServerPtr server(new MessageServer());
+				StageModel stage(server, VGet(0, 0, 0),
 					"../../Onigokko/ground.txt",
 					"../../Onigokko/wall.txt");
 			}
@@ -48,7 +52,8 @@ namespace game {
 		}
 		TEST_METHOD(ConstructorWithMinusScale) {
 			try {
-				Stage stage(VGet(100, -14, 100),
+				MessageServerPtr server(new MessageServer());
+				StageModel stage(server, VGet(100, -14, 100),
 					"../../Onigokko/ground.txt",
 					"../../Onigokko/wall.txt");
 			}
@@ -62,7 +67,8 @@ namespace game {
 		}
 		TEST_METHOD(ConstructorModelDBValidScale_NotLoaded) {
 			ModelDatabasePtr mdb(new ModelDatabase());
-			Stage stage(mdb, VGet(100, 123, 5),
+			MessageServerPtr server(new MessageServer());
+			StageModel stage(server, mdb, VGet(100, 123, 5),
 				"../../Onigokko/ground.txt",
 				"../../Onigokko/wall.txt");
 
@@ -88,7 +94,8 @@ namespace game {
 			mdb->load("floor", "../../Onigokko/ground.txt");
 			mdb->load("wall", "../../Onigokko/wall.txt");
 
-			Stage stage(mdb, VGet(100, 100, 100),
+			MessageServerPtr server(new MessageServer());
+			StageModel stage(server, mdb, VGet(100, 100, 100),
 				"../../Onigokko/ground.txt",
 				"../../Onigokko/wall.txt");
 
@@ -119,6 +126,34 @@ namespace game {
 			Assert::AreEqual(static_cast<ModelResourceRef>(mdb->fetch("wall", "honyarara")), obj[2]->getModelResource());
 			Assert::AreEqual(static_cast<ModelResourceRef>(mdb->fetch("wall", "honyarara")), obj[3]->getModelResource());
 			Assert::AreEqual(static_cast<ModelResourceRef>(mdb->fetch("wall", "honyarara")), obj[4]->getModelResource());
+		}
+		TEST_METHOD(AABB) {
+			MessageServerPtr server(new MessageServer());
+			StageModel stage(server, VGet(100, 200, 300),
+				"../../Onigokko/ground.txt",
+				"../../Onigokko/wall.txt");
+			std::shared_ptr<MessageClientStub1> stub(new MessageClientStub1(server));
+			stub->raiseHand("Physics");
+
+			stage.receive("getAABB()");
+			server->sendAll();
+
+			auto&& messages = stub->getReceivedMessages();
+			Assert::AreEqual(
+				std::string("stageAABB(0,0,0,100,1,300)"),
+				messages.at(0));
+			Assert::AreEqual(
+				std::string("stageAABB(0,0,-1,101,201,0)"),
+				messages.at(1));
+			Assert::AreEqual(
+				std::string("stageAABB(-1,0,300,100,201,301)"),
+				messages.at(2));
+			Assert::AreEqual(
+				std::string("stageAABB(-1,0,-1,0,201,300)"),
+				messages.at(3));
+			Assert::AreEqual(
+				std::string("stageAABB(100,0,0,101,201,301)"),
+				messages.at(4));
 		}
 	};
 }
