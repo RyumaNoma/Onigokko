@@ -47,6 +47,33 @@ namespace game {
 	private:
 		// 初期化
 		void init(int playerNum);
+
+		// プレイヤーのスケールを設定する
+		void setPlayerScale(int playerId, float scale);
+		// プレイヤーの位置を設定する
+		void setPlayerPosition(int playerId, VECTOR position);
+		// プレイヤーの基準座標を設定する
+		void setPlayerAnchor(int playerId, VECTOR anchor);
+		// 全てのプレイヤーのAABBを生成する
+		std::vector<AABB> generateAllPlayersAABB();
+		// プレイヤーの移動ベクトルを設定する
+		void setPlayerMove(int playerId, VECTOR move);
+		// プレイヤーの回転を計算し、設定する
+		void setPlayerRotate(int playerId, VECTOR face);
+		// ステージのAABBを追加する
+		void addStageAABB(int minX, int minY, int minZ, int maxX, int maxY, int maxZ);
+		// 衝突判定
+		void check();
+		// プレイヤーとステージの衝突判定
+		void checkCollisionStage(const std::vector<AABB>& playerAABB);
+		// プレイヤー同士の衝突判定
+		void checkCollisionPlayer(const std::vector<AABB>& playerAABB);
+		// 実際の動作を生成する
+		std::vector<VECTOR> generateActualMove() const;
+		// 実際の動作を返信する
+		void responseActualMove();
+		// checkCollisionに返信する
+		void responseCheckCollision(int playerId1, int playerId2);
 	private:
 		ModelDatabasePtr _mdb;
 		// 動く
