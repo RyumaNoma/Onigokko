@@ -26,6 +26,7 @@ namespace game {
 	private:
 		void generateInstance(ModelDatabasePtr modelDatabase, const std::string& modelFilename, float scale);
 		void responseMove(const std::string& direction);
+		void responseAABB();
 	private:
 		ModelInstancePtr _model;
 		float _speed;
