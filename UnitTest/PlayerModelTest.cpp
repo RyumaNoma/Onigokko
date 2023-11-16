@@ -57,9 +57,9 @@ namespace game {
 			MessageServerPtr server(new MessageServer());
 			ModelDatabasePtr mdb(new ModelDatabase());
 			std::shared_ptr<PlayerModel> player(new PlayerModel(server, mdb, 100, "../../Onigokko/person.txt"));
-			player->raiseHand("Player");
+			player->raiseHand("player");
 			std::shared_ptr<MessageClientStub1> stub(new MessageClientStub1(server));
-			stub->raiseHand("Physics");
+			stub->raiseHand("physics");
 
 			player->receive("getAABB()");
 			server->sendAll();
@@ -91,9 +91,9 @@ namespace game {
 			MessageServerPtr server(new MessageServer());
 			ModelDatabasePtr mdb(new ModelDatabase());
 			std::shared_ptr<PlayerModel> player(new PlayerModel(server, mdb, 100, "../../Onigokko/person.txt"));
-			player->raiseHand("Player");
+			player->raiseHand("player");
 			std::shared_ptr<MessageClientStub1> stub(new MessageClientStub1(server));
-			stub->raiseHand("Physics");
+			stub->raiseHand("physics");
 
 			player->receive("setSpeed(100.0)");
 			player->receive("move(LEFT)");
@@ -114,9 +114,9 @@ namespace game {
 			MessageServerPtr server(new MessageServer());
 			ModelDatabasePtr mdb(new ModelDatabase());
 			std::shared_ptr<PlayerModel> player(new PlayerModel(server, mdb, 100, "../../Onigokko/person.txt"));
-			player->raiseHand("Player");
+			player->raiseHand("player");
 			std::shared_ptr<MessageClientStub1> stub(new MessageClientStub1(server));
-			stub->raiseHand("Physics");
+			stub->raiseHand("physics");
 
 			player->receive("setSpeed(100.0)");
 			player->receive("move(RIGHT)");
@@ -137,9 +137,9 @@ namespace game {
 			MessageServerPtr server(new MessageServer());
 			ModelDatabasePtr mdb(new ModelDatabase());
 			std::shared_ptr<PlayerModel> player(new PlayerModel(server, mdb, 100, "../../Onigokko/person.txt"));
-			player->raiseHand("Player");
+			player->raiseHand("player");
 			std::shared_ptr<MessageClientStub1> stub(new MessageClientStub1(server));
-			stub->raiseHand("Physics");
+			stub->raiseHand("physics");
 
 			player->receive("setSpeed(100.0)");
 			player->receive("move(UP)");
@@ -160,9 +160,9 @@ namespace game {
 			MessageServerPtr server(new MessageServer());
 			ModelDatabasePtr mdb(new ModelDatabase());
 			std::shared_ptr<PlayerModel> player(new PlayerModel(server, mdb, 100, "../../Onigokko/person.txt"));
-			player->raiseHand("Player");
+			player->raiseHand("player");
 			std::shared_ptr<MessageClientStub1> stub(new MessageClientStub1(server));
-			stub->raiseHand("Physics");
+			stub->raiseHand("physics");
 
 			player->receive("setSpeed(100.0)");
 			player->receive("move(DOWN)");
@@ -183,9 +183,9 @@ namespace game {
 			MessageServerPtr server(new MessageServer());
 			ModelDatabasePtr mdb(new ModelDatabase());
 			std::shared_ptr<PlayerModel> player(new PlayerModel(server, mdb, 100, "../../Onigokko/person.txt"));
-			player->raiseHand("Player");
+			player->raiseHand("player");
 			std::shared_ptr<MessageClientStub1> stub(new MessageClientStub1(server));
-			stub->raiseHand("Physics");
+			stub->raiseHand("physics");
 
 			player->receive("setSpeed(100.0)");
 			player->receive("move(LEFT_UP)");
@@ -212,9 +212,9 @@ namespace game {
 			MessageServerPtr server(new MessageServer());
 			ModelDatabasePtr mdb(new ModelDatabase());
 			std::shared_ptr<PlayerModel> player(new PlayerModel(server, mdb, 100, "../../Onigokko/person.txt"));
-			player->raiseHand("Player");
+			player->raiseHand("player");
 			std::shared_ptr<MessageClientStub1> stub(new MessageClientStub1(server));
-			stub->raiseHand("Physics");
+			stub->raiseHand("physics");
 
 			player->receive("setSpeed(100.0)");
 			player->receive("move(LEFT_DOWN)");
@@ -241,9 +241,9 @@ namespace game {
 			MessageServerPtr server(new MessageServer());
 			ModelDatabasePtr mdb(new ModelDatabase());
 			std::shared_ptr<PlayerModel> player(new PlayerModel(server, mdb, 100, "../../Onigokko/person.txt"));
-			player->raiseHand("Player");
+			player->raiseHand("player");
 			std::shared_ptr<MessageClientStub1> stub(new MessageClientStub1(server));
-			stub->raiseHand("Physics");
+			stub->raiseHand("physics");
 
 			player->receive("setSpeed(100.0)");
 			player->receive("move(RIGHT_UP)");
@@ -270,9 +270,9 @@ namespace game {
 			MessageServerPtr server(new MessageServer());
 			ModelDatabasePtr mdb(new ModelDatabase());
 			std::shared_ptr<PlayerModel> player(new PlayerModel(server, mdb, 100, "../../Onigokko/person.txt"));
-			player->raiseHand("Player");
+			player->raiseHand("player");
 			std::shared_ptr<MessageClientStub1> stub(new MessageClientStub1(server));
-			stub->raiseHand("Physics");
+			stub->raiseHand("physics");
 
 			player->receive("setSpeed(100.0)");
 			player->receive("move(RIGHT_DOWN)");

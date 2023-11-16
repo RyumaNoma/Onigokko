@@ -203,7 +203,7 @@ namespace game {
         mg.addArgument(0);
 
         for (int i = 0; i < _playerNum; ++i) {
-            mg.setDestination("player", i);
+            mg.setDestination("playerModel", i);
             mg.updateArgument(0, actualMoves.at(i).x);
             mg.updateArgument(1, actualMoves.at(i).y);
             mg.updateArgument(2, actualMoves.at(i).z);
@@ -214,7 +214,7 @@ namespace game {
     void Physics::responseCheckCollision(int playerId1, int playerId2) {
         if (isCollided(playerId1, playerId2)) {
             MessageGenerator mg;
-            mg.setDestination("Game", 0);
+            mg.setDestination("game", 0);
             mg.setSignature("collision");
             mg.addArgument(playerId1);
             mg.addArgument(playerId2);

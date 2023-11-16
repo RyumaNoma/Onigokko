@@ -45,8 +45,8 @@ namespace game {
         // 移動入力が行われた場合のみ
         if (dirStr != "NONE") {
             MessageGenerator mg;
-            mg.setDestination("Physics", 0);
-            mg.setSignature("move");
+            mg.setDestination("playerModel", 0);
+            mg.setSignature("moveInput");
             mg.addArgument(getId());
             mg.addArgument(dirStr);
         }
@@ -56,8 +56,8 @@ namespace game {
         // アイテム取得入力があった場合のみ
         if (GetMouseInput() & MOUSE_INPUT_RIGHT) {
             MessageGenerator mg;
-            mg.setDestination("Physics", 0);
-            mg.setSignature("getItem");
+            mg.setDestination("player", 0);
+            mg.setSignature("getItemInput");
             mg.addArgument(getId());
         }
     }
@@ -66,8 +66,8 @@ namespace game {
         // アイテム使用入力があった場合のみ
         if (GetMouseInput() & MOUSE_INPUT_LEFT) {
             MessageGenerator mg;
-            mg.setDestination("Physics", 0);
-            mg.setSignature("useItem");
+            mg.setDestination("player", 0);
+            mg.setSignature("useItemInput");
             mg.addArgument(getId());
         }
     }

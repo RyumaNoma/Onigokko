@@ -15,8 +15,8 @@ namespace game {
 			ModelDatabasePtr mdb(new ModelDatabase());
 			std::shared_ptr<Physics> p(new Physics(server, mdb));
 			std::shared_ptr<MessageClientStub1> stub(new MessageClientStub1(server));
-			stub->raiseHand("player");
-			stub->raiseHand("player");
+			stub->raiseHand("playerModel");
+			stub->raiseHand("playerModel");
 
 			// stage player1 player0
 			p->receive("setPlayerNum(2)");
@@ -44,8 +44,8 @@ namespace game {
 			ModelDatabasePtr mdb(new ModelDatabase());
 			std::shared_ptr<Physics> p(new Physics(server, mdb));
 			std::shared_ptr<MessageClientStub1> stub(new MessageClientStub1(server));
-			stub->raiseHand("player");
-			stub->raiseHand("player");
+			stub->raiseHand("playerModel");
+			stub->raiseHand("playerModel");
 
 			// stage player0 player1
 			p->receive("setPlayerNum(2)");
@@ -74,8 +74,8 @@ namespace game {
 			ModelDatabasePtr mdb(new ModelDatabase());
 			std::shared_ptr<Physics> p(new Physics(server, mdb));
 			std::shared_ptr<MessageClientStub1> stub(new MessageClientStub1(server));
-			stub->raiseHand("player");
-			stub->raiseHand("player");
+			stub->raiseHand("playerModel");
+			stub->raiseHand("playerModel");
 
 			// stage player0 player1
 			p->receive("setPlayerNum(2)");
@@ -103,8 +103,8 @@ namespace game {
 			ModelDatabasePtr mdb(new ModelDatabase());
 			std::shared_ptr<Physics> p(new Physics(server, mdb));
 			std::shared_ptr<MessageClientStub1> stub(new MessageClientStub1(server));
-			stub->raiseHand("player");
-			stub->raiseHand("player");
+			stub->raiseHand("playerModel");
+			stub->raiseHand("playerModel");
 
 			// player0 stage  player1
 			p->receive("setPlayerNum(2)");
@@ -132,8 +132,8 @@ namespace game {
 			ModelDatabasePtr mdb(new ModelDatabase());
 			std::shared_ptr<Physics> p(new Physics(server, mdb));
 			std::shared_ptr<MessageClientStub1> stub(new MessageClientStub1(server));
-			stub->raiseHand("player");
-			stub->raiseHand("player");
+			stub->raiseHand("playerModel");
+			stub->raiseHand("playerModel");
 
 			// stage player1 player0
 			p->receive("setPlayerNum(2)");
@@ -161,9 +161,9 @@ namespace game {
 			ModelDatabasePtr mdb(new ModelDatabase());
 			std::shared_ptr<Physics> p(new Physics(server, mdb));
 			std::shared_ptr<MessageClientStub1> stub(new MessageClientStub1(server));
-			stub->raiseHand("player");
-			stub->raiseHand("player");
-			stub->raiseHand("player");
+			stub->raiseHand("playerModel");
+			stub->raiseHand("playerModel");
+			stub->raiseHand("playerModel");
 
 			// player0 player1 player2 stage
 			p->receive("setPlayerNum(3)");
@@ -199,9 +199,9 @@ namespace game {
 			ModelDatabasePtr mdb(new ModelDatabase());
 			std::shared_ptr<Physics> p(new Physics(server, mdb));
 			std::shared_ptr<MessageClientStub1> stub(new MessageClientStub1(server));
-			stub->raiseHand("player");
-			stub->raiseHand("player");
-			stub->raiseHand("player");
+			stub->raiseHand("playerModel");
+			stub->raiseHand("playerModel");
+			stub->raiseHand("playerModel");
 
 			// player0 player1 player2 stage
 			p->receive("setPlayerNum(3)");
