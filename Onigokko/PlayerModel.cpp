@@ -55,7 +55,7 @@ namespace game {
 
         // メッセージ生成
         MessageGenerator mg;
-        mg.setDestination("Physics", 0);
+        mg.setDestination("physics", 0);
         mg.setSignature("playerMove");
         mg.addArgument(getId());
         mg.addArgument(move.x);
@@ -77,7 +77,7 @@ namespace game {
 
         // メッセージ生成
         MessageGenerator mg;
-        mg.setDestination("Physics", 0);
+        mg.setDestination("physics", 0);
         mg.setSignature("playerAABB");
         mg.addArgument(getId());
         mg.addArgument(aabb.getMinX());
